@@ -93,7 +93,7 @@ class dnaTranslation:
         #for codon in codons:
         #    amino_acids = amino_acids + self.translateCodon(codon)
         #return amino_acids
-        
+
     #def translateDnaAllFrames(self, dna):
     #    '''Translates dna sequence in 3 forward frames. \
     #        Translates from the opposite end if reverseTL == True \
@@ -122,66 +122,70 @@ class dnaTranslation:
 
 # converted into codon usage table format
 def CodonTableFormat(codon_usages, **kw):
-	codon_num = 0
-	out = ''
-	nucleotides = ['A','T','C','G']
-	key = [''.join(i) for i in product(nucleotides, repeat = 3)]
-	for i in range(len(key)):
-		if key[i] not in codon_usages.keys():
-			codon_usages[key[i]] = 0.0
-	for codon in sorted(codon_usages):
-		freq = "%.2f" % (round(codon_usages[codon]*100,2)) + "%"
-		if codon_num == 0:
-			out += codon+": "+freq
-		elif codon_num % 4 != 0:
-			out += "\t"+codon+": "+freq
-		else:
-			out += "\n"+codon+": "+freq
-		codon_num += 1 
-	return out
+    codon_num = 0
+    out = ''
+    nucleotides = ['A','T','C','G']
+    key = [''.join(i) for i in product(nucleotides, repeat = 3)]
+    for i in range(len(key)):
+        if key[i] not in codon_usages.keys():
+            codon_usages[key[i]] = 0.0
+    for codon in sorted(codon_usages):
+        freq = "%.2f" % (round(codon_usages[codon]*100,2)) + "%"
+        if codon_num == 0:
+            out += codon+": "+freq
+        elif codon_num % 4 != 0:
+            out += "\t"+codon+": "+freq
+        else:
+            out += "\n"+codon+": "+freq
+            codon_num += 1
+            return out
 
-# simulate randomized sequence	
+# simulate randomized sequence
 def SeqSimulator(myseq):
-	randomized_seq = list(myseq)
-	random.shuffle(randomized_seq)
-	Simulated_sequence = ''.join(randomized_seq)
-	return Simulated_sequence
+    randomized_seq = list(myseq)
+    random.shuffle(randomized_seq)
+    Simulated_sequence = ''.join(randomized_seq)
+    return Simulated_sequence
 
 
-		
+
 #### ====== read input FASTA file and write output files ======
 if __name__ == "__main__":
-	parser = argparse.ArgumentParser()		
-	#parser.add_argument('-i', '--fasta_file', required=True)
-	#parser.add_argument('-o', '--output_file', required=True)	
-	parser.add_argument('-c', '--codon_table')
-	parser.add_argument('-r', '--random_codon_table')	
-	args = parser.parse_args()
+    parser = argparse.ArgumentParser()
+    #parser.add_argument('-i', '--fasta_file', required=True)
+    #parser.add_argument('-o', '--output_file', required=True)
+    parser.add_argument('-c', '--codon_table')
+    parser.add_argument('-r', '--random_codon_table')
+    args = parser.parse_args()
 
-	fasta = mydir + 'EcoGene_no_pseudo.fa'
+    fasta = mydir + 'EcoGene_no_pseudo.fa'
 
-	class_test = classFASTA(fasta)
-	sequence_1 = class_test.readFASTA()[0][1]
+    class_test = classFASTA(fasta)
+    ######### This command returns the nested list containing sequence names
+    ######### and sequences to a flat list containing only sequences
+    sequences = [ x[1] for x in class_test.readFASTA() ]
+    print sequences
+    #########
+    #sequence_1 = class_test.readFASTA()[0][1]
 
-	# tranform the codon usage dictionary to an optional output table	
-	codon_usages = dnaTranslation(mydir,sequence_1, 1).codonFrequency()
-	codon_table = CodonTableFormat(codon_usages)
-	
-	# simulate a randomized sequence based on known nucleotide frequency 	
-	myseq = dnaTranslation(mydir,sequence_1, 1).dna
-	random_seq = SeqSimulator(myseq)
-	random_usages = dnaTranslation(mydir,random_seq, 1).codonFrequency()
-	random_table = CodonTableFormat(random_usages)
+    # tranform the codon usage dictionary to an optional output table
+    codon_usages = dnaTranslation(mydir,sequence_1, 1).codonFrequency()
+    codon_table = CodonTableFormat(codon_usages)
 
-	## generate codon usage table if required	
-	if 	args.codon_table:
-		CodonTable = open(args.codon_table, 'w') 
-		CodonTable.write(codon_table)
+    # simulate a randomized sequence based on known nucleotide frequency
+    myseq = dnaTranslation(mydir,sequence_1, 1).dna
+    random_seq = SeqSimulator(myseq)
+    random_usages = dnaTranslation(mydir,random_seq, 1).codonFrequency()
+    random_table = CodonTableFormat(random_usages)
 
-	## generate randomized codon table if required
-	if 	args.random_codon_table:
-		RandomTable = open(args.random_codon_table, 'w') 
-		RandomTable.write(random_table)
-				
-	#print dnaTranslation(mydir,sequence_1, 1).codonFrequency()
-	
+    ## generate codon usage table if required
+    if 	args.codon_table:
+        CodonTable = open(args.codon_table, 'w')
+        CodonTable.write(codon_table)
+
+    ## generate randomized codon table if required
+    if 	args.random_codon_table:
+        RandomTable = open(args.random_codon_table, 'w')
+        RandomTable.write(random_table)
+
+    #print dnaTranslation(mydir,sequence_1, 1).codonFrequency()
