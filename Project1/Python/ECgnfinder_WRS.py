@@ -122,23 +122,23 @@ class dnaTranslation:
 
 # converted into codon usage table format
 def CodonTableFormat(codon_usages, **kw):
-    codon_num = 0
-    out = ''
-    nucleotides = ['A','T','C','G']
-    key = [''.join(i) for i in product(nucleotides, repeat = 3)]
-    for i in range(len(key)):
-        if key[i] not in codon_usages.keys():
-            codon_usages[key[i]] = 0.0
-    for codon in sorted(codon_usages):
-        freq = "%.2f" % (round(codon_usages[codon]*100,2)) + "%"
-        if codon_num == 0:
-            out += codon+": "+freq
-        elif codon_num % 4 != 0:
-            out += "\t"+codon+": "+freq
-        else:
-            out += "\n"+codon+": "+freq
-            codon_num += 1
-            return out
+	codon_num = 0
+	out = ''
+	nucleotides = ['A','T','C','G']
+	key = [''.join(i) for i in product(nucleotides, repeat = 3)]
+	for i in range(len(key)):
+		if key[i] not in codon_usages.keys():
+			codon_usages[key[i]] = 0.0
+	for codon in sorted(codon_usages):
+		freq = "%.2f" % (round(codon_usages[codon]*100,2)) + "%"
+		if codon_num == 0:
+			out += codon+": "+freq
+		elif codon_num % 4 != 0:
+			out += "\t"+codon+": "+freq
+		else:
+			out += "\n"+codon+": "+freq
+		codon_num += 1 
+	return out
 
 # simulate randomized sequence
 def SeqSimulator(myseq):
@@ -164,16 +164,15 @@ if __name__ == "__main__":
     ######### This command returns the nested list containing sequence names
     ######### and sequences to a flat list containing only sequences
     sequences = [ x[1] for x in class_test.readFASTA() ]
-    print sequences
-    #########
-    #sequence_1 = class_test.readFASTA()[0][1]
+    ######### concatenated the sequences
+    concatenated_seq = ''.join(sequences)
 
     # tranform the codon usage dictionary to an optional output table
-    codon_usages = dnaTranslation(mydir,sequence_1, 1).codonFrequency()
+    codon_usages = dnaTranslation(mydir,concatenated_seq, 1).codonFrequency()
     codon_table = CodonTableFormat(codon_usages)
 
     # simulate a randomized sequence based on known nucleotide frequency
-    myseq = dnaTranslation(mydir,sequence_1, 1).dna
+    myseq = dnaTranslation(mydir,concatenated_seq, 1).dna
     random_seq = SeqSimulator(myseq)
     random_usages = dnaTranslation(mydir,random_seq, 1).codonFrequency()
     random_table = CodonTableFormat(random_usages)
