@@ -1,4 +1,4 @@
-import os, argparse, random
+import os, argparse, random, math
 from collections import Counter
 from itertools import product
 
@@ -137,7 +137,7 @@ def CodonTableFormat(codon_usages, **kw):
 			out += "\t"+codon+": "+freq
 		else:
 			out += "\n"+codon+": "+freq
-		codon_num += 1 
+		codon_num += 1
 	return out
 
 # simulate randomized sequence
@@ -147,7 +147,7 @@ def SeqSimulator(myseq):
     Simulated_sequence = ''.join(randomized_seq)
     return Simulated_sequence
 
-#compare the probabilty to produce the winow sequence by traning or random model	
+#compare the probabilty to produce the winow sequence by traning or random model
 def WindowExtract(seq,size,train,random):
 	output=''
 	for i in range(len(seq)-size+1):
@@ -159,19 +159,31 @@ def WindowExtract(seq,size,train,random):
 			trainp *= train[codon]
 			randomp *= random[codon]
 		if trainp > randomp:
-			output+=str(i+1)+'\t'+str(i+size)+'\t'+str(trainp)+'\n'		
+			output+=str(i+1)+'\t'+str(i+size)+'\t'+str(trainp)+'\n'
 	return output
 
 
 
+# probability model with WindowSize = 99bps
+def LikelihoodMode(myseq, codon_usages, random_usages, **kw):
+    WindowSize = 99
+    for i in range(0,len(myseq)-WindowSize,1):
+    	Pc, Po, Ratio = 1.0, 1.0, 0.0
+    	for j in range(i, i+WindowSize, 3):
+    		curr_codon = myseq[j]+myseq[j+1]+myseq[j+2]
+    		Pc *= codon_usages[curr_codon]
+    		Po *= random_usages[curr_codon]
+    	if Pc > Po:  # only print the ones with Pc > Po
+    		Ratio = math.log(Pc/Po)
+    		yield str(i)+"\t"+str(i+WindowSize-1)+"\t"+str(Ratio)
 
 
 
 #### ====== read input FASTA file and write output files ======
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    #parser.add_argument('-i', '--fasta_file', required=True)
-    #parser.add_argument('-o', '--output_file', required=True)
+    parser.add_argument('-i', '--fasta_file', required=True)
+    parser.add_argument('-o', '--out_table', required=True)
     parser.add_argument('-c', '--codon_table')
     parser.add_argument('-r', '--random_codon_table')
     args = parser.parse_args()
@@ -204,12 +216,24 @@ if __name__ == "__main__":
     if 	args.random_codon_table:
         RandomTable = open(args.random_codon_table, 'w')
         RandomTable.write(random_table)
-    
 
-    #print(codon_usages['ATG']) 
+
+    #print(codon_usages['ATG'])
     ## generate the extract window
     extract_window=WindowExtract(concatenated_seq,99,codon_usages,random_usages)
     print(extract_window)
-    
-    
 
+
+
+	## read the sample fasta file
+    infile = classFASTA(args.fasta_file)
+    testSeq = infile.readFASTA()[0][1]
+
+    result = LikelihoodMode(testSeq, codon_usages, random_usages)
+
+    outfile = open(args.out_table, "w")
+    outfile.write("start\tend\tlog(Pc/Po)\n")
+    for key in result:
+    	outfile.write(key+"\n")
+
+    ## for this sample sequence, I know there is one gene from 578-992
