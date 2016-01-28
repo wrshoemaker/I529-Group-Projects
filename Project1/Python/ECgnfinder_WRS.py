@@ -147,6 +147,24 @@ def SeqSimulator(myseq):
     Simulated_sequence = ''.join(randomized_seq)
     return Simulated_sequence
 
+#compare the probabilty to produce the winow sequence by traning or random model	
+def WindowExtract(seq,size,train,random):
+	output=''
+	for i in range(len(seq)-size+1):
+		window=seq[i:i+size]
+		trainp=1
+		randomp=1
+		for j in range(int(size)/3):
+			codon = window[3*j:3*j+3]
+			trainp *= train[codon]
+			randomp *= random[codon]
+		if trainp > randomp:
+			output+=str(i+1)+'\t'+str(i+size)+'\t'+str(trainp)+'\n'		
+	return output
+
+
+
+
 
 
 #### ====== read input FASTA file and write output files ======
@@ -186,5 +204,12 @@ if __name__ == "__main__":
     if 	args.random_codon_table:
         RandomTable = open(args.random_codon_table, 'w')
         RandomTable.write(random_table)
+    
 
-    #print dnaTranslation(mydir,sequence_1, 1).codonFrequency()
+    #print(codon_usages['ATG']) 
+    ## generate the extract window
+    extract_window=WindowExtract(concatenated_seq,99,codon_usages,random_usages)
+    print(extract_window)
+    
+    
+
