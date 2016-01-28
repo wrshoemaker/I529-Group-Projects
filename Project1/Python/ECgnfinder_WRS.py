@@ -165,7 +165,7 @@ def WindowExtract(seq,size,train,random):
 
 
 # probability model with WindowSize = 99bps
-def LikelihoodMode(myseq, codon_usages, random_usages, **kw):
+def LikelihoodMode(myseq, codon_usages, random_usages, negVal, **kw):
     WindowSize = 99
     for i in range(0,len(myseq)-WindowSize,1):
     	Pc, Po, Ratio = 1.0, 1.0, 0.0
@@ -173,6 +173,9 @@ def LikelihoodMode(myseq, codon_usages, random_usages, **kw):
     		curr_codon = myseq[j]+myseq[j+1]+myseq[j+2]
     		Pc *= codon_usages[curr_codon]
     		Po *= random_usages[curr_codon]
+    	if negVal == 'yes':
+    		Ratio = math.log(Pc/Po)
+    		yield str(i)+"\t"+str(i+WindowSize-1)+"\t"+str(Ratio) 
     	if Pc > Po:  # only print the ones with Pc > Po
     		Ratio = math.log(Pc/Po)
     		yield str(i)+"\t"+str(i+WindowSize-1)+"\t"+str(Ratio)
@@ -186,6 +189,7 @@ if __name__ == "__main__":
     parser.add_argument('-o', '--out_table', required=True)
     parser.add_argument('-c', '--codon_table')
     parser.add_argument('-r', '--random_codon_table')
+    parser.add_argument('-n','--negative_likelihood', default='no')
     args = parser.parse_args()
 
     fasta = mydir + 'EcoGene_no_pseudo.fa'
@@ -220,16 +224,17 @@ if __name__ == "__main__":
 
     #print(codon_usages['ATG'])
     ## generate the extract window
-    extract_window=WindowExtract(concatenated_seq,99,codon_usages,random_usages)
-    print(extract_window)
+    #extract_window=WindowExtract(concatenated_seq,99,codon_usages,random_usages)
+    #print(extract_window)
 
+    # decide whether we need the negative likelihood, default is to ignore
+    negValue = args.negative_likelihood
 
-
-	## read the sample fasta file
+    ## read the sample fasta file
     infile = classFASTA(args.fasta_file)
     testSeq = infile.readFASTA()[0][1]
 
-    result = LikelihoodMode(testSeq, codon_usages, random_usages)
+    result = LikelihoodMode(testSeq, codon_usages, random_usages, negValue)
 
     outfile = open(args.out_table, "w")
     outfile.write("start\tend\tlog(Pc/Po)\n")
