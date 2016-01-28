@@ -1,4 +1,4 @@
-import os, argparse, random
+import os, argparse, random, math
 from collections import Counter
 from itertools import product
 
@@ -147,19 +147,32 @@ def SeqSimulator(myseq):
     Simulated_sequence = ''.join(randomized_seq)
     return Simulated_sequence
 
+# probability model with WindowSize = 99bps
+def LikelihoodMode(myseq, codon_usages, random_usages, **kw):
+    WindowSize = 99
+    for i in range(0,len(myseq)-WindowSize,1):
+    	Pc, Po, Ratio = 1.0, 1.0, 0.0
+    	for j in range(i, i+WindowSize, 3):
+    		curr_codon = myseq[j]+myseq[j+1]+myseq[j+2]
+    		Pc *= codon_usages[curr_codon]
+    		Po *= random_usages[curr_codon]
+    	if Pc > Po:  # only print the ones with Pc > Po
+    		Ratio = math.log(Pc/Po)
+    		yield str(i)+"\t"+str(i+WindowSize-1)+"\t"+str(Ratio)
+
 
 
 #### ====== read input FASTA file and write output files ======
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    #parser.add_argument('-i', '--fasta_file', required=True)
-    #parser.add_argument('-o', '--output_file', required=True)
+    parser.add_argument('-i', '--fasta_file', required=True)
+    parser.add_argument('-o', '--out_table', required=True)
     parser.add_argument('-c', '--codon_table')
     parser.add_argument('-r', '--random_codon_table')
     args = parser.parse_args()
 
     fasta = mydir + 'EcoGene_no_pseudo.fa'
-
+ 	
     class_test = classFASTA(fasta)
     ######### This command returns the nested list containing sequence names
     ######### and sequences to a flat list containing only sequences
@@ -187,4 +200,16 @@ if __name__ == "__main__":
         RandomTable = open(args.random_codon_table, 'w')
         RandomTable.write(random_table)
 
-    #print dnaTranslation(mydir,sequence_1, 1).codonFrequency()
+	## read the sample fasta file
+    infile = classFASTA(args.fasta_file)
+    testSeq = infile.readFASTA()[0][1]
+    
+    result = LikelihoodMode(testSeq, codon_usages, random_usages)
+    		
+    outfile = open(args.out_table, "w")
+    outfile.write("start\tend\tlog(Pc/Po)\n")
+    for key in result:
+    	outfile.write(key+"\n")
+    	
+    ## for this sample sequence, I know there is one gene from 578-992
+    		
