@@ -187,9 +187,13 @@ def LikelihoodMode(myseq, frame, codon_usages, random_usages, threshold, RevComp
             Pc *= codon_usages[curr_codon]
             Po *= random_usages[curr_codon]
         Ratio = math.log(Pc/Po)
-        #print Ratio
+	data = str(i)+"\t"+str(i+WindowSize-1)+"\t"+str(Ratio)
         if Ratio > threshold:  # return relative likelihood when it is larger than threshold
-            yield str(i)+"\t"+str(i+WindowSize-1)+"\t"+str(Ratio)
+            target = str(i)+"\t"+str(i+WindowSize-1)+"\t"+str(Ratio)
+	else:
+	    target = ''
+	yield (target, data)
+
 
 ## merge extract window
 def MergeWindow(result):
@@ -225,8 +229,7 @@ if __name__ == "__main__":
     parser.add_argument('-r', '--random_codon_table')
     parser.add_argument('-t','--threshold_likelihood', default=3)
     parser.add_argument('-f','--reading_frame', type = int, default=1)
-    #parser.add_argument('-rc','--reverse_compliment', type = bool, default=False)
-    parser.add_argument('-rc', dest='feature', action='store_true')
+    parser.add_argument('-rc', '--reverse_compliment', dest='feature', action='store_true')
     parser.set_defaults(feature=False)
     args = parser.parse_args()
     fasta = mydir + 'EcoGene_no_pseudo.fa'
@@ -275,16 +278,31 @@ if __name__ == "__main__":
     infile = classFASTA(args.fasta_file)
     testSeq = infile.readFASTA()[0][1]
 
+    data, target = [], []
+    results = LikelihoodMode(testSeq, args.reading_frame, codon_usages, random_usages, threshold, RevComp = args.feature)
+    for key in results:
+	data.append(key[1])
+	target.append(key[0])
 
-    result = LikelihoodMode(testSeq, args.reading_frame, codon_usages, random_usages, threshold, RevComp = args.feature)
-    merged_window = MergeWindow(result)
+    target = [x for x in target if x != '']
+
+    merged_window = MergeWindow(target)
     outfile = open(args.out_table, "w")
     outfile.write("Potential ORFs all meet criterion of log(Pc/Po)>"+str(threshold)+"\n\n\n")
     outfile.write("Strand\tStart\tEnd\n")
     for key in merged_window:
-    	outfile.write(strand+'\t'+str(key[0])+'\t'+str(key[1])+"\n")
-		
+        outfile.write(strand+'\t'+str(key[0])+'\t'+str(key[1])+"\n")
 
+
+    ## below is used to just print all the windows likelihood 
+    datafile = open("window_likelihoodRatio", "w")	
+    for key in data:
+	datafile.write(strand+'\t'+str(key)+"\n")
+
+    outfile.close()
+    datafile.close()
     ## for this sample sequence, I know there is one gene from 578-992
+
+
 
 	
