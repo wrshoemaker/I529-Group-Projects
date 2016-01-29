@@ -1,0 +1,14 @@
+GeneMark.hmm PROKARYOTIC (Version 3.05)
+Date: Thu Jan 28 12:51:05 2016
+Sequence file name: Sequence.fa
+Model file name: GeneMark_hmm_heuristic.mod
+RBS: false
+Model information: Heuristic_model_for_genetic_code_11_and_GC_43
+
+FASTA definition line: gi|556503834:c1293500-1292000 Escherichia coli str. K-12 substr. MG1655, complete genome
+Predicted genes
+   Gene    Strand    LeftEnd    RightEnd       Gene     Class
+    #                                         Length
+    1        +         579         992          414        1
+    2        -        1136       >1501          366        1
+

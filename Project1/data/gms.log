@@ -1,0 +1,100 @@
+
+
+
+-------------------------------------------------
+start time            : Thu Jan 28 12:51:03 2016
+working directory     : /nfs/nfs4/home/xianyao/I529/I529-Group-Projects/Project1/data
+command line          : --prok Sequence.fa
+output file with predictions : Sequence.fa.lst
+input sequence        : Sequence.fa
+output name for model : 
+combine model         : 1
+GeneMark model        : 1
+species name          : 
+delete temp files     : 1
+markov chain order    : 2
+genetic code          : 11
+sequence organization : partial
+search for motif      : 1
+motif width           : 6
+prestart length       : 40
+identity threshold    : 0.99
+maximum iteration     : 10
+fixed motif position  : 
+gene overlap off      : 
+strand to predict on  : both
+mode prokaryotic      : 1
+mode eukaryotic       : 
+mode virus            : 
+mode phage            : 
+mode est              : 
+GeneMarkS parameters  : /nfs/nfs5-insecure/home/insecure-ro/software/rhel6_x86_64/gmsuite-2.5p/par_11.default
+initial hmm model     : 
+output format         : LST
+output PostScript     : 
+output PDF            : 
+output nucleotides    : 
+output proteins       : 
+gibbs_version         : 3
+
+         run starts here:
+prepare sequence
+/nfs/nfs5-insecure/home/insecure-ro/software/rhel6_x86_64/gmsuite-2.5p/probuild --par /nfs/nfs5-insecure/home/insecure-ro/software/rhel6_x86_64/gmsuite-2.5p/par_11.default --clean_join sequence --seq Sequence.fa --log gms.log
+Clean-Join      IN   OUT
+Contigs - 1 1
+All letters - 1501   1501
+Unambiguous letters - 1501 1501
+A - 439 439
+C - 350 350
+G - 302 302
+T - 410 410
+N - 0 0
+Parameters:
+  Minimum of unambiguous letters per record: 1000
+  Trim down substrings "N...N" to maximum length: 50
+  Connect records using gap filler: NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+  Minimum of unambiguous letters in output: 50000
+system call done
+prepare sequence
+/nfs/nfs5-insecure/home/insecure-ro/software/rhel6_x86_64/gmsuite-2.5p/probuild --par /nfs/nfs5-insecure/home/insecure-ro/software/rhel6_x86_64/gmsuite-2.5p/par_11.default --clean_join sequence --seq Sequence.fa --log gms.log --MIN_CONTIG_SIZE 0 --GAP_FILLER 
+Clean-Join      IN   OUT
+Contigs - 1 1
+All letters - 1501   1501
+Unambiguous letters - 1501 1501
+A - 439 439
+C - 350 350
+G - 302 302
+T - 410 410
+N - 0 0
+Parameters:
+  Minimum of unambiguous letters per record: 0
+  Trim down substrings "N...N" to maximum length: 50
+  Connect records using gap filler: 
+  Minimum of unambiguous letters in output: 50000
+system call done
+do_iterations = 0
+set initial <gmhmmp> model
+get GC
+/nfs/nfs5-insecure/home/insecure-ro/software/rhel6_x86_64/gmsuite-2.5p/probuild --par /nfs/nfs5-insecure/home/insecure-ro/software/rhel6_x86_64/gmsuite-2.5p/par_11.default --gc --seq sequence
+GC of sequence = 43
+initial <gmhmm> model: /nfs/nfs5-insecure/home/insecure-ro/software/rhel6_x86_64/gmsuite-2.5p/heuristic_mod/heu_11_43.mod
+copy initial model to working directory
+cat /nfs/nfs5-insecure/home/insecure-ro/software/rhel6_x86_64/gmsuite-2.5p/heuristic_mod/heu_11_43.mod > itr_0.mod
+system call done
+run initial prediction
+/nfs/nfs5-insecure/home/insecure-ro/software/rhel6_x86_64/gmsuite-2.5p/gmhmmp  sequence  -m itr_0.mod  -o itr_0.lst
+system call done
+entering iteration loop
+output initial model: GeneMark_hmm_heuristic.mod
+cp /nfs/nfs5-insecure/home/insecure-ro/software/rhel6_x86_64/gmsuite-2.5p/heuristic_mod/heu_11_43.mod GeneMark_hmm_heuristic.mod
+system call done
+copy Heuristic matrix /nfs/nfs5-insecure/home/insecure-ro/software/rhel6_x86_64/gmsuite-2.5p/heuristic_mat/heu_11_43.mat for GeneMark
+cp /nfs/nfs5-insecure/home/insecure-ro/software/rhel6_x86_64/gmsuite-2.5p/heuristic_mat/heu_11_43.mat GeneMark_heuristic.mat
+system call done
+predict genes using heuristic
+/nfs/nfs5-insecure/home/insecure-ro/software/rhel6_x86_64/gmsuite-2.5p/gmhmmp -m GeneMark_hmm_heuristic.mod -o Sequence.fa.lst  Sequence.fa
+system call done
+rm -f sequence itr_0.mod itr_0.lst with_seq.out
+system call done
+End: Thu Jan 28 12:51:06 2016
+
