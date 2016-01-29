@@ -4,8 +4,8 @@ import numpy as np
 import  matplotlib.pyplot as plt
 
 
-pos = pd.read_csv("../data/out_positive.txt", header=True, delim_whitespace=True)
-neg = pd.read_csv("../data/out_negative.txt", header=True, delim_whitespace=True)
+pos = pd.read_csv("../data/out_pos.txt", header=True, delim_whitespace=True)
+neg = pd.read_csv("../data/out_neg.txt", header=True, delim_whitespace=True)
 
 def get_kdens_choose_kernel(xlist,expand, kernel = 0.5):
     """ Finds the kernel density function across a vector of values """
@@ -31,7 +31,7 @@ fig = plt.figure()
 ax = fig.add_subplot(1, 1, 1)
 zip_kde = zip(kde_data[0], kde_data[1])
 
-negative_zip = [x for x in zip_kde if x[0] < 0]
+negative_zip = [x for x in zip_kde if x[0] <= 0]
 positive_zip = [x for x in zip_kde if x[0] >= 0]
 
 negative_unzip = zip(*negative_zip)

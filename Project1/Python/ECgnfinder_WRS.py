@@ -185,6 +185,7 @@ def LikelihoodMode(myseq, frame, codon_usages, random_usages, threshold, RevComp
             Pc *= codon_usages[curr_codon]
             Po *= random_usages[curr_codon]
         Ratio = math.log(Pc/Po)
+        #print Ratio
         if Ratio > threshold:  # return relative likelihood when it is larger than threshold
             yield str(i)+"\t"+str(i+WindowSize-1)+"\t"+str(Ratio)
 
@@ -246,7 +247,6 @@ if __name__ == "__main__":
     testSeq = infile.readFASTA()[0][1]
 
     result = LikelihoodMode(testSeq, args.reading_frame, codon_usages, random_usages, threshold, RevComp = args.feature)
-
     outfile = open(args.out_table, "w")
     outfile.write("start\tend\tlog(Pc/Po)\n")
     for key in result:
