@@ -121,7 +121,9 @@ class dnaTranslation:
         return codonCount
 
 
-# converted into codon usage table format
+## converted into codon usage table format
+## converted into codon usage table format
+## converted into codon usage table format
 def CodonTableFormat(codon_usages, **kw):
     codon_num = 0
     out = ''
@@ -141,7 +143,7 @@ def CodonTableFormat(codon_usages, **kw):
         codon_num += 1
     return out
 
-# simulate randomized sequence
+## simulate randomized sequence
 def SeqSimulator(myseq):
     randomized_seq = list(myseq)
     random.shuffle(randomized_seq)
@@ -156,7 +158,7 @@ def revcomp_quick_fix(dna):
     list_rev_comp = [comp_dict[base] for base in seq]
     return ''.join(list_rev_comp)
 
-#compare the probabilty to produce the winow sequence by traning or random model
+## compare the probabilty to produce the winow sequence by traning or random model
 def WindowExtract(seq,size,train,random, reading_frame):
     output=''
     for i in range(len(seq)-size+1):
@@ -173,7 +175,7 @@ def WindowExtract(seq,size,train,random, reading_frame):
 
 
 
-# probability model with WindowSize = 99bps
+## probability model with WindowSize = 99bps
 def LikelihoodMode(myseq, frame, codon_usages, random_usages, threshold, RevComp = False, **kw):
     WindowSize = 99
     if RevComp == True:
@@ -189,17 +191,18 @@ def LikelihoodMode(myseq, frame, codon_usages, random_usages, threshold, RevComp
         if Ratio > threshold:  # return relative likelihood when it is larger than threshold
             yield str(i)+"\t"+str(i+WindowSize-1)+"\t"+str(Ratio)
 
-#merge extract window
+## merge extract window
 def MergeWindow(result):
 	window=[]
 	merged=[]
 	for key in result:
 		start=key.split('\t')[0]
 		end=key.split('\t')[1]
-		window.append((start,end))
+		likelihood=float(key.split('\t')[2])
+		window.append((start,end)) 
 	while window!=[]:
   		i = 1
-		while i< len(window)	:
+		while i< len(window):
 			if window[0][1]>= window[i][0]:
 				start=window[0][0]
 				end=window[i][1]
@@ -220,7 +223,7 @@ if __name__ == "__main__":
     parser.add_argument('-o', '--out_table', required=True)
     parser.add_argument('-c', '--codon_table')
     parser.add_argument('-r', '--random_codon_table')
-    parser.add_argument('-t','--threshold_likelihood', default=10)
+    parser.add_argument('-t','--threshold_likelihood', default=3)
     parser.add_argument('-f','--reading_frame', type = int, default=1)
     #parser.add_argument('-rc','--reverse_compliment', type = bool, default=False)
     parser.add_argument('-rc', dest='feature', action='store_true')
@@ -246,22 +249,26 @@ if __name__ == "__main__":
     random_table = CodonTableFormat(random_usages)
 
     ## generate codon usage table if required
-    if 	args.codon_table:
+    if args.codon_table:
         CodonTable = open(args.codon_table, 'w')
         CodonTable.write(codon_table)
 
     ## generate randomized codon table if required
-    if 	args.random_codon_table:
+    if args.random_codon_table:
         RandomTable = open(args.random_codon_table, 'w')
         RandomTable.write(random_table)
 
+    if args.feature == False:
+	strand = '+'
+    else:
+	strand = '-'
 
-    #print(codon_usages['ATG'])
+    ##print(codon_usages['ATG'])
     ## generate the extract window
-    #extract_window=WindowExtract(concatenated_seq,99,codon_usages,random_usages)
-    #print(extract_window)
+    ##extract_window=WindowExtract(concatenated_seq,99,codon_usages,random_usages)
+    ##print(extract_window)
 
-    # decide whether we need the negative likelihood, default is to ignore
+    ## decide whether we need the negative likelihood, default is to ignore
     threshold = float(args.threshold_likelihood)
 
     ## read the sample fasta file
@@ -272,11 +279,12 @@ if __name__ == "__main__":
     result = LikelihoodMode(testSeq, args.reading_frame, codon_usages, random_usages, threshold, RevComp = args.feature)
     merged_window = MergeWindow(result)
     outfile = open(args.out_table, "w")
-    outfile.write("start\tend\n")
-   for key in merged_window:
-    	outfile.write(str(key[0])+'\t'+str(key[1])+"\n")
-   # for key in result:
-   #	outfile.write(key+'\n')	
+    outfile.write("Potential ORFs all meet criterion of log(Pc/Po)>"+str(threshold)+"\n\n\n")
+    outfile.write("Strand\tStart\tEnd\n")
+    for key in merged_window:
+    	outfile.write(strand+'\t'+str(key[0])+'\t'+str(key[1])+"\n")
+		
+
     ## for this sample sequence, I know there is one gene from 578-992
 
 	
