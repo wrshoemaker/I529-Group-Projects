@@ -177,7 +177,30 @@ def LikelihoodMode(myseq, codon_usages, random_usages, threshold, **kw):
     	if Ratio > threshold:  # return relative likelihood when it is larger than threshold
     		yield str(i)+"\t"+str(i+WindowSize-1)+"\t"+str(Ratio)
 
-
+#merge extract window
+def MergeWindow(result):
+	window=[]
+	merged=[]
+	for key in result:
+		start=key.split('\t')[0]
+		end=key.split('\t')[1]
+		window.append((start,end))
+	while window!=[]:
+  		i = 1
+		while i< len(window)	:
+		#	print(key)
+			if window[0][1]>= window[i][0]:
+				start=window[0][0]
+				end=window[i][1]
+				window.pop(0)
+				window.pop(i-1)
+				window.insert(0,(start,end))
+				i-=1
+			i+=1
+		merged.append(window.pop(0))
+	return merged
+		
+			
 
 #### ====== read input FASTA file and write output files ======
 if __name__ == "__main__":
@@ -232,10 +255,12 @@ if __name__ == "__main__":
     testSeq = infile.readFASTA()[0][1]
 
     result = LikelihoodMode(testSeq, codon_usages, random_usages, threshold)
-
+    merged_window = MergeWindow(result)	
     outfile = open(args.out_table, "w")
-    outfile.write("start\tend\tlog(Pc/Po)\n")
-    for key in result:
-    	outfile.write(key+"\n")
+    outfile.write("start\tend\n")
+    for key in merged_window:
+    	outfile.write(str(key[0])+'\t'+str(key[1])+"\n")
 
     ## for this sample sequence, I know there is one gene from 578-992
+
+	
