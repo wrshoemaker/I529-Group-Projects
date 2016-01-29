@@ -200,7 +200,6 @@ def MergeWindow(result):
 	while window!=[]:
   		i = 1
 		while i< len(window)	:
-		#	print(key)
 			if window[0][1]>= window[i][0]:
 				start=window[0][0]
 				end=window[i][1]
@@ -269,17 +268,15 @@ if __name__ == "__main__":
     infile = classFASTA(args.fasta_file)
     testSeq = infile.readFASTA()[0][1]
 
-<<<<<<< HEAD
-    result = LikelihoodMode(testSeq, codon_usages, random_usages, threshold)
-    merged_window = MergeWindow(result)	
-=======
+
     result = LikelihoodMode(testSeq, args.reading_frame, codon_usages, random_usages, threshold, RevComp = args.feature)
->>>>>>> 3ad5c33ee0651b6c7317a4c1500b3a74bcb32d8b
+    merged_window = MergeWindow(result)
     outfile = open(args.out_table, "w")
     outfile.write("start\tend\n")
-    for key in merged_window:
+   for key in merged_window:
     	outfile.write(str(key[0])+'\t'+str(key[1])+"\n")
-
+   # for key in result:
+   #	outfile.write(key+'\n')	
     ## for this sample sequence, I know there is one gene from 578-992
 
 	
