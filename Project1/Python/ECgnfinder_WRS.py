@@ -84,9 +84,10 @@ class dnaTranslation:
         return ''.join(list_rev_comp)
 
     def translateDnaFrame(self):
+
         ''''Translates a dna sequence of a specified frame'''
         if self.reverseTL == True:
-            self.dna = self.revcomp(self.dna)
+            self.dna = self.revcomp()
         codons = self.splitSeqToCodons()
         return codons
         #amino_acids = ''
@@ -122,23 +123,23 @@ class dnaTranslation:
 
 # converted into codon usage table format
 def CodonTableFormat(codon_usages, **kw):
-	codon_num = 0
-	out = ''
-	nucleotides = ['A','T','C','G']
-	key = [''.join(i) for i in product(nucleotides, repeat = 3)]
-	for i in range(len(key)):
-		if key[i] not in codon_usages.keys():
-			codon_usages[key[i]] = 0.0
-	for codon in sorted(codon_usages):
-		freq = "%.2f" % (round(codon_usages[codon]*100,2)) + "%"
-		if codon_num == 0:
-			out += codon+": "+freq
-		elif codon_num % 4 != 0:
-			out += "\t"+codon+": "+freq
-		else:
-			out += "\n"+codon+": "+freq
-		codon_num += 1
-	return out
+    codon_num = 0
+    out = ''
+    nucleotides = ['A','T','C','G']
+    key = [''.join(i) for i in product(nucleotides, repeat = 3)]
+    for i in range(len(key)):
+        if key[i] not in codon_usages.keys():
+            codon_usages[key[i]] = 0.0
+    for codon in sorted(codon_usages):
+        freq = "%.2f" % (round(codon_usages[codon]*100,2)) + "%"
+        if codon_num == 0:
+            out += codon+": "+freq
+        elif codon_num % 4 != 0:
+            out += "\t"+codon+": "+freq
+        else:
+            out += "\n"+codon+": "+freq
+        codon_num += 1
+    return out
 
 # simulate randomized sequence
 def SeqSimulator(myseq):
@@ -147,35 +148,45 @@ def SeqSimulator(myseq):
     Simulated_sequence = ''.join(randomized_seq)
     return Simulated_sequence
 
+
+def revcomp_quick_fix(dna):
+    bases = 'ATGCTACG'
+    comp_dict = {bases[i]:bases[i+4] for i in range(4)}
+    seq = reversed(dna)
+    list_rev_comp = [comp_dict[base] for base in seq]
+    return ''.join(list_rev_comp)
+
 #compare the probabilty to produce the winow sequence by traning or random model
-def WindowExtract(seq,size,train,random):
-	output=''
-	for i in range(len(seq)-size+1):
-		window=seq[i:i+size]
-		trainp=1
-		randomp=1
-		for j in range(int(size)/3):
-			codon = window[3*j:3*j+3]
-			trainp *= train[codon]
-			randomp *= random[codon]
-		if trainp > randomp:
-			output+=str(i+1)+'\t'+str(i+size)+'\t'+str(trainp)+'\n'
-	return output
+def WindowExtract(seq,size,train,random, reading_frame):
+    output=''
+    for i in range(len(seq)-size+1):
+        window=seq[i:i+size]
+        trainp=1
+        randomp=1
+        for j in range(int(size)/3):
+            codon = window[3*j:3*j+3]
+            trainp *= train[codon]
+            randomp *= random[codon]
+        if trainp > randomp:
+            output+=str(i+1)+'\t'+str(i+size)+'\t'+str(trainp)+'\n'
+    return output
 
 
 
 # probability model with WindowSize = 99bps
-def LikelihoodMode(myseq, codon_usages, random_usages, threshold, **kw):
+def LikelihoodMode(myseq, frame, codon_usages, random_usages, threshold, RevComp = False, **kw):
     WindowSize = 99
-    for i in range(0,len(myseq)-WindowSize,1):
-    	Pc, Po, Ratio = 1.0, 1.0, 0.0
-    	for j in range(i, i+WindowSize, 3):
-    		curr_codon = myseq[j]+myseq[j+1]+myseq[j+2]
-    		Pc *= codon_usages[curr_codon]
-    		Po *= random_usages[curr_codon]
-    	Ratio = math.log(Pc/Po)
-    	if Ratio > threshold:  # return relative likelihood when it is larger than threshold
-    		yield str(i)+"\t"+str(i+WindowSize-1)+"\t"+str(Ratio)
+    if RevComp == True:
+        myseq = revcomp_quick_fix(myseq)
+    for i in range(frame-1,len(myseq)-WindowSize, 3):
+        Pc, Po, Ratio = 1.0, 1.0, 0.0
+        for j in range(i, i+WindowSize, 3):
+            curr_codon = myseq[j]+myseq[j+1]+myseq[j+2]
+            Pc *= codon_usages[curr_codon]
+            Po *= random_usages[curr_codon]
+        Ratio = math.log(Pc/Po)
+        if Ratio > threshold:  # return relative likelihood when it is larger than threshold
+            yield str(i)+"\t"+str(i+WindowSize-1)+"\t"+str(Ratio)
 
 
 
@@ -187,8 +198,11 @@ if __name__ == "__main__":
     parser.add_argument('-c', '--codon_table')
     parser.add_argument('-r', '--random_codon_table')
     parser.add_argument('-t','--threshold_likelihood', default=10)
+    parser.add_argument('-f','--reading_frame', type = int, default=1)
+    #parser.add_argument('-rc','--reverse_compliment', type = bool, default=False)
+    parser.add_argument('-rc', dest='feature', action='store_true')
+    parser.set_defaults(feature=False)
     args = parser.parse_args()
-
     fasta = mydir + 'EcoGene_no_pseudo.fa'
 
     class_test = classFASTA(fasta)
@@ -197,15 +211,15 @@ if __name__ == "__main__":
     sequences = [ x[1] for x in class_test.readFASTA() ]
     ######### concatenated the sequences
     concatenated_seq = ''.join(sequences)
-
+    args.feature = bool(args.feature)
     # tranform the codon usage dictionary to an optional output table
-    codon_usages = dnaTranslation(mydir,concatenated_seq, 1).codonFrequency()
+    codon_usages = dnaTranslation(mydir,concatenated_seq, args.reading_frame, reverseTL = args.feature).codonFrequency()
     codon_table = CodonTableFormat(codon_usages)
 
     # simulate a randomized sequence based on known nucleotide frequency
-    myseq = dnaTranslation(mydir,concatenated_seq, 1).dna
+    myseq = dnaTranslation(mydir,concatenated_seq, args.reading_frame, reverseTL = args.feature).dna
     random_seq = SeqSimulator(myseq)
-    random_usages = dnaTranslation(mydir,random_seq, 1).codonFrequency()
+    random_usages = dnaTranslation(mydir,random_seq, args.reading_frame, reverseTL = args.feature).codonFrequency()
     random_table = CodonTableFormat(random_usages)
 
     ## generate codon usage table if required
@@ -231,7 +245,7 @@ if __name__ == "__main__":
     infile = classFASTA(args.fasta_file)
     testSeq = infile.readFASTA()[0][1]
 
-    result = LikelihoodMode(testSeq, codon_usages, random_usages, threshold)
+    result = LikelihoodMode(testSeq, args.reading_frame, codon_usages, random_usages, threshold, RevComp = args.feature)
 
     outfile = open(args.out_table, "w")
     outfile.write("start\tend\tlog(Pc/Po)\n")
