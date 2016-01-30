@@ -158,22 +158,6 @@ def revcomp_quick_fix(dna):
     list_rev_comp = [comp_dict[base] for base in seq]
     return ''.join(list_rev_comp)
 
-## compare the probabilty to produce the winow sequence by traning or random model
-def WindowExtract(seq,size,train,random, reading_frame):
-    output=''
-    for i in range(len(seq)-size+1):
-        window=seq[i:i+size]
-        trainp=1
-        randomp=1
-        for j in range(int(size)/3):
-            codon = window[3*j:3*j+3]
-            trainp *= train[codon]
-            randomp *= random[codon]
-        if trainp > randomp:
-            output+=str(i+1)+'\t'+str(i+size)+'\t'+str(trainp)+'\n'
-    return output
-
-
 
 ## probability model with WindowSize = 99bps
 def LikelihoodMode(myseq, frame, codon_usages, random_usages, threshold, RevComp = False, **kw):
@@ -213,12 +197,24 @@ def MergeWindow(result):
 				window.pop(0)
 				window.pop(i-1)
 				window.insert(0,(start,end))
+	
 				i-=1
 			i+=1
 		merged.append(window.pop(0))
 	return merged
-		
-			
+
+def MergedRatio(seq,codon_usages,random_usages,merged_window):
+	pc,po,ratio=1,1,0
+	orf_ratio=[]
+	for key in merged_window:
+		start=int(key[0])
+		end=int(key[1])
+		for i in range(start,end,3):
+			curr_codon=seq[i:i+3]
+			pc *= codon_usages[curr_codon]
+			po *= random_usages[curr_codon]		
+		orf_ratio.append(math.log(pc/po))
+	return orf_ratio	
 
 #### ====== read input FASTA file and write output files ======
 if __name__ == "__main__":
@@ -266,11 +262,7 @@ if __name__ == "__main__":
     else:
 	strand = '-'
 
-    ##print(codon_usages['ATG'])
-    ## generate the extract window
-    ##extract_window=WindowExtract(concatenated_seq,99,codon_usages,random_usages)
-    ##print(extract_window)
-
+    
     ## decide whether we need the negative likelihood, default is to ignore
     threshold = float(args.threshold_likelihood)
 
@@ -285,13 +277,13 @@ if __name__ == "__main__":
 	target.append(key[0])
 
     target = [x for x in target if x != '']
-
     merged_window = MergeWindow(target)
+    orf_ratio=MergedRatio(testSeq,codon_usages,random_usages,merged_window)
     outfile = open(args.out_table, "w")
     outfile.write("Potential ORFs all meet criterion of log(Pc/Po)>"+str(threshold)+"\n\n\n")
-    outfile.write("Strand\tStart\tEnd\n")
+    outfile.write("Strand\tStart\tEnd\tlog-value\n")
     for key in merged_window:
-        outfile.write(strand+'\t'+str(key[0])+'\t'+str(key[1])+"\n")
+        outfile.write(strand+'\t'+str(key[0])+'\t'+str(key[1])+'\t'+str(orf_ratio.pop(0))+'\t'+"\n")
 
 
     ## below is used to just print all the windows likelihood 
