@@ -60,9 +60,54 @@ def EmissionFreq(seq_set, feature_set):
 				emit_dict[curr_emit] = 1
 			else:
 				emit_dict[curr_emit] += 1
+	mem, inner, outer = 0, 0, 0
+	for key in emit_dict:
+		if 'M->' in key:
+			mem += emit_dict[key]
+		elif 'i->' in key:
+			inner += emit_dict[key]
+		else:
+			outer += emit_dict[key]
+	for key in emit_dict:
+		if 'M->' in key:
+			emit_dict[key] = float(emit_dict[key])/mem
+		elif 'i->' in key:
+			emit_dict[key] = float(emit_dict[key])/inner
+		else:
+			emit_dict[key] = float(emit_dict[key])/outer
 	return emit_dict
 
-
+def TransitionProb(feature_set):
+	element = len(seq_set)
+	trans_dict = {}
+	for x in range(element):	
+		size = len(seq_set[x])
+		for y in range(size-1):
+			if feature_set[x][y] == feature_set[x][y+1]: continue
+			curr_trans = feature_set[x][y]+'->'+feature_set[x][y+1]
+			if '.' in curr_trans: continue
+			if curr_trans not in trans_dict:
+				trans_dict[curr_trans] = 1
+			else:
+				trans_dict[curr_trans] += 1
+	mem, inner, outer = 0, 0, 0
+	for key in trans_dict:
+		if 'M->' in key:
+			mem += trans_dict[key]
+		elif 'i->' in key:
+			inner += trans_dict[key]
+		else:
+			outer += trans_dict[key]
+	for key in trans_dict:
+		if 'M->' in key:
+			trans_dict[key] = float(trans_dict[key])/mem
+		elif 'i->' in key:
+			trans_dict[key] = float(trans_dict[key])/inner
+		else:
+			trans_dict[key] = float(trans_dict[key])/outer
+	return trans_dict
+		
+		
 ###======read traing file and generate GMMM model ======
 if __name__ == "__main__":
 	with open("../data/TMseq.ffa","r") as training_file:
@@ -71,7 +116,8 @@ if __name__ == "__main__":
 		m_freq = lengthFrequency(m_length)
 		i_freq = lengthFrequency(i_length)
 		o_freq = lengthFrequency(o_length)
-		print EmissionFreq(seq_set, feature_set)
+		emit_prob = EmissionFreq(seq_set, feature_set)
+		trans_prob = TransitionProb(feature_set)
 
 	with open("../data/mem_length.txt","w") as mfile:
 		for key in m_length.keys():
@@ -82,4 +128,10 @@ if __name__ == "__main__":
 	with open("../data/out_length.txt","w") as ofile:
 		for key in o_length.keys():
 			ofile.write("%d\t%d\n" % (key,o_length[key]))
+	with open("../data/emit_probabity.txt","w") as ofile:
+		for key in emit_prob.keys():
+			ofile.write("%s\t%f\n" % (key,emit_prob[key]))
+	with open("../data/trans_probabity.txt","w") as ofile:
+		for key in trans_prob.keys():
+			ofile.write("%s\t%f\n" % (key,trans_prob[key]))
 
