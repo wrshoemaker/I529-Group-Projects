@@ -47,8 +47,8 @@ def lengthFrequency(length_set):
 		lengthFreq[key]= length_set[key]/domain_total
 	return lengthFreq
 
-# calculate the emission frequency from each state to amino acids
-def EmissionFreq(seq_set, feature_set):
+# calculate the emission probability from each state to amino acids
+def EmissionProb(seq_set, feature_set):
 	element = len(seq_set)
 	emit_dict = {}
 	for x in range(element):	
@@ -77,6 +77,7 @@ def EmissionFreq(seq_set, feature_set):
 			emit_dict[key] = float(emit_dict[key])/outer
 	return emit_dict
 
+# calculate the transition probability between states
 def TransitionProb(feature_set):
 	element = len(seq_set)
 	trans_dict = {}
@@ -116,7 +117,7 @@ if __name__ == "__main__":
 		m_freq = lengthFrequency(m_length)
 		i_freq = lengthFrequency(i_length)
 		o_freq = lengthFrequency(o_length)
-		emit_prob = EmissionFreq(seq_set, feature_set)
+		emit_prob = EmissionProb(seq_set, feature_set)
 		trans_prob = TransitionProb(feature_set)
 
 	with open("../data/mem_length.txt","w") as mfile:
