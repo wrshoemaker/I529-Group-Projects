@@ -47,6 +47,22 @@ def lengthFrequency(length_set):
 		lengthFreq[key]= length_set[key]/domain_total
 	return lengthFreq
 
+# calculate the emission frequency from each state to amino acids
+def EmissionFreq(seq_set, feature_set):
+	element = len(seq_set)
+	emit_dict = {}
+	for x in range(element):	
+		size = len(seq_set[x])
+		for y in range(size):
+			curr_emit = feature_set[x][y]+'->'+seq_set[x][y]
+			if '.' in curr_emit: continue
+			if curr_emit not in emit_dict:
+				emit_dict[curr_emit] = 1
+			else:
+				emit_dict[curr_emit] += 1
+	return emit_dict
+
+
 ###======read traing file and generate GMMM model ======
 if __name__ == "__main__":
 	with open("../data/TMseq.ffa","r") as training_file:
@@ -55,6 +71,7 @@ if __name__ == "__main__":
 		m_freq = lengthFrequency(m_length)
 		i_freq = lengthFrequency(i_length)
 		o_freq = lengthFrequency(o_length)
+		print EmissionFreq(seq_set, feature_set)
 
 	with open("../data/mem_length.txt","w") as mfile:
 		for key in m_length.keys():
@@ -62,7 +79,7 @@ if __name__ == "__main__":
 	with open("../data/in_length.txt","w") as ifile:
 		for key in i_length.keys():
 			ifile.write("%d\t%d\n" % (key,i_length[key]))
-        with open("../data/out_length.txt","w") as ofile:
+	with open("../data/out_length.txt","w") as ofile:
 		for key in o_length.keys():
 			ofile.write("%d\t%d\n" % (key,o_length[key]))
 
