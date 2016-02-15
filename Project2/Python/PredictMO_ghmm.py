@@ -55,26 +55,29 @@ def EmissionProb(seq_set, feature_set):
 		size = len(seq_set[x])
 		for y in range(size):
 			curr_emit = feature_set[x][y]+'->'+seq_set[x][y]
-			if '.' in curr_emit: continue
 			if curr_emit not in emit_dict:
 				emit_dict[curr_emit] = 1
 			else:
 				emit_dict[curr_emit] += 1
-	mem, inner, outer = 0, 0, 0
+	mem, inner, outer, non = 0, 0, 0, 0
 	for key in emit_dict:
 		if 'M->' in key:
 			mem += emit_dict[key]
 		elif 'i->' in key:
 			inner += emit_dict[key]
-		else:
+		elif 'o->' in key:
 			outer += emit_dict[key]
+		else:
+			non += emit_dict[key]
 	for key in emit_dict:
 		if 'M->' in key:
 			emit_dict[key] = float(emit_dict[key])/mem
 		elif 'i->' in key:
 			emit_dict[key] = float(emit_dict[key])/inner
-		else:
+		elif 'o->' in key:
 			emit_dict[key] = float(emit_dict[key])/outer
+		else:
+			emit_dict[key] = float(emit_dict[key])/non
 	return emit_dict
 
 # calculate the transition probability between states
@@ -130,9 +133,9 @@ if __name__ == "__main__":
 		for key in o_length.keys():
 			ofile.write("%d\t%d\n" % (key,o_length[key]))
 	with open("../data/emit_probabity.txt","w") as ofile:
-		for key in emit_prob.keys():
+		for key in sorted(emit_prob.iterkeys()):
 			ofile.write("%s\t%f\n" % (key,emit_prob[key]))
 	with open("../data/trans_probabity.txt","w") as ofile:
-		for key in trans_prob.keys():
+		for key in sorted(trans_prob.iterkeys()):
 			ofile.write("%s\t%f\n" % (key,trans_prob[key]))
 
