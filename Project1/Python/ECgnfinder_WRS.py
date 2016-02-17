@@ -176,7 +176,7 @@ def LikelihoodMode(myseq, frame, codon_usages, random_usages, threshold, RevComp
             target = str(i)+"\t"+str(i+WindowSize-1)+"\t"+str(Ratio)
 	else:
 	    target = ''
-	yield (target, data)
+	yield target
 
 
 ## merge extract window
@@ -184,10 +184,10 @@ def MergeWindow(result):
 	window=[]
 	merged=[]
 	for key in result:
-		start=key.split('\t')[0]
-		end=key.split('\t')[1]
-		likelihood=float(key.split('\t')[2])
-		window.append((start,end)) 
+		if key!='':
+			start=int(key.split('\t')[0])
+			end=int(key.split('\t')[1])
+			window.append((start,end)) 
 	while window!=[]:
   		i = 1
 		while i< len(window):
@@ -204,7 +204,7 @@ def MergeWindow(result):
 	return merged
 
 def MergedRatio(seq,codon_usages,random_usages,merged_window):
-	pc,po,ratio=1,1,0
+	pc,po,ratio=1.0,1.0,0
 	orf_ratio=[]
 	for key in merged_window:
 		start=int(key[0])
@@ -228,7 +228,7 @@ if __name__ == "__main__":
     parser.add_argument('-rc', '--reverse_compliment', dest='feature', action='store_true')
     parser.set_defaults(feature=False)
     args = parser.parse_args()
-    fasta = mydir + 'EcoGene_no_pseudo.fa'
+    fasta = mydir + 'ecoli-training.fna'
 
     class_test = classFASTA(fasta)
     ######### This command returns the nested list containing sequence names
@@ -268,33 +268,37 @@ if __name__ == "__main__":
 
     ## read the sample fasta file
     infile = classFASTA(args.fasta_file)
-    testSeq = infile.readFASTA()[0][1]
-
-    data, target = [], []
-    results = LikelihoodMode(testSeq, args.reading_frame, codon_usages, random_usages, threshold, RevComp = args.feature)
-    for key in results:
-	data.append(key[1])
-	target.append(key[0])
-
-    target = [x for x in target if x != '']
-    merged_window = MergeWindow(target)
-    orf_ratio=MergedRatio(testSeq,codon_usages,random_usages,merged_window)
+    testSeq = infile.readFASTA()
+    data, target, results, merged_window = [], [], {}, {}
+    
+    for key in testSeq:
+    	results[key[0]]=LikelihoodMode(key[1], args.reading_frame, codon_usages, random_usages, threshold, RevComp = args.feature)
+#	for t in results[key[0]]:
+#		print(t)
+	merged_window[key[0]] = MergeWindow(results[key[0]])
+#	for t in merged_window[key[0]]:
+#		print(t)
     outfile = open(args.out_table, "w")
-    outfile.write("Potential ORFs all meet criterion of log(Pc/Po)>"+str(threshold)+"\n\n\n")
-    outfile.write("Strand\tStart\tEnd\tlog-value\n")
-    for key in merged_window:
-        outfile.write(strand+'\t'+str(key[0])+'\t'+str(key[1])+'\t'+str(orf_ratio.pop(0))+'\t'+"\n")
+
+    for key in merged_window.keys():
+	    tmp=merged_window[key]
+	    for t in tmp:
+		    if t!= '':
+			    outfile.write('>'+key+"\n")
+			    break	    
+	    for t in tmp:	    
+	    	outfile.write(str(t[0])+'\t'+str(t[1])+'\t'+"\n")
 
 
     ## below is used to just print all the windows likelihood 
-    datafile = open("window_likelihoodRatio", "w")	
-    for key in data:
-	datafile.write(strand+'\t'+str(key)+"\n")
+   # datafile = open("window_likelihoodRatio", "w")	
+   # for key in data:
+#	datafile.write(strand+'\t'+str(key)+"\n")
 
     outfile.close()
-    datafile.close()
+ #   datafile.close()
     ## for this sample sequence, I know there is one gene from 578-992
 
 
 
-	
+

@@ -1,8 +1,24 @@
 #parse the given training set protein sequence file and generate two list of protein sequence and corresponding feature of i,m,o
 
-import sys
+import sys, math, argparse
 from itertools import groupby
-import math
+
+
+#read test fasta protein sequence file
+def read_protein(fasta):
+	fasta_list = []
+	for line in fasta:
+		if line[0]=='>':
+			try:
+				fasta_list.append(current_pro)
+			except UnboundLocalError:
+				pass
+			current_pro = [line.lstrip('>').rstrip('\n'),'']
+		else:
+			current_pro[1]+= ''.join(line.split())
+	fasta_list.append(current_pro)
+	return fasta_list
+
 #parse the training protein sequence and features
 def parse_training(training_file):
 	seq_set=[]
@@ -44,7 +60,7 @@ def lengthFrequency(length_set):
 	lengthFreq={}
 	domain_total=sum(length_set.values(),0.0)
 	for key in length_set:
-		lengthFreq[key]= length_set[key]/domain_total
+		lengthFreq[key]= float(length_set[key]/domain_total)
 	return lengthFreq
 
 # calculate the emission probability from each state to amino acids
@@ -55,26 +71,29 @@ def EmissionProb(seq_set, feature_set):
 		size = len(seq_set[x])
 		for y in range(size):
 			curr_emit = feature_set[x][y]+'->'+seq_set[x][y]
-			if '.' in curr_emit: continue
 			if curr_emit not in emit_dict:
 				emit_dict[curr_emit] = 1
 			else:
 				emit_dict[curr_emit] += 1
-	mem, inner, outer = 0, 0, 0
+	mem, inner, outer, non = 0, 0, 0, 0
 	for key in emit_dict:
 		if 'M->' in key:
 			mem += emit_dict[key]
 		elif 'i->' in key:
 			inner += emit_dict[key]
-		else:
+		elif 'o->' in key:
 			outer += emit_dict[key]
+		else:
+			non += emit_dict[key]
 	for key in emit_dict:
 		if 'M->' in key:
 			emit_dict[key] = float(emit_dict[key])/mem
 		elif 'i->' in key:
 			emit_dict[key] = float(emit_dict[key])/inner
-		else:
+		elif 'o->' in key:
 			emit_dict[key] = float(emit_dict[key])/outer
+		else:
+			emit_dict[key] = float(emit_dict[key])/non
 	return emit_dict
 
 # calculate the transition probability between states
@@ -106,36 +125,120 @@ def TransitionProb(feature_set):
 			trans_dict[key] = float(trans_dict[key])/inner
 		else:
 			trans_dict[key] = float(trans_dict[key])/outer
-	return trans_dict
-#calcualte the max
-def max_hidden(seq,trans_dict,emit_dict,freq_table):
-	l=len(seq)
+	return trans_dict	
 
+# calculate the probability of initial state
+def InitState(feature_set):
+	element = len(seq_set)
+	init_state = {}
+	for x in range(element):
+		curr_init = feature_set[x][0]
+		if '.' in curr_init: continue
+		if curr_init not in init_state:
+			init_state[curr_init] = 1
+		else:
+			init_state[curr_init] += 1
+	mem, inner, outer = 0, 0, 0
+	for key in init_state:
+		if 'M->' in key:
+			mem += init_state[key]
+		elif 'i->' in key:
+			inner += init_state[key]
+		else:
+			outer += init_state[key]
+	for key in init_state:
+		if 'M->' in key:
+			init_state[key] = float(init_state[key])/mem
+		elif 'i->' in key:
+			init_state[key] = float(init_state[key])/inner
+		else:
+			init_state[key] = float(init_state[key])/outer
+	return init_state	
 		
+def NullModel(seq,emit_prob):
+	prob = 0.0
+	for x in range(len(seq)):
+		curr_emit = '.->'+seq[x]
+		prob += math.log(emit_prob[curr_emit])   
+	return prob
+	
+#calculate the maximum probability of hidden states sequence
+
+def max_hidden(seq,freq_table,emit_dict,trans_dict,initial):
+	l=len(seq)
+	m=len(freq_table)
+	states=['M','I','O']
+	pro_table = [[1 for x in range(l)]for x in range(m)]
+	pos_table = [[1 for x in range(l)]for x in range(m)]
+	pro_table[0][0] = 0.0000001
+	pro_table[1][0] = initial['i']
+	pro_table[2][0] = initial['o']
+	for i in range(1,l):
+		for j in range(m):
+			pro_oneseg = math.log(freq_table[j][i+1])
+			for aa in seq[:i+1]:
+				emit = states[j]+'->'+ aa.upper()
+				pro_oneseg += math.log(emit_dict[emit])
+			pro_table[j][i] = pro_oneseg
+			pos_table[j][i] = (j,1)
+			for k in range(i):
+				for p in range(m):
+					tmp = 0
+					if p!=j:	
+						seg = seq[k+1:i+1]
+						trans = states[p] +'->'+ states[j] 
+						tmp += pro_table[p][k] + math.log(trans_dict[trans]) + math.log(freq_table[j][i-k])
+						for aa in seg:
+							emit = states[p] + '->' + aa.upper()
+							tmp += math.log(emit_dict[emit])
+						if pro_table[j][i]< tmp:
+							pro_table[j][i] = tmp
+							pos_table[j][i] = (p,k)
+	return pro_table,pos_table
+
 ###======read traing file and generate GMMM model ======
 if __name__ == "__main__":
+	parser = argparse.ArgumentParser()
+	parser.add_argument('-i','--fasta_file',required=True)
+#	parse.add_argument('-o','--out_file',required=True)
+	parser.add_argument('-l','--length_table')
+	args = parser.parse_args()
+
 	with open("../data/TMseq.ffa","r") as training_file:
 		seq_set,feature_set = parse_training(training_file)
 		m_length,i_length,o_length = generate_length(feature_set)
 		m_freq = lengthFrequency(m_length)
 		i_freq = lengthFrequency(i_length)
 		o_freq = lengthFrequency(o_length)
+		freq_table = [m_freq,i_freq,o_freq]
 		emit_prob = EmissionProb(seq_set, feature_set)
 		trans_prob = TransitionProb(feature_set)
+		init_state = InitState(feature_set)
+	
+	with open(args.fasta_file,'r') as test:
+		test_seq = read_protein(test)[0][1]
+	print(test_seq)	
 
-	with open("../data/mem_length.txt","w") as mfile:
-		for key in m_length.keys():
-			mfile.write("%d\t%d\n" % (key,m_length[key]))
-	with open("../data/in_length.txt","w") as ifile:
-		for key in i_length.keys():
-			ifile.write("%d\t%d\n" % (key,i_length[key]))
-	with open("../data/out_length.txt","w") as ofile:
-		for key in o_length.keys():
-			ofile.write("%d\t%d\n" % (key,o_length[key]))
-	with open("../data/emit_probabity.txt","w") as ofile:
-		for key in emit_prob.keys():
-			ofile.write("%s\t%f\n" % (key,emit_prob[key]))
-	with open("../data/trans_probabity.txt","w") as ofile:
-		for key in trans_prob.keys():
-			ofile.write("%s\t%f\n" % (key,trans_prob[key]))
+	
+	maxpro_table,pos_table = max_hidden(test_seq,freq_table,emit_prob,trans_prob,init_state)
+	for j in range(len(maxpro_table)):
+		print(maxpro_table[j])
 
+#	with open("../data/mem_length.txt","w") as mfile:
+#		for key in m_length.keys():
+#			mfile.write("%d\t%d\n" % (key,m_length[key]))
+#	with open("../data/in_length.txt","w") as ifile:
+#		for key in i_length.keys():
+#			ifile.write("%d\t%d\n" % (key,i_length[key]))
+#	with open("../data/out_length.txt","w") as ofile:
+#		for key in o_length.keys():
+#			ofile.write("%d\t%d\n" % (key,o_length[key]))
+#	with open("../data/emit_probabity.txt","w") as ofile:
+#		for key in sorted(emit_prob.iterkeys()):
+#			ofile.write("%s\t%f\n" % (key,emit_prob[key]))
+#	with open("../data/trans_probabity.txt","w") as ofile:
+#		for key in sorted(trans_prob.iterkeys()):
+#			ofile.write("%s\t%f\n" % (key,trans_prob[key]))
+#	with open("../data/initial_state.txt","w") as ofile:
+#		for key in sorted(init_state.iterkeys()):
+#			ofile.write("%s\t%f\n" % (key,init_state[key]))

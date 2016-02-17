@@ -1,0 +1,1408 @@
+>gi|16128997|b1034|b1034|   predicted zinc-binding hydrolase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+12	527	
+528	734	
+>gi|49176118|b1511|b1511|   autoinducer-2 (AI-2) kinase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	722	
+741	1292	
+1338	1589	
+>gi|0|b4693|b4693|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+174	773	
+792	1130	
+>gi|90111253|b1341|b1341|   predicted diguanylate cyclase, GGDEF domain signalling protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+123	545	
+561	1229	
+>gi|16129024|b1061|b1061|   DNA damage-inducible protein I   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	242	
+>gi|16129149|b1186|b1186|   sodium:proton antiporter   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+93	422	
+435	1454	
+>gi|226524709|b1234|b1234|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	296	
+300	656	
+690	902	
+>gi|16129293|b1332|b1332|   predicted inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	143	
+150	254	
+>gi|16129365|b1404|b1404|   KpLE2 phage-like element; IS30 transposase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+216	419	
+516	617	
+>gi|145698247|b1218|b1218|   regulatory protein for cation transport   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	338	
+375	692	
+>gi|16129140|b1177|b1177|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+45	362	
+>gi|90111236|b1248|b1248|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	326	
+>gi|16129280|b1319|b1319|   outer membrane porin   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+39	626	
+636	896	
+>gi|16129059|b1096|b1096|   4-amino-4-deoxychorismate lyase component of para-aminobenzoate synthase multienzyme complex   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	107	
+138	272	
+495	689	
+>gi|16129380|b1421|b1421|   methyl-accepting chemotaxis protein III, ribose and galactose sensor receptor   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+48	1088	
+1092	1268	
+1395	1631	
+>gi|16129349|b1388|b1388|   predicted multicomponent oxygenase/reductase subunit for phenylacetic acid degradation   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+117	602	
+624	926	
+>gi|16129277|b1316|b1316|   predicted hydrolase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+18	248	
+267	2051	
+2055	2222	
+>gi|94541091|b4527|b4527|   Rac prophage; predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	131	
+>gi|16129331|b1370|b1370|   IS5 transposase and trans-activator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+126	446	
+471	569	
+822	977	
+>gi|0|b1362|b1362|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	434	
+>gi|0|b4491|b4491|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+30	212	
+252	350	
+381	563	
+573	965	
+1176	1403	
+1458	1625	
+1641	1820	
+1989	2564	
+>gi|16129341|b1380|b1380|   fermentative D-lactate dehydrogenase, NAD-dependent   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	986	
+>gi|16129215|b1254|b1254|   predicted inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	170	
+240	536	
+>gi|16129137|b1174|b1174|   cell division topological specificity factor   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	263	
+>gi|16129230|b1269|b1269|   23S rRNA pseudouridylate synthase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	872	
+>gi|16129067|b1104|b1104|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	140	
+>gi|16129403|b1444|b1444|   medium chain aldehyde dehydrogenase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	989	
+996	1160	
+>gi|16129194|b1233|b1233|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+48	146	
+234	455	
+>gi|16129239|b1278|b1278|   phosphatidylglycerophosphatase B   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+153	437	
+465	611	
+657	761	
+>gi|16129064|b1101|b1101|   fused glucose-specific PTS enzymes: IIB component/IIC component   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1430	
+>gi|16129253|b1292|b1292|   predicted antimicrobial peptide transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	887	
+>gi|16129300|b1339|b1339|   predicted DNA-binding transcriptional regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	338	
+342	596	
+693	905	
+>gi|16128985|b1021|b1021|   predicted inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+108	335	
+>gi|90111208|b1051|b1051|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	248	
+267	371	
+>gi|16129458|b1499|b1499|   predicted DNA-binding transcriptional activator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	209	
+225	395	
+531	692	
+>gi|16129360|b1399|b1399|   DNA-binding transcriptional repressor of phenylacetic acid degradation, aryl-CoA responsive   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+54	716	
+747	947	
+>gi|16129291|b1330|b1330|   conserved inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1028	
+>gi|16129069|b1106|b1106|   thiamin kinase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+93	230	
+234	812	
+>gi|0|b4578|b4578|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	257	
+270	368	
+372	488	
+>gi|16129304|b1343|b1343|   ATP-dependent RNA helicase, specific for 23S rRNA   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+48	1370	
+>gi|16129185|b1222|b1222|   sensory histidine kinase in two-component regulatory system with NarL   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+15	449	
+495	689	
+693	1364	
+1389	1487	
+1521	1793	
+>gi|16129025|b1062|b1062|   dihydro-orotase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+90	191	
+210	1040	
+>gi|16129186|b1223|b1223|   nitrate/nitrite transporter   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	230	
+237	1337	
+>gi|16129295|b1334|b1334|   DNA-binding transcriptional dual regulator, global regulator of anaerobic growth   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+24	749	
+>gi|16129057|b1094|b1094|   acyl carrier protein (ACP)   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	233	
+>gi|16129000|b1037|b1037|   outer membrane lipoprotein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+36	533	
+588	830	
+>gi|16128990|b1026|b1026|   IS3 element protein InsF   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	104	
+117	308	
+342	806	
+>gi|16129281|b1320|b1320|   predicted DNA-binding transcriptional regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+9	974	
+>gi|16129089|b1126|b1126|   polyamine transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	305	
+318	1130	
+>gi|16129236|b1275|b1275|   DNA-binding transcriptional dual regulator, O-acetyl-L-serine-binding   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+189	713	
+726	971	
+>gi|16129426|b1467|b1467|   nitrate reductase 2 (NRZ), beta subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+63	1541	
+>gi|16129141|b1178|b1178|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+81	266	
+273	398	
+>gi|16129310|b1349|b1349|   Rac prophage; recombination and repair protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	224	
+264	758	
+>gi|90111220|b1143|b1143|   e14 prophage; predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	311	
+>gi|226524714|b1449|b1449|   predicted oxidoreductase, Zn-dependent and NAD(P)-binding   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	221	
+255	443	
+489	734	
+756	1034	
+>gi|221800781|b1327|b1327|   predicted hydrolase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	917	
+>gi|16129199|b1238|b1238|   thymidine kinase/deoxyuridine kinase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+33	146	
+150	614	
+>gi|16129296|b1335|b1335|   O-6-alkylguanine-DNA:cysteine-protein methyltransferase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	242	
+402	512	
+>gi|16129151|b1188|b1188|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+45	173	
+186	944	
+987	1529	
+>gi|16129018|b1055|b1055|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+54	1049	
+>gi|0|b4525|b4525|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	134	
+>gi|16129129|b1166|b1166|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+57	170	
+>gi|16129217|b1256|b1256|   outer membrane protein W   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+27	635	
+>gi|16129308|b1347|b1347|   Rac prophage; predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	185	
+>gi|16129122|b1159|b1159|   e14 prophage; 5-methylcytosine-specific restriction endonuclease B   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+51	284	
+552	788	
+>gi|16129075|b1112|b1112|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	254	
+>gi|16129061|b1098|b1098|   thymidylate kinase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+21	629	
+>gi|16129211|b1250|b1250|   voltage-gated potassium channel   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+288	503	
+540	1250	
+>gi|90111242|b1287|b1287|   predicted oxidoreductase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	98	
+357	581	
+597	713	
+783	1088	
+>gi|16129447|b1488|b1488|   D-ala-D-ala dipeptidase, Zn-dependent   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	317	
+417	515	
+>gi|16129334|b1373|b1373|   Rac prophage; predicted tail fiber assembly protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	572	
+>gi|16129450|b1491|b1491|   predicted liprotein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+252	449	
+513	626	
+684	1316	
+>gi|16129193|b1232|b1232|   formyltetrahydrofolate hydrolase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	824	
+>gi|16129166|b1203|b1203|   predicted GTP-binding protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1088	
+>gi|90111244|b1297|b1297|   gamma-Glu-putrescine synthase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+24	182	
+189	1397	
+>gi|16129158|b1195|b1195|   predicted inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	251	
+>gi|16129138|b1175|b1175|   membrane ATPase of the MinC-MinD-MinE system   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+96	809	
+>gi|16129176|b1213|b1213|   predicted transcriptional regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+69	386	
+>gi|16129205|b1244|b1244|   oligopeptide transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+18	443	
+537	635	
+654	917	
+>gi|0|b1472|b1472|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+33	275	
+>gi|16129285|b1324|b1324|   lipid hydroperoxide peroxidase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	503	
+>gi|0|b4524|b4524|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	122	
+>gi|90111271|b1426|b1426|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	179	
+>gi|16129356|b1395|b1395|   3-hydroxybutyryl-CoA dehydrogenase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+9	371	
+543	1319	
+>gi|16129335|b1374|b1374|   Rac prophage; predicted site-specific recombinase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	398	
+>gi|90111234|b1201|b1201|   predicted DNA-binding transcriptional regulator, dihydroxyacetone   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+90	326	
+552	725	
+771	872	
+930	1913	
+>gi|16129271|b1310|b1310|   predicted sugar transporter subunit: periplasmic-binding component of ABC superfamily   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	887	
+900	1289	
+>gi|0|b1157|b1157|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	269	
+309	497	
+>gi|16129420|b1461|b1461|   4-oxalocrotonate tautomerase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	182	
+>gi|90111238|b1259|b1259|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	176	
+>gi|94541107|b4522|b4522|   hypothetical protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	125	
+>gi|16129155|b1192|b1192|   L,D-carboxypeptidase A   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	140	
+156	686	
+714	911	
+>gi|16129471|b1512|b1512|   lsr operon transcriptional repressor   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	458	
+489	950	
+>gi|16129032|b1069|b1069|   predicted inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+39	383	
+393	743	
+807	926	
+936	1394	
+1404	1532	
+>gi|16129305|b1344|b1344|   predicted C32 tRNA thiolase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	311	
+366	932	
+>gi|145698244|b4594|b4594|   hypothetical protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+78	182	
+>gi|145698256|b1424|b1424|   glucan biosynthesis protein, periplasmic   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	641	
+702	1649	
+>gi|90111243|b1296|b1296|   putrescine importer   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	299	
+453	641	
+684	1013	
+1038	1382	
+>gi|16129466|b1507|b1507|   regulator with hipB   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+147	275	
+342	485	
+531	746	
+777	1244	
+>gi|16129250|b1289|b1289|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	278	
+>gi|16129078|b1115|b1115|   predicted inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+18	191	
+231	536	
+738	956	
+>gi|16129196|b1235|b1235|   response regulator of RpoS   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+18	116	
+192	707	
+720	1010	
+>gi|16129376|b1415|b1415|   aldehyde dehydrogenase A, NAD-linked   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+84	674	
+696	1436	
+>gi|16128998|b1035|b1035|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+9	551	
+>gi|226524710|b4672|b4672|   expressed protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	98	
+>gi|90111213|b1108|b1108|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+99	392	
+>gi|90111278|b1462|b1462|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+138	548	
+>gi|16129321|b1360|b1360|   Rac prophage; predicted DNA replication protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+90	605	
+>gi|16129171|b1208|b1208|   4-diphosphocytidyl-2-C-methylerythritol kinase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	284	
+327	497	
+609	830	
+>gi|16129266|b1305|b1305|   DNA-binding transcriptional regulator of psp operon   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	221	
+>gi|162135900|b1200|b1200|   dihydroxyacetone kinase, N-terminal domain   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1067	
+>gi|90111273|b1435|b1435|   predicted peptidase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1886	
+>gi|16129320|b1359|b1359|   Rac prophage; conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+174	521	
+600	788	
+>gi|16129462|b1503|b1503|   predicted fimbrial-like adhesin protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+78	458	
+>gi|90111206|b1036|b1036|   predicted inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+45	488	
+>gi|16129221|b1260|b1260|   tryptophan synthase, alpha subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	803	
+>gi|16129452|b1493|b1493|   glutamate decarboxylase B, PLP-dependent   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+21	1397	
+>gi|16129036|b1073|b1073|   flagellar component of cell-proximal portion of basal-body rod   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	413	
+>gi|16129242|b1281|b1281|   orotidine-5'-phosphate decarboxylase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	734	
+>gi|90111264|b1385|b1385|   phenylacetaldehyde dehydrogenase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+9	440	
+609	968	
+1017	1121	
+1173	1421	
+>gi|16129103|b1140|b1140|   e14 prophage; predicted integrase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+78	341	
+453	800	
+984	1124	
+>gi|16129034|b1071|b1071|   anti-sigma factor for FliA (sigma 28)   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+108	290	
+>gi|16129342|b1381|b1381|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	239	
+294	611	
+624	1085	
+1122	1367	
+1509	2636	
+>gi|16129391|b1432|b1432|   predicted transposase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	470	
+828	1130	
+>gi|16129340|b1379|b1379|   heat-inducible protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	419	
+>gi|16129094|b1131|b1131|   adenylosuccinate lyase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1367	
+>gi|16129153|b1190|b1190|   alanine racemase 2, PLP-binding   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+15	128	
+138	560	
+567	698	
+702	881	
+912	1043	
+>gi|16129079|b1116|b1116|   outer membrane-specific lipoprotein transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	122	
+138	1196	
+>gi|16129113|b1150|b1150|   e14 prophage; predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	179	
+>gi|16128983|b1019|b1019|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	404	
+483	1001	
+1023	1268	
+>gi|16129358|b1397|b1397|   predicted beta-ketoadipyl CoA thiolase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1202	
+>gi|90111262|b1376|b1376|   stress-induced protein, ATP-binding protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+15	371	
+>gi|16129446|b1487|b1487|   D-ala-D-a la transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+141	398	
+450	1547	
+>gi|16129214|b1253|b1253|   predicted hydrolase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+21	236	
+240	395	
+>gi|16129130|b1167|b1167|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+66	200	
+>gi|16129441|b1482|b1482|   osmotically inducible, stress-inducible membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+30	428	
+>gi|16129002|b1039|b1039|   predicted  transport protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+90	191	
+231	386	
+>gi|90111245|b1298|b1298|   gamma-Glu-GABA hydrolase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+54	209	
+276	536	
+573	683	
+>gi|145698260|b1473|b1473|   predicted methyl viologen efflux pump   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+87	377	
+402	584	
+768	878	
+>gi|90111222|b1146|b1146|   e14 prophage; predicted DNA-binding transcriptional regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	197	
+>gi|16129375|b1414|b1414|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+33	473	
+618	797	
+>gi|16129204|b1243|b1243|   oligopeptide transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+18	1349	
+1374	1628	
+>gi|0|b1505|b1505|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+432	608	
+636	989	
+1038	1166	
+>gi|16129339|b1378|b1378|   fused predicted pyruvate-flavodoxin oxidoreductase: conserved protein/conserved protein/FeS binding protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+87	1913	
+2046	3521	
+>gi|16129251|b1290|b1290|   predicted antimicrobial peptide transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+42	803	
+>gi|16129289|b1328|b1328|   predicted DNA-binding transcriptional regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	110	
+297	551	
+600	866	
+>gi|16129317|b1356|b1356|   Rac prophage; predicted DNA-binding transcriptional regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+90	200	
+264	473	
+>gi|90111256|b1353|b1353|   Rac prophage; phage superinfection exclusion protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+261	446	
+>gi|16129222|b1261|b1261|   tryptophan synthase, beta subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1190	
+>gi|0|b4696|b4696|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+111	341	
+636	749	
+759	1157	
+1338	1532	
+1848	2204	
+2280	2843	
+2892	3248	
+3312	3425	
+3429	3530	
+3573	3710	
+3714	3899	
+4047	4157	
+4770	4937	
+5004	5105	
+5121	5264	
+>gi|16129100|b1137|b1137|   e14 prophage; predicted SAM-dependent methyltransferase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+81	350	
+450	548	
+>gi|16129095|b1132|b1132|   predicted lysogenization regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	266	
+273	638	
+>gi|90111210|b1085|b1085|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+66	218	
+>gi|90111217|b1128|b1128|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1118	
+>gi|145698255|b1413|b1413|   ATP-dependent helicase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1010	
+1095	2813	
+2832	3806	
+>gi|145698261|b1477|b1477|   predicted DNA-binding transcriptional regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	281	
+>gi|16129147|b1184|b1184|   DNA polymerase V, subunit C   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+51	269	
+273	860	
+894	1103	
+>gi|16129386|b1427|b1427|   ribosomal-protein-L7/L12-serine acetyltransferase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+12	536	
+>gi|16129427|b1468|b1468|   nitrate reductase 2 (NRZ), alpha subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	641	
+771	2309	
+2316	3737	
+>gi|16128984|b1020|b1020|   conserved protein with nucleoside triphosphate hydrolase domain   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+87	488	
+534	749	
+759	872	
+882	1058	
+>gi|16129116|b1153|b1153|   prohage e14 tail protein homolog   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	383	
+>gi|16129056|b1093|b1093|   3-oxoacyl-[acyl-carrier-protein] reductase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	731	
+>gi|16129037|b1074|b1074|   flagellar component of cell-proximal portion of basal-body rod   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	350	
+>gi|90111280|b1478|b1478|   ethanol-active dehydrogenase/acetaldehyde-active reductase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1007	
+>gi|16129382|b1423|b1423|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	275	
+339	698	
+762	1013	
+1065	1340	
+>gi|16129108|b1145|b1145|   e14 prophage; repressor protein phage e14   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+33	266	
+429	527	
+>gi|90111230|b1191|b1191|   predicted cation/proton antiporter   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+57	926	
+996	1658	
+>gi|16129367|b1406|b1406|   predicted oxidoreductase, NAD(P)-binding   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	272	
+276	806	
+>gi|16128993|b1029|b1029|   predicted inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	260	
+396	557	
+618	752	
+840	947	
+>gi|16129416|b1457|b1457|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+252	479	
+>gi|16129387|b1428|b1428|   predicted enzyme   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	323	
+375	797	
+870	968	
+>gi|16129246|b1285|b1285|   modulator of Rnase II stability   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+60	362	
+393	881	
+894	1364	
+1431	1853	
+1869	1967	
+>gi|16129047|b1084|b1084|   fused ribonucleaseE: endoribonuclease/RNA-binding protein/RNA degradosome binding protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+39	3002	
+3009	3182	
+>gi|49176083|b1179|b1179|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+27	281	
+>gi|90111205|b1033|b1033|   2-ketoacid reductase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	815	
+>gi|0|b4692|b4692|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	230	
+>gi|16129102|b1139|b1139|   e14 prophage; cell death peptidase, inhibitor of T4 late gene expression   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+192	356	
+522	680	
+>gi|16129146|b1183|b1183|   DNA polymerase V, subunit D   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	323	
+>gi|16129370|b1409|b1409|   predicted CDP-diglyceride synthase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+534	827	
+>gi|145698251|b4523|b4523|   hypothetical protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+51	164	
+>gi|16129252|b1291|b1291|   predicted antimicrobial peptide transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	695	
+756	950	
+>gi|16129247|b1286|b1286|   ribonuclease II   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1931	
+>gi|90111276|b1450|b1450|   predicted DNA-binding transcriptional regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	452	
+483	662	
+>gi|16129083|b1120|b1120|   deacetylase of acetyl-CoA synthetase, NAD-dependent   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	809	
+>gi|16129444|b1485|b1485|   D-ala-D-ala transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+21	128	
+135	335	
+423	893	
+>gi|16129395|b1436|b1436|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+30	227	
+>gi|16129424|b1465|b1465|   nitrate reductase 2 (NRZ), gamma subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	98	
+231	416	
+>gi|16129152|b1189|b1189|   D-amino acid dehydrogenase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+99	1208	
+>gi|49176074|b1060|b1060|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+129	230	
+>gi|16128989|b1025|b1025|   predicted diguanylate cyclase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+72	227	
+624	722	
+831	1010	
+1029	1316	
+>gi|16129208|b1247|b1247|   oligopeptide transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	173	
+192	626	
+651	752	
+>gi|16129472|b1513|b1513|   fused AI2 transporter subunits of ABC superfamily: ATP-binding components   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+48	1532	
+>gi|16129262|b1301|b1301|   gamma-Glu-putrescine oxidase, FAD/NAD(P)-binding   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+39	1277	
+>gi|16129020|b1057|b1057|   predicted cytochrome b561   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+60	245	
+297	491	
+>gi|16129019|b1056|b1056|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	569	
+>gi|16129401|b1442|b1442|   predicted spermidine/putrescine transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+27	581	
+609	938	
+>gi|16129027|b1064|b1064|   glutaredoxin 2 (Grx2)   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+9	644	
+>gi|16129218|b1257|b1257|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	263	
+270	503	
+>gi|16129405|b1446|b1446|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	230	
+>gi|16129086|b1123|b1123|   polyamine transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	305	
+336	1043	
+>gi|16129373|b1412|b1412|   NADH-azoreductase, FMN-dependent   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+12	602	
+>gi|49176087|b4419|b4419|   toxic polypeptide, small   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	104	
+>gi|16129361|b1400|b1400|   predicted hexapeptide repeat acetyltransferase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+51	467	
+>gi|16129055|b1092|b1092|   malonyl-CoA-[acyl-carrier-protein] transacylase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	926	
+>gi|90111237|b1251|b1251|   predicted enzyme   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	293	
+>gi|16129058|b1095|b1095|   3-oxoacyl-[acyl-carrier-protein] synthase II   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+57	1232	
+>gi|0|b1366|b1366|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+75	314	
+>gi|16129357|b1396|b1396|   predicted thioesterase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	419	
+>gi|16129029|b1066|b1066|   ribosomal-protein-S5-alanine N-acetyltransferase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	125	
+138	581	
+>gi|16129068|b1105|b1105|   predicted outer membrane lipoprotein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+15	119	
+150	266	
+267	638	
+>gi|16129012|b1049|b1049|   glucan biosynthesis: glycosyl transferase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+15	407	
+438	1586	
+1752	2444	
+>gi|90111216|b1122|b1122|   predicted inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+15	374	
+>gi|16129202|b1241|b1241|   fused acetaldehyde-CoA dehydrogenase/iron-dependent alcohol dehydrogenase/pyruvate-formate lyase deactivase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+27	2672	
+>gi|49176085|b1185|b1185|   oxidoreductase that catalyzes reoxidation of DsbA protein disulfide isomerase I   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	269	
+273	527	
+>gi|16129198|b1237|b1237|   global DNA-binding transcriptional dual regulator H-NS   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	410	
+>gi|16129189|b1226|b1226|   molybdenum-cofactor-assembly chaperone subunit (delta subunit) of nitrate reductase 1   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	707	
+>gi|16129219|b1258|b1258|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	497	
+>gi|16129389|b1430|b1430|   predicted S-adenosyl-L-methionine-dependent methyltransferase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	590	
+>gi|16129265|b1304|b1304|   regulatory protein for phage-shock-protein operon   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	665	
+>gi|145698248|b1220|b1220|   predicted invasin   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	302	
+318	788	
+849	1022	
+1032	1214	
+>gi|16129453|b1494|b1494|   predicted peptidase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+57	1499	
+1509	1796	
+1830	2168	
+2178	2690	
+>gi|16129398|b1439|b1439|   fused predicted DNA-binding transcriptional regulator/predicted amino transferase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+129	347	
+357	548	
+603	1013	
+1020	1403	
+>gi|16129254|b1293|b1293|   predicted antimicrobial peptide transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+36	404	
+426	548	
+558	962	
+>gi|145698252|b4596|b4596|   hypothetical protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	137	
+>gi|16129400|b1441|b1441|   predicted spermidine/putrescine transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+48	239	
+327	968	
+>gi|16129206|b1245|b1245|   oligopeptide transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+30	233	
+240	641	
+>gi|16129283|b1322|b1322|   conserved inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	323	
+324	1058	
+>gi|0|b1459|b1459|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+48	314	
+471	677	
+>gi|90111239|b1262|b1262|   fused indole-3-glycerolphosphate synthetase/N-(5-phosphoribosyl)anthranilate isomerase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1355	
+>gi|16129139|b1176|b1176|   cell division inhibitor   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+15	356	
+369	692	
+>gi|16129414|b1455|b1455|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+78	209	
+>gi|16129237|b1276|b1276|   aconitate hydratase 1   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	1871	
+1878	2036	
+2058	2225	
+2247	2579	
+>gi|16129178|b1215|b1215|   3-deoxy-D-manno-octulosonate 8-phosphate synthase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	851	
+>gi|16128987|b1023|b1023|   predicted enzyme associated with biofilm formation   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+84	413	
+417	545	
+561	770	
+882	1229	
+1257	2015	
+>gi|90111249|b1325|b1325|   L-Ala-D/L-Glu epimerase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+21	203	
+210	350	
+360	953	
+>gi|16129042|b1079|b1079|   flagellar protein of basal-body outer-membrane L ring   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+96	695	
+>gi|16129268|b1307|b1307|   peripheral inner membrane phage-shock protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+33	218	
+>gi|16129030|b1067|b1067|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+87	644	
+>gi|16129190|b1227|b1227|   nitrate reductase 1, gamma (cytochrome b(NR)) subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+39	614	
+>gi|16129022|b1059|b1059|   N-methyltryptophan oxidase, FAD-binding   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	1115	
+>gi|90111274|b1445|b1445|   predicted inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	134	
+>gi|16129170|b1207|b1207|   phosphoribosylpyrophosphate synthase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	944	
+>gi|16129407|b1448|b1448|   predicted acyltransferase with acyl-CoA N-acyltransferase domain   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	341	
+360	515	
+>gi|16129278|b1317|b1317|   predicted beta-phosphoglucomutase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	260	
+273	614	
+>gi|16129411|b1452|b1452|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1058	
+>gi|16129451|b1492|b1492|   predicted glutamate:gamma-aminobutyric acid antiporter   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+192	614	
+639	806	
+807	1511	
+>gi|16129319|b1358|b1358|   Rac prophage; predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	419	
+>gi|162135921|b1125|b1125|   polyamine transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+39	374	
+378	818	
+>gi|16129008|b1045|b1045|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	233	
+252	506	
+>gi|16129187|b1224|b1224|   nitrate reductase 1, alpha subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	149	
+153	641	
+771	1871	
+1872	3722	
+>gi|16129188|b1225|b1225|   nitrate reductase 1, beta (Fe-S) subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+21	719	
+720	1535	
+>gi|16129119|b1156|b1156|   e14 prophage; predicted tail fiber assembly protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+18	596	
+>gi|16129274|b1313|b1313|   predicted oxidoreductase, Zn-dependent and NAD(P)-binding   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	329	
+339	1049	
+>gi|16129007|b1044|b1044|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+12	308	
+>gi|16129406|b1447|b1447|   predicted inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+30	221	
+243	425	
+>gi|90111268|b1418|b1418|   cytochrome b561   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	146	
+240	479	
+>gi|162135920|b1386|b1386|   tyramine oxidase, copper-requiring   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+12	1103	
+1107	1385	
+1440	1994	
+2133	2243	
+>gi|16129467|b1508|b1508|   DNA-binding transcriptional regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	161	
+>gi|16129004|b1041|b1041|   curlin nucleator protein, minor subunit in curli complex   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	452	
+>gi|16129309|b1348|b1348|   Rac prophage; restriction alleviation protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+54	191	
+>gi|90111254|b1346|b1346|   Rac prophage; conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	134	
+>gi|16129318|b1357|b1357|   Rac prophage; predicted DNA-binding transcriptional regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+144	242	
+>gi|90111277|b1453|b1453|   L-asparagine transporter   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	266	
+279	509	
+537	833	
+837	1082	
+1119	1496	
+>gi|90111272|b1433|b1433|   predicted benzoate transporter   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+84	185	
+327	449	
+462	584	
+597	1070	
+>gi|90111231|b1193|b1193|   lytic murein endotransglycosylase E   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+57	605	
+>gi|16129443|b1484|b1484|   D-ala-D-ala transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+9	518	
+573	803	
+825	974	
+>gi|90111247|b1309|b1309|   predicted glucosyltransferase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	998	
+1245	1415	
+1437	1676	
+>gi|16129402|b1443|b1443|   predicted spermidine/putrescine transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	431	
+564	662	
+>gi|16129177|b1214|b1214|   predicted transcriptional regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	806	
+>gi|16129225|b1264|b1264|   component I of anthranilate synthase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	1559	
+>gi|49176076|b1080|b1080|   predicted flagellar basal body protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+39	230	
+339	689	
+699	806	
+849	1094	
+>gi|16129013|b1050|b1050|   predicted lipoprotein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+78	224	
+>gi|16129035|b1072|b1072|   assembly protein for flagellar basal-body periplasmic P ring   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+189	647	
+>gi|16129162|b1199|b1199|   dihydroxyacetone kinase, C-terminal domain   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	431	
+438	626	
+>gi|16129461|b1502|b1502|   predicted fimbrial-like adhesin protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+195	302	
+375	584	
+>gi|16129081|b1118|b1118|   outer membrane-specific lipoprotein transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1121	
+>gi|16129445|b1486|b1486|   D-ala-D-ala transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+15	755	
+900	1019	
+>gi|16129350|b1389|b1389|   predicted multicomponent oxygenase/reductase subunit for phenylacetic acid degradation   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	284	
+>gi|16129046|b1083|b1083|   flagellar hook-filament junction protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+117	503	
+516	929	
+>gi|16129073|b1110|b1110|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	170	
+171	536	
+>gi|16129167|b1204|b1204|   peptidyl-tRNA hydrolase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	581	
+>gi|90111214|b1111|b1111|   predicted DNA-binding transcriptional regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+18	131	
+138	482	
+483	629	
+>gi|16129261|b1300|b1300|   gamma-Glu-gamma-aminobutyraldehyde dehydrogenase,  NAD(P)H-dependent   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1220	
+1293	1484	
+>gi|90111211|b1087|b1087|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	365	
+>gi|226524711|b1326|b1326|   murein peptide amidase A   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+18	167	
+237	725	
+>gi|90111207|b1046|b1046|   predicted hydrolase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	239	
+327	467	
+516	683	
+720	902	
+924	1358	
+>gi|90111209|b1065|b1065|   predicted drug efflux system   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	320	
+333	455	
+573	773	
+858	1205	
+>gi|16129343|b1382|b1382|   predicted lipoprotein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	113	
+>gi|90111266|b1407|b1407|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+15	233	
+537	983	
+1041	1289	
+1365	1784	
+1833	2078	
+2145	2303	
+>gi|162135902|b1489|b1489|   cAMP phosphodiesterase, heme-regulated   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1388	
+1473	2285	
+>gi|16129184|b1221|b1221|   DNA-binding response regulator in two-component regulatory system with NarX (or NarQ)   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	569	
+>gi|16129267|b1306|b1306|   DNA-binding transcriptional activator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	347	
+>gi|0|b1028|b1028|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	143	
+>gi|16129118|b1155|b1155|   e14 prophage; predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+12	410	
+>gi|16129429|b1470|b1470|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+39	170	
+>gi|16129311|b1350|b1350|   Rac prophage; exonuclease VIII, 5' -> 3' specific dsDNA exonuclease   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	332	
+360	1784	
+1935	2597	
+>gi|16129203|b1242|b1242|   predicted inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+270	401	
+417	545	
+>gi|16129054|b1091|b1091|   3-oxoacyl-[acyl-carrier-protein] synthase III   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+24	950	
+>gi|162135898|b1135|b1135|   16S RNA U516 pseudouridine synthase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+78	650	
+>gi|16129433|b1474|b1474|   formate dehydrogenase-N, alpha subunit, nitrate-inducible   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	581	
+600	3044	
+>gi|49176077|b1103|b1103|   purine nucleoside phosphoramidase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	356	
+>gi|16129379|b1420|b1420|   regulatory peptide   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	158	
+>gi|16129165|b1202|b1202|   predicted adhesin   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	503	
+576	962	
+966	1145	
+1218	1373	
+1533	1664	
+1950	2273	
+2307	2447	
+2598	2711	
+2718	2864	
+>gi|90111255|b1352|b1352|   Rac prophage; inhibitor of ftsZ, killing protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	200	
+>gi|16129049|b1086|b1086|   23S rRNA pseudouridylate synthase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+15	923	
+>gi|16129413|b1454|b1454|   predicted enzyme   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+186	317	
+492	614	
+>gi|16129097|b1134|b1134|   bifunctional thiamin pyrimidine pyrophosphate hydrolase/ thiamin pyrophosphate hydrolase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	263	
+273	458	
+>gi|16129354|b1393|b1393|   enoyl-CoA hydratase-isomerase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	353	
+408	764	
+>gi|16129425|b1466|b1466|   nitrate reductase 2 (NRZ), delta subunit (assembly subunit)   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+48	683	
+>gi|145698245|b1181|b1181|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	458	
+>gi|16129240|b1279|b1279|   conserved inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	287	
+>gi|16129003|b1040|b1040|   DNA-binding transcriptional activator in two-component regulatory system   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+45	254	
+258	533	
+>gi|90111235|b1206|b1206|   predicted transporter   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1676	
+>gi|16129353|b1392|b1392|   predicted multicomponent oxygenase/reductase subunit for phenylacetic acid degradation   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+48	1067	
+>gi|16129143|b1180|b1180|   predicted isomerase/hydrolase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	563	
+>gi|16129126|b1163|b1163|   predicted FAD-binding phosphodiesterase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+75	485	
+555	662	
+729	1013	
+1062	1208	
+>gi|16129063|b1100|b1100|   predicted metallodependent hydrolase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	794	
+>gi|16129272|b1311|b1311|   predicted sugar transporter subunit:  membrane component of ABC superfamily   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+9	140	
+216	341	
+360	695	
+696	878	
+>gi|16129371|b1410|b1410|   predicted hydrolase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+90	938	
+999	1544	
+1608	1754	
+>gi|16129399|b1440|b1440|   predicted spermidine/putrescine transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+12	1100	
+>gi|16129359|b1398|b1398|   phenylacetyl-CoA ligase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	1124	
+1209	1310	
+>gi|16129435|b1476|b1476|   formate dehydrogenase-N, cytochrome B556 (gamma) subunit, nitrate-inducible   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+9	332	
+357	563	
+>gi|16129101|b1138|b1138|   e14 prophage; predicted inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+147	305	
+330	623	
+>gi|0|b4493|b4493|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	482	
+489	746	
+>gi|16129017|b1054|b1054|   lauryl-acyl carrier protein (ACP)-dependent acyltransferase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+84	692	
+705	917	
+>gi|226524706|b1027|b1027|   IS3 element protein InsE   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	296	
+>gi|226524707|b1172|b1172|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	272	
+>gi|16129213|b1252|b1252|   membrane spanning protein in TonB-ExbB-ExbD complex   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+417	611	
+615	716	
+>gi|0|b1471|b1471|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+66	215	
+549	737	
+753	890	
+>gi|16129210|b1249|b1249|   cardiolipin synthase 1   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+69	287	
+375	560	
+585	1442	
+>gi|16129326|b1365|b1365|   Rac prophage; conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+72	260	
+>gi|90111267|b1408|b1408|   predicted inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+183	338	
+372	575	
+>gi|16129249|b1288|b1288|   enoyl-[acyl-carrier-protein] reductase, NADH-dependent   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	785	
+>gi|16129233|b1272|b1272|   predicted inner membrane peptidase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1007	
+>gi|16129232|b1271|b1271|   predicted oxoacyl-(acyl carrier protein) reductase, EmrKY-TolC system   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	407	
+414	755	
+>gi|16129026|b1063|b1063|   predicted lipoprotein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	557	
+>gi|162135901|b1267|b1267|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	608	
+>gi|49176089|b4423|b4423|   toxic polypeptide, small   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	104	
+>gi|16129179|b1216|b1216|   calcium/sodium:proton antiporter   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+264	740	
+744	911	
+981	1079	
+>gi|16129040|b1077|b1077|   flagellar component of cell-proximal portion of basal-body rod   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	128	
+168	752	
+>gi|16129292|b1331|b1331|   IS5 transposase and trans-activator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+162	482	
+507	743	
+867	1001	
+>gi|16129127|b1164|b1164|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	212	
+>gi|16129463|b1504|b1504|   predicted fimbrial-like adhesin protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	113	
+216	347	
+360	458	
+>gi|16129351|b1390|b1390|   predicted multicomponent oxygenase/reductase subunit for phenylacetic acid degradation   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	743	
+>gi|16129454|b1495|b1495|   predicted porin protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	113	
+252	353	
+408	575	
+606	1889	
+1908	2369	
+>gi|16129294|b1333|b1333|   stress-induced protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	947	
+>gi|16129121|b1158|b1158|   e14 prophage; site-specific DNA recombinase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	98	
+234	530	
+>gi|16129011|b1048|b1048|   glucan biosynthesis protein, periplasmic   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+123	809	
+831	1532	
+>gi|0|b4570|b4570|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+24	158	
+>gi|16129060|b1097|b1097|   predicted aminodeoxychorismate lyase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+120	1019	
+>gi|16129260|b1299|b1299|   DNA-binding transcriptional repressor   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+237	500	
+>gi|0|b1151|b1151|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+159	410	
+>gi|16129099|b1136|b1136|   e14 prophage; isocitrate dehydrogenase, specific for NADP+   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1247	
+>gi|16129282|b1321|b1321|   conserved protein with nucleoside triphosphate hydrolase domain   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	1394	
+>gi|16129125|b1162|b1162|   predicted DNA-binding transcriptional regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	344	
+369	632	
+>gi|16129087|b1124|b1124|   polyamine transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	617	
+621	791	
+>gi|16129303|b1342|b1342|   predicted Zn(II) transporter   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	182	
+276	833	
+840	980	
+>gi|94541109|b4526|b4526|   Rac prophage; conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	164	
+>gi|16129422|b1463|b1463|   N-hydroxyarylamine O-acetyltransferase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	182	
+273	434	
+456	842	
+>gi|16129301|b1340|b1340|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	155	
+177	536	
+>gi|0|b1368|b1368|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+18	761	
+783	884	
+>gi|16129010|b1047|b1047|   membrane protein required for modification of periplasmic glucan   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+291	407	
+585	824	
+873	1034	
+1047	1154	
+>gi|16129052|b1089|b1089|   50S ribosomal subunit protein L32   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	158	
+>gi|16129224|b1263|b1263|   fused glutamine amidotransferase (component II) of anthranilate synthase/anthranilate phosphoribosyl transferase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	209	
+210	1592	
+>gi|16129255|b1294|b1294|   predicted antimicrobial peptide transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+114	566	
+576	857	
+861	1313	
+1383	1640	
+>gi|90111215|b1117|b1117|   outer membrane-specific lipoprotein transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	698	
+>gi|90111248|b1314|b1314|   predicted enzyme   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	785	
+>gi|16129182|b1219|b1219|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+18	200	
+243	350	
+>gi|16129016|b1053|b1053|   predicted drug efflux system   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+405	518	
+552	932	
+1020	1139	
+>gi|49176090|b1246|b1246|   oligopeptide transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	134	
+138	335	
+381	668	
+678	1010	
+>gi|94541111|b4529|b4529|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+120	263	
+>gi|16129045|b1082|b1082|   flagellar hook-filament junction protein 1   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+9	296	
+297	1202	
+1230	1484	
+1500	1640	
+>gi|16129256|b1295|b1295|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	242	
+>gi|90111212|b1090|b1090|   fatty acid/phospholipid synthesis protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+105	251	
+252	356	
+444	650	
+855	1067	
+>gi|16129306|b1345|b1345|   Rac prophage; integrase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+345	581	
+594	743	
+810	962	
+1011	1223	
+>gi|16129117|b1154|b1154|   e14 prophage; predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+12	152	
+156	350	
+408	539	
+>gi|16129423|b1464|b1464|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	242	
+255	722	
+726	890	
+>gi|90111225|b1168|b1168|   conserved inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+42	281	
+327	461	
+594	779	
+882	1055	
+1083	1511	
+>gi|16129077|b1114|b1114|   transcription-repair coupling factor   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	251	
+300	770	
+789	974	
+984	2330	
+2340	3443	
+>gi|16129336|b1375|b1375|   Rac prophage; predicted DNA-binding transcriptional regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+162	260	
+>gi|16129284|b1323|b1323|   DNA-binding transcriptional dual regulator, tyrosine-binding   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	257	
+261	599	
+600	1526	
+>gi|16129092|b1129|b1129|   sensory histidine kinase in two-component regulatory system with PhoP   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+102	203	
+273	464	
+576	881	
+999	1100	
+1335	1457	
+>gi|145698262|b1490|b1490|   predicted diguanylate cyclase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	191	
+333	812	
+831	1379	
+>gi|90111261|b1372|b1372|   Rac prophage; predicted tail fiber protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+9	530	
+534	809	
+957	1121	
+1257	1382	
+1419	2054	
+2064	2918	
+3117	3359	
+>gi|16129372|b1411|b1411|   predicted phosphatase, inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	107	
+342	464	
+849	1130	
+1143	1289	
+>gi|16129324|b1363|b1363|   Rac prophage; potassium transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+75	332	
+354	455	
+1353	1451	
+>gi|16129419|b1460|b1460|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+36	230	
+234	386	
+420	803	
+>gi|0|b1152|b1152|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	317	
+405	521	
+543	641	
+669	767	
+>gi|16129338|b1377|b1377|   outer membrane pore protein N, non-specific   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1130	
+>gi|16129410|b1451|b1451|   predicted iron outer membrane transporter   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+36	356	
+399	857	
+939	2045	
+>gi|16129175|b1212|b1212|   N5-glutamine methyltransferase, modifies release factors RF-1 and RF-2   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	281	
+321	830	
+>gi|16129039|b1076|b1076|   flagellar hook protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	479	
+621	1205	
+>gi|90111218|b1133|b1133|   tRNA (5-methylaminomethyl-2-thiouridylate)-methyltransferase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1103	
+>gi|16129227|b1266|b1266|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+57	155	
+168	581	
+588	875	
+>gi|16129090|b1127|b1127|   peptidase T   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+162	1217	
+>gi|90111250|b1329|b1329|   murein tripeptide (L-ala-gamma-D-glutamyl-meso-DAP) transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+48	1604	
+>gi|16129180|b1217|b1217|   predicted cation regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	227	
+>gi|90111226|b1171|b1171|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	326	
+>gi|16129001|b1038|b1038|   predicted transport protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+45	413	
+>gi|145698241|b1147|b1147|   e14 prophage; predicted DNA-binding transcriptional regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+48	416	
+432	554	
+>gi|145698254|b1403|b1403|   KpLE2 phage-like element; IS2 insertion element repressor InsA   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+147	338	
+>gi|16129173|b1210|b1210|   glutamyl tRNA reductase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+72	1253	
+>gi|16129044|b1081|b1081|   muramidase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	314	
+330	893	
+>gi|90111282|b1481|b1481|   biofilm-dependent modulation protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	191	
+>gi|16129159|b1196|b1196|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+84	404	
+>gi|16129229|b1268|b1268|   predicted inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+63	659	
+825	1223	
+1410	1679	
+>gi|16129388|b1429|b1429|   potassium-tellurite ethidium and proflavin transporter   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+123	566	
+585	953	
+>gi|16129093|b1130|b1130|   DNA-binding response regulator in two-component regulatory system with PhoQ   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	668	
+>gi|16129082|b1119|b1119|   N-acetyl-D-glucosamine kinase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	908	
+>gi|16129216|b1255|b1255|   predicted inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+183	299	
+306	740	
+>gi|0|b1361|b1361|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+39	497	
+>gi|16129038|b1075|b1075|   flagellar hook assembly protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+63	212	
+246	692	
+>gi|16129172|b1209|b1209|   chaperone for lipoproteins   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+66	611	
+>gi|16129312|b1351|b1351|   Rac prophage; predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	272	
+>gi|16129390|b1431|b1431|   predicted lipoprotein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	665	
+>gi|16129434|b1475|b1475|   formate dehydrogenase-N, Fe-S (beta) subunit, nitrate-inducible   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+192	476	
+507	878	
+>gi|90111257|b1355|b1355|   Rac prophage; predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	113	
+>gi|162135899|b1182|b1182|   hemolysin E   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	308	
+312	890	
+>gi|16129263|b1302|b1302|   GABA aminotransferase, PLP-dependent   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	1262	
+>gi|90111281|b1479|b1479|   malate dehydrogenase, (decarboxylating, NAD-requiring) (malic enzyme)   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	299	
+321	1694	
+>gi|16129442|b1483|b1483|   D-ala-D-ala transporter subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+9	260	
+498	605	
+618	881	
+>gi|16129065|b1102|b1102|   ferric-rhodotorulic acid outer membrane transporter   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+12	1925	
+1935	2186	
+>gi|16129348|b1387|b1387|   fused aldehyde dehydrogenase/enoyl-CoA hydratase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+27	2042	
+>gi|16129124|b1161|b1161|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	194	
+213	401	
+>gi|16129460|b1501|b1501|   predicted oxidoreductase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	128	
+180	278	
+339	554	
+669	971	
+972	1463	
+1467	1607	
+1641	1913	
+1929	2138	
+>gi|16129393|b1434|b1434|   predicted DNA-binding transcriptional regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	131	
+183	338	
+357	497	
+>gi|16129168|b1205|b1205|   predicted inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+102	275	
+>gi|16129174|b1211|b1211|   peptide chain release factor RF-1   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	1079	
+>gi|16129051|b1088|b1088|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	110	
+234	509	
+>gi|0|b4519|b4519|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	161	
+>gi|16129031|b1068|b1068|   predicted oxidoreductase with NAD(P)-binding Rossmann-fold domain   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	215	
+225	419	
+423	665	
+780	920	
+>gi|16129234|b1273|b1273|   predicted protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+60	248	
+>gi|16129072|b1109|b1109|   respiratory NADH dehydrogenase 2/cupric reductase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	1262	
+>gi|16129005|b1042|b1042|   cryptic curlin major subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	452	
+>gi|16129084|b1121|b1121|   predicted inner membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+84	260	
+264	473	
+549	719	
+>gi|145698257|b1438|b1438|   predicted DNA-binding transcriptional regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+6	218	
+>gi|90111286|b1498|b1498|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+30	1424	
+1458	1589	
+>gi|90111285|b1497|b1497|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+27	419	
+609	1058	
+>gi|90111252|b1338|b1338|   predicted peptidase, aminobenzoyl-glutamate utilization protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+12	1307	
+>gi|226524708|b1198|b1198|   fused predicted dihydroxyacetone-specific PTS enzymes: HPr component/EI component   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+18	278	
+285	1259	
+1287	1415	
+>gi|16128986|b1022|b1022|   predicted glycosyl transferase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+69	242	
+258	1046	
+>gi|16129235|b1274|b1274|   DNA topoisomerase I, omega subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+216	2594	
+>gi|16129363|b1402|b1402|   KpLE2 phage-like element; IS2 insertion element transposase InsAB'   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+168	332	
+459	641	
+762	899	
+>gi|16129076|b1113|b1113|   L,D-transpeptidase linking Lpp to murein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	392	
+411	953	
+>gi|90111246|b1303|b1303|   DNA-binding transcriptional activator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	410	
+414	602	
+606	953	
+>gi|16129245|b1284|b1284|   predicted DNA-binding transcriptional regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	344	
+357	632	
+>gi|16129150|b1187|b1187|   DNA-binding transcriptional dual regulator of fatty acid metabolism   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+81	710	
+>gi|16129439|b1480|b1480|   30S ribosomal subunit protein S22   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	131	
+>gi|16129241|b1280|b1280|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+15	1037	
+1062	1166	
+>gi|16129298|b1337|b1337|   predicted peptidase, aminobenzoyl-glutamate utilization protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	644	
+672	1202	
+1212	1367	
+>gi|90111269|b1422|b1422|   predicted DNA-binding transcriptional regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+135	239	
+360	557	
+582	920	
+>gi|16129231|b1270|b1270|   cob(I)alamin adenolsyltransferase/cobinamide ATP-dependent adenolsyltransferase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	587	
+>gi|16129238|b1277|b1277|   GTP cyclohydrolase II   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	587	
+>gi|0|b1456|b1456|      [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	494	
+1032	1436	
+1611	1775	
+1797	2003	
+>gi|90111251|b1336|b1336|   predicted cryptic aminobenzoyl-glutamate transporter   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+168	608	
+669	767	
+810	1073	
+>gi|16129244|b1283|b1283|   lipoprotein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	215	
+>gi|16129428|b1469|b1469|   nitrate/nitrite transporter   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	110	
+156	254	
+390	518	
+714	1385	
+>gi|90111241|b1282|b1282|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+33	323	
+>gi|16129070|b1107|b1107|   beta N-acetyl-glucosaminidase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+3	1022	
+>gi|16129345|b1384|b1384|   DNA-binding transcriptional dual regulator   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+180	305	
+318	635	
+675	884	
+>gi|49176088|b4421|b4421|   toxic polypeptide, small   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	104	
+>gi|16128988|b1024|b1024|   predicted outer membrane protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+27	1142	
+1221	2009	
+2232	2420	
+>gi|16129269|b1308|b1308|   thiosulfate:cyanide sulfurtransferase (rhodanese)   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	293	
+>gi|90111263|b1383|b1383|   conserved protein   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+36	254	
+>gi|16129041|b1078|b1078|   flagellar component of cell-distal portion of basal-body rod   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+18	779	
+>gi|16129160|b1197|b1197|   periplasmic trehalase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+66	1649	
+>gi|16129033|b1070|b1070|   export chaperone for FlgK and FlgL   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+54	413	
+>gi|16129455|b1496|b1496|   fused predicted multidrug transporter subunits of ABC superfamily: membrane component/ATP-binding component   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+99	227	
+264	452	
+585	1115	
+1146	1661	
+>gi|16129355|b1394|b1394|   acyl-CoA hydratase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+48	785	
+>gi|16129062|b1099|b1099|   DNA polymerase III, delta prime subunit   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+9	509	
+519	983	
+>gi|16129157|b1194|b1194|   protein involved in flagellar function   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+18	305	
+309	629	
+>gi|16129197|b1236|b1236|   glucose-1-phosphate uridylyltransferase   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+69	905	
+>gi|16129273|b1312|b1312|   predicted sugar transporter subunit: membrane component of ABC superfamily   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+0	212	
+267	410	
+429	596	
+609	713	
+>gi|16129276|b1315|b1315|   predicted oxidoreductase, NADH-binding   [Escherichia coli str. K-12 substr. MG1655 | 511145.12]
+12	953	
