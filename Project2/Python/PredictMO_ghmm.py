@@ -2,7 +2,7 @@
 
 import sys
 from itertools import groupby
-
+import math
 #parse the training protein sequence and features
 def parse_training(training_file):
 	seq_set=[]
@@ -107,7 +107,10 @@ def TransitionProb(feature_set):
 		else:
 			trans_dict[key] = float(trans_dict[key])/outer
 	return trans_dict
-		
+#calcualte the max
+def max_hidden(seq,trans_dict,emit_dict,freq_table):
+	l=len(seq)
+
 		
 ###======read traing file and generate GMMM model ======
 if __name__ == "__main__":
