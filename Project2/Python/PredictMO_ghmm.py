@@ -110,8 +110,43 @@ def TransitionProb(feature_set):
 		else:
 			trans_dict[key] = float(trans_dict[key])/outer
 	return trans_dict
+
+# calculate the probability of initial state
+def InitState(feature_set):
+	element = len(seq_set)
+	init_state = {}
+	for x in range(element):
+		curr_init = feature_set[x][0]
+		if '.' in curr_init: continue
+		if curr_init not in init_state:
+			init_state[curr_init] = 1
+		else:
+			init_state[curr_init] += 1
+	mem, inner, outer = 0, 0, 0
+	for key in init_state:
+		if 'M->' in key:
+			mem += init_state[key]
+		elif 'i->' in key:
+			inner += init_state[key]
+		else:
+			outer += init_state[key]
+	for key in init_state:
+		if 'M->' in key:
+			init_state[key] = float(init_state[key])/mem
+		elif 'i->' in key:
+			init_state[key] = float(init_state[key])/inner
+		else:
+			init_state[key] = float(init_state[key])/outer
+	return init_state	
 		
-		
+def NullModel(seq,emit_prob)
+	prob = 1.0
+	for x in range(len(seq)):
+		curr_emit = '.->'+seq[x]
+		prob *= emit_prob[curr_emit]   ## log?
+	return prob
+	
+	
 ###======read traing file and generate GMMM model ======
 if __name__ == "__main__":
 	with open("../data/TMseq.ffa","r") as training_file:
@@ -122,6 +157,7 @@ if __name__ == "__main__":
 		o_freq = lengthFrequency(o_length)
 		emit_prob = EmissionProb(seq_set, feature_set)
 		trans_prob = TransitionProb(feature_set)
+		init_state = InitState(feature_set)
 
 	with open("../data/mem_length.txt","w") as mfile:
 		for key in m_length.keys():
@@ -138,4 +174,6 @@ if __name__ == "__main__":
 	with open("../data/trans_probabity.txt","w") as ofile:
 		for key in sorted(trans_prob.iterkeys()):
 			ofile.write("%s\t%f\n" % (key,trans_prob[key]))
-
+	with open("../data/initial_state.txt","w") as ofile:
+		for key in sorted(init_state.iterkeys()):
+			ofile.write("%s\t%f\n" % (key,init_state[key]))
