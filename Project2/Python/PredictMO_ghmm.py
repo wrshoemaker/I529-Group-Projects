@@ -160,10 +160,16 @@ def NullModel(seq,emit_prob):
 	for x in range(len(seq)):
 		curr_emit = '.->'+seq[x]
 		prob += math.log(emit_prob[curr_emit])
+	return init_state
+
+def NullModel(seq,emit_dict):
+	prob = 0.0
+	for x in range(len(seq)):
+		curr_emit = '.->'+seq[x]
+		prob += math.log(emit_dict[curr_emit])
 	return prob
 
 #calculate the maximum probability of hidden states sequence
-
 def max_hidden(seq,len_table,emit_dict,trans_dict,initial):
 	l=len(seq)
 	m=len(len_table)
@@ -200,6 +206,49 @@ def max_hidden(seq,len_table,emit_dict,trans_dict,initial):
 							pos_table[j][i] = (p,k)
 	print("The length of output table is %d" %(len(pos_table[0])))
 	return pro_table,pos_table
+
+def TraceBack(seq,emit_dict,pro_table,pos_table):
+	x = len(seq)-1
+	HiddenStates = ''
+	NullScore = NullModel(seq,emit_dict)
+	TMScore = max(pro_table[0][x],pro_table[1][x],pro_table[2][x])
+	if NullScore > TMScore:
+		HiddenStates = '.'*len(seq)
+		return HiddenStates
+
+	if max(pro_table[0][x],pro_table[1][x],pro_table[2][x]) == pro_table[0][x]:
+		record = pos_table[0][x]
+		state = 'M'
+	elif max(pro_table[0][x],pro_table[1][x],pro_table[2][x]) == pro_table[1][x]:
+		record = pos_table[1][x]
+		state = 'I'
+	else:
+		record = pos_table[2][x]
+		state = 'O'
+	repeats = x - record[1]
+	HiddenStates += state*repeats
+	pre_state = record[0]
+	pre_pos = record[1]
+
+	while True:
+		record = pos_table[pre_state][pre_pos]
+		if pre_state == 0:
+			state = 'M'
+		elif pre_state == 1:
+			state = 'I'
+		else:
+			state = 'O'
+		repeats = pre_pos - record[1]
+		HiddenStates += state*repeats
+		pre_state = record[0]
+		pre_pos = record[1]
+		if pre_pos == 0:
+			HiddenStates += state
+			break
+
+	HiddenStates = HiddenStates[::-1]
+	return HiddenStates
+
 
 ###======read traing file and generate GMMM model ======
 if __name__ == "__main__":
@@ -241,6 +290,9 @@ if __name__ == "__main__":
 	o_len = lengthFrequency(o_length)
 	len_table = [m_len,i_len,o_len]
 	maxpro_table,pos_table = max_hidden(test_seq,len_table,emit_prob,trans_prob,init_state)
+
+	hidden_states = TraceBack(test_seq,emit_prob,maxpro_table,pos_table)
+
 	with open("../data/maxpro_table","w")as ofile:
 		for i in range(len(maxpro_table)):
 			for j in range(len(maxpro_table[i])):
@@ -271,3 +323,6 @@ if __name__ == "__main__":
 	with open("../data/initial_state.txt","w") as ofile:
 		for key in sorted(init_state.iterkeys()):
 			ofile.write("%s\t%f\n" % (key,init_state[key]))
+	with open("../data/predicted_Hidden_States.txt","w") as ofile:
+		ofile.write("%s\n" % (test_seq))
+		ofile.write("%s\n" % (hidden_states))
