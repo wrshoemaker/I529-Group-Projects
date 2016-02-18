@@ -25,8 +25,8 @@ def parse_training(training_file):
 	feature_set=[]
 	for line in training_file:
 		tab = line.strip().split('\t')
-		seq_set.append(tab[0])
-		feature_set.append(tab[1])
+		seq_set.append(tab[0].upper())
+		feature_set.append(tab[1].upper())
 	return seq_set,feature_set
 
 #table of peptide length frequency in both membrane and non-membrane domain
@@ -79,18 +79,18 @@ def EmissionProb(seq_set, feature_set):
 	for key in emit_dict:
 		if 'M->' in key:
 			mem += emit_dict[key]
-		elif 'i->' in key:
+		elif 'I->' in key:
 			inner += emit_dict[key]
-		elif 'o->' in key:
+		elif 'O->' in key:
 			outer += emit_dict[key]
 		else:
 			non += emit_dict[key]
 	for key in emit_dict:
 		if 'M->' in key:
 			emit_dict[key] = float(emit_dict[key])/mem
-		elif 'i->' in key:
+		elif 'I->' in key:
 			emit_dict[key] = float(emit_dict[key])/inner
-		elif 'o->' in key:
+		elif 'O->' in key:
 			emit_dict[key] = float(emit_dict[key])/outer
 		else:
 			emit_dict[key] = float(emit_dict[key])/non
@@ -114,14 +114,14 @@ def TransitionProb(feature_set):
 	for key in trans_dict:
 		if 'M->' in key:
 			mem += trans_dict[key]
-		elif 'i->' in key:
+		elif 'I->' in key:
 			inner += trans_dict[key]
 		else:
 			outer += trans_dict[key]
 	for key in trans_dict:
 		if 'M->' in key:
 			trans_dict[key] = float(trans_dict[key])/mem
-		elif 'i->' in key:
+		elif 'I->' in key:
 			trans_dict[key] = float(trans_dict[key])/inner
 		else:
 			trans_dict[key] = float(trans_dict[key])/outer
@@ -142,14 +142,14 @@ def InitState(feature_set):
 	for key in init_state:
 		if 'M->' in key:
 			mem += init_state[key]
-		elif 'i->' in key:
+		elif 'I->' in key:
 			inner += init_state[key]
 		else:
 			outer += init_state[key]
 	for key in init_state:
 		if 'M->' in key:
 			init_state[key] = float(init_state[key])/mem
-		elif 'i->' in key:
+		elif 'I->' in key:
 			init_state[key] = float(init_state[key])/inner
 		else:
 			init_state[key] = float(init_state[key])/outer
@@ -168,25 +168,28 @@ def max_hidden(seq,freq_table,emit_dict,trans_dict,initial):
 	l=len(seq)
 	m=len(freq_table)
 	states=['M','I','O']
-	pro_table = [[1 for x in range(l)]for x in range(m)]
-	pos_table = [[1 for x in range(l)]for x in range(m)]
-	pro_table[0][0] = 0.0000001
-	pro_table[1][0] = initial['i']
-	pro_table[2][0] = initial['o']
+	pro_table = [[1 for x in range(l)]for x in range(m)]#pro_table is the max_hidden states probability table
+	pos_table = [[1 for x in range(l)]for x in range(m)]#pos_table is the path table for max_hidden states
+	pro_table[0][0] = 0.000001 #actually 0 but since we use log, we assign this very small value for staring M
+	pro_table[1][0] = initial['I']
+	pro_table[2][0] = initial['O']
 	for i in range(1,l):
 		for j in range(m):
-			pro_oneseg = math.log(freq_table[j][i+1])
+			'''pro_oneseq is the probability that observed segment ends in state j is continous '''
+			pro_oneseg = math.log(freq_table[j][i+1])+math.log(pro_table[j][0])
 			for aa in seq[:i+1]:
 				emit = states[j]+'->'+ aa.upper()
 				pro_oneseg += math.log(emit_dict[emit])
 			pro_table[j][i] = pro_oneseg
-			pos_table[j][i] = (j,1)
-			for k in range(i):
+			pos_table[j][i] = (j,0)
+			for k in range(1,i):
 				for p in range(m):
 					tmp = 0
 					if p!=j:	
 						seg = seq[k+1:i+1]
 						trans = states[p] +'->'+ states[j] 
+						if trans not in trans_dict.keys():
+							trans_dict[trans] = 0.000001#freq_table is the length distribution table
 						tmp += pro_table[p][k] + math.log(trans_dict[trans]) + math.log(freq_table[j][i-k])
 						for aa in seg:
 							emit = states[p] + '->' + aa.upper()
@@ -207,38 +210,51 @@ if __name__ == "__main__":
 	with open("../data/TMseq.ffa","r") as training_file:
 		seq_set,feature_set = parse_training(training_file)
 		m_length,i_length,o_length = generate_length(feature_set)
-		m_freq = lengthFrequency(m_length)
-		i_freq = lengthFrequency(i_length)
-		o_freq = lengthFrequency(o_length)
-		freq_table = [m_freq,i_freq,o_freq]
 		emit_prob = EmissionProb(seq_set, feature_set)
 		trans_prob = TransitionProb(feature_set)
 		init_state = InitState(feature_set)
-	
+#	print(freq_table)
 	with open(args.fasta_file,'r') as test:
 		test_seq = read_protein(test)[0][1]
-	print(test_seq)	
+#	print(test_seq)	
+#add pesudocount to length distribution for each domain
+	for i in range(len(test_seq)):
+		if i not in m_length.keys():
+			m_length[i] = 1
+		else:
+			m_length[i] += 1
+		if i not in i_length.keys():
+			i_length[i] = 1
+		else:
+			i_length[i] +=1
+		if i not in o_length.keys():
+			o_length[i] = 1
+		else:
+			o_length[i] += 1
 
-	
+	m_freq = lengthFrequency(m_length)
+	i_freq = lengthFrequency(i_length)
+	o_freq = lengthFrequency(o_length)
+	freq_table = [m_freq,i_freq,o_freq]	
 	maxpro_table,pos_table = max_hidden(test_seq,freq_table,emit_prob,trans_prob,init_state)
 	for j in range(len(maxpro_table)):
 		print(maxpro_table[j])
 
-#	with open("../data/mem_length.txt","w") as mfile:
-#		for key in m_length.keys():
-#			mfile.write("%d\t%d\n" % (key,m_length[key]))
-#	with open("../data/in_length.txt","w") as ifile:
-#		for key in i_length.keys():
-#			ifile.write("%d\t%d\n" % (key,i_length[key]))
-#	with open("../data/out_length.txt","w") as ofile:
-#		for key in o_length.keys():
-#			ofile.write("%d\t%d\n" % (key,o_length[key]))
-#	with open("../data/emit_probabity.txt","w") as ofile:
-#		for key in sorted(emit_prob.iterkeys()):
-#			ofile.write("%s\t%f\n" % (key,emit_prob[key]))
-#	with open("../data/trans_probabity.txt","w") as ofile:
-#		for key in sorted(trans_prob.iterkeys()):
-#			ofile.write("%s\t%f\n" % (key,trans_prob[key]))
-#	with open("../data/initial_state.txt","w") as ofile:
-#		for key in sorted(init_state.iterkeys()):
-#			ofile.write("%s\t%f\n" % (key,init_state[key]))
+	with open("../data/mem_length.txt","w") as mfile:
+		for key in m_length.keys():
+			mfile.write("%d\t%d\n" % (key,m_length[key]))
+	with open("../data/in_length.txt","w") as ifile:
+		for key in i_length.keys():
+			ifile.write("%d\t%d\n" % (key,i_length[key]))
+	with open("../data/out_length.txt","w") as ofile:
+		for key in o_length.keys():
+			ofile.write("%d\t%d\n" % (key,o_length[key]))
+	with open("../data/emit_probabity.txt","w") as ofile:
+		for key in sorted(emit_prob.iterkeys()):
+			ofile.write("%s\t%f\n" % (key,emit_prob[key]))
+	with open("../data/trans_probabity.txt","w") as ofile:
+		for key in sorted(trans_prob.iterkeys()):
+			ofile.write("%s\t%f\n" % (key,trans_prob[key]))
+	with open("../data/initial_state.txt","w") as ofile:
+		for key in sorted(init_state.iterkeys()):
+			ofile.write("%s\t%f\n" % (key,init_state[key]))
