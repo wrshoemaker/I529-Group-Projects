@@ -167,6 +167,7 @@ def NullModel(seq,emit_prob):
 def max_hidden(seq,len_table,emit_dict,trans_dict,initial):
 	l=len(seq)
 	m=len(len_table)
+	print("length of seq is %d" %(l))
 	states=['M','I','O']
 	pro_table = [[1 for x in range(l)]for x in range(m)]#pro_table is the max_hidden states probability table
 	pos_table = [[1 for x in range(l)]for x in range(m)]#pos_table is the path table for max_hidden states
@@ -197,6 +198,7 @@ def max_hidden(seq,len_table,emit_dict,trans_dict,initial):
 						if pro_table[j][i]< tmp:
 							pro_table[j][i] = tmp
 							pos_table[j][i] = (p,k)
+	print("The length of output table is %d" %(len(pos_table[0])))
 	return pro_table,pos_table
 
 ###======read traing file and generate GMMM model ======
@@ -216,7 +218,7 @@ if __name__ == "__main__":
 #	print(freq_table)
 	with open(args.fasta_file,'r') as test:
 		test_seq = read_protein(test)[0][1]
-#	print(test_seq)	
+	print(len(test_seq))	
 #add pesudocount to length distribution for each domain
 	for i in range(len(test_seq)):
 		if i+1 not in m_length.keys():
