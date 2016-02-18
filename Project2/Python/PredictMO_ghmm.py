@@ -164,9 +164,9 @@ def NullModel(seq,emit_prob):
 	
 #calculate the maximum probability of hidden states sequence
 
-def max_hidden(seq,freq_table,emit_dict,trans_dict,initial):
+def max_hidden(seq,len_table,emit_dict,trans_dict,initial):
 	l=len(seq)
-	m=len(freq_table)
+	m=len(len_table)
 	states=['M','I','O']
 	pro_table = [[1 for x in range(l)]for x in range(m)]#pro_table is the max_hidden states probability table
 	pos_table = [[1 for x in range(l)]for x in range(m)]#pos_table is the path table for max_hidden states
@@ -176,7 +176,7 @@ def max_hidden(seq,freq_table,emit_dict,trans_dict,initial):
 	for i in range(1,l):
 		for j in range(m):
 			'''pro_oneseq is the probability that observed segment ends in state j is continous '''
-			pro_oneseg = math.log(freq_table[j][i+1])+math.log(pro_table[j][0])
+			pro_oneseg = math.log(len_table[j][i+1])+math.log(pro_table[j][0])
 			for aa in seq[:i+1]:
 				emit = states[j]+'->'+ aa.upper()
 				pro_oneseg += math.log(emit_dict[emit])
@@ -189,8 +189,8 @@ def max_hidden(seq,freq_table,emit_dict,trans_dict,initial):
 						seg = seq[k+1:i+1]
 						trans = states[p] +'->'+ states[j] 
 						if trans not in trans_dict.keys():
-							trans_dict[trans] = 0.000001#freq_table is the length distribution table
-						tmp += pro_table[p][k] + math.log(trans_dict[trans]) + math.log(freq_table[j][i-k])
+							trans_dict[trans] = 0.000001#len_table is the length distribution table
+						tmp += pro_table[p][k] + math.log(trans_dict[trans]) + math.log(len_table[j][i-k])
 						for aa in seg:
 							emit = states[p] + '->' + aa.upper()
 							tmp += math.log(emit_dict[emit])
@@ -219,26 +219,25 @@ if __name__ == "__main__":
 #	print(test_seq)	
 #add pesudocount to length distribution for each domain
 	for i in range(len(test_seq)):
-		if i not in m_length.keys():
-			m_length[i] = 1
+		if i+1 not in m_length.keys():
+			m_length[i+1] = 1
 		else:
-			m_length[i] += 1
-		if i not in i_length.keys():
-			i_length[i] = 1
+			m_length[i+1] += 1
+		if i+1 not in i_length.keys():
+			i_length[i+1] = 1
 		else:
-			i_length[i] +=1
-		if i not in o_length.keys():
-			o_length[i] = 1
+			i_length[i+1] +=1
+		if i+1 not in o_length.keys():
+			o_length[i+1] = 1
 		else:
-			o_length[i] += 1
+			o_length[i+1] += 1
 
-	m_freq = lengthFrequency(m_length)
-	i_freq = lengthFrequency(i_length)
-	o_freq = lengthFrequency(o_length)
-	freq_table = [m_freq,i_freq,o_freq]	
-	maxpro_table,pos_table = max_hidden(test_seq,freq_table,emit_prob,trans_prob,init_state)
-	for j in range(len(maxpro_table)):
-		print(maxpro_table[j])
+	m_len = lengthFrequency(m_length)
+	i_len = lengthFrequency(i_length)
+	o_len = lengthFrequency(o_length)
+	len_table = [m_len,i_len,o_len]
+	maxpro_table,pos_table = max_hidden(test_seq,len_table,emit_prob,trans_prob,init_state)
+
 
 	with open("../data/mem_length.txt","w") as mfile:
 		for key in m_length.keys():
