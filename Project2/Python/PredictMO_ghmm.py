@@ -155,15 +155,14 @@ def InitState(feature_set):
 			init_state[key] = float(init_state[key])/outer
 	return init_state	
 		
-def NullModel(seq,emit_prob):
+def NullModel(seq,emit_dict):
 	prob = 0.0
 	for x in range(len(seq)):
 		curr_emit = '.->'+seq[x]
-		prob += math.log(emit_prob[curr_emit])   
+		prob += math.log(emit_dict[curr_emit])   
 	return prob
 	
 #calculate the maximum probability of hidden states sequence
-
 def max_hidden(seq,len_table,emit_dict,trans_dict,initial):
 	l=len(seq)
 	m=len(len_table)
@@ -199,6 +198,49 @@ def max_hidden(seq,len_table,emit_dict,trans_dict,initial):
 							pos_table[j][i] = (p,k)
 	return pro_table,pos_table
 
+def TraceBack(seq,emit_dict,pro_table,pos_table):
+	x = len(seq)-1
+	HiddenStates = ''
+	NullScore = NullModel(seq,emit_dict)
+	TMScore = max(pro_table[0][x],pro_table[1][x],pro_table[2][x])
+	if NullScore > TMScore:
+		HiddenStates = '.'*len(seq)
+		return HiddenStates
+		
+	if max(pro_table[0][x],pro_table[1][x],pro_table[2][x]) == pro_table[0][x]:
+		record = pos_table[0][x]
+		state = 'M'
+	elif max(pro_table[0][x],pro_table[1][x],pro_table[2][x]) == pro_table[1][x]:
+		record = pos_table[1][x]	
+		state = 'I'
+	else:
+		record = pos_table[2][x]
+		state = 'O'
+	repeats = x - record[1]
+	HiddenStates += state*repeats
+	pre_state = record[0]
+	pre_pos = record[1]
+	
+	while True:
+		record = pos_table[pre_state][pre_pos]
+		if pre_state == 0:
+			state = 'M'
+		elif pre_state == 1:
+			state = 'I'
+		else:
+			state = 'O'
+		repeats = pre_pos - record[1]
+		HiddenStates += state*repeats	
+		pre_state = record[0]
+		pre_pos = record[1]
+		if pre_pos == 0:
+			HiddenStates += state
+			break
+	
+	HiddenStates = HiddenStates[::-1]
+	return HiddenStates
+	
+	
 ###======read traing file and generate GMMM model ======
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
@@ -216,8 +258,7 @@ if __name__ == "__main__":
 #	print(freq_table)
 	with open(args.fasta_file,'r') as test:
 		test_seq = read_protein(test)[0][1]
-#	print(test_seq)	
-#add pesudocount to length distribution for each domain
+#  add pesudocount to length distribution for each domain
 	for i in range(len(test_seq)):
 		if i+1 not in m_length.keys():
 			m_length[i+1] = 1
@@ -237,6 +278,9 @@ if __name__ == "__main__":
 	o_len = lengthFrequency(o_length)
 	len_table = [m_len,i_len,o_len]
 	maxpro_table,pos_table = max_hidden(test_seq,len_table,emit_prob,trans_prob,init_state)
+	
+	hidden_states = TraceBack(test_seq,emit_prob,maxpro_table,pos_table)
+	
 	with open("../data/maxpro_table","w")as ofile:
 		for i in range(len(maxpro_table)):
 			for j in range(len(maxpro_table[i])):
@@ -247,8 +291,6 @@ if __name__ == "__main__":
 			for j in range(len(pos_table[i])):
 				ofile.write(str(pos_table[i][j])+'\t')
 			ofile.write('\n')
-	
-
 	with open("../data/mem_length.txt","w") as mfile:
 		for key in m_length.keys():
 			mfile.write("%d\t%d\n" % (key,m_length[key]))
@@ -267,3 +309,6 @@ if __name__ == "__main__":
 	with open("../data/initial_state.txt","w") as ofile:
 		for key in sorted(init_state.iterkeys()):
 			ofile.write("%s\t%f\n" % (key,init_state[key]))
+	with open("../data/predicted_Hidden_States.txt","w") as ofile:
+		ofile.write("%s\n" % (test_seq))
+		ofile.write("%s\n" % (hidden_states))
