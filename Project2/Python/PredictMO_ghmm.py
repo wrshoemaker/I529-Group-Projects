@@ -237,7 +237,17 @@ if __name__ == "__main__":
 	o_len = lengthFrequency(o_length)
 	len_table = [m_len,i_len,o_len]
 	maxpro_table,pos_table = max_hidden(test_seq,len_table,emit_prob,trans_prob,init_state)
-
+	with open("../data/maxpro_table","w")as ofile:
+		for i in range(len(maxpro_table)):
+			for j in range(len(maxpro_table[i])):
+				ofile.write(str(maxpro_table[i][j])+'\t')
+			ofile.write('\n')
+	with open("../data/pos_table","w")as ofile:
+		for i in range(len(pos_table)):
+			for j in range(len(pos_table[i])):
+				ofile.write(str(pos_table[i][j])+'\t')
+			ofile.write('\n')
+	
 
 	with open("../data/mem_length.txt","w") as mfile:
 		for key in m_length.keys():
