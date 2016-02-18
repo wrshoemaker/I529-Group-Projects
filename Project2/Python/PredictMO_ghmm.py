@@ -67,7 +67,7 @@ def lengthFrequency(length_set):
 def EmissionProb(seq_set, feature_set):
 	element = len(seq_set)
 	emit_dict = {}
-	for x in range(element):	
+	for x in range(element):
 		size = len(seq_set[x])
 		for y in range(size):
 			curr_emit = feature_set[x][y]+'->'+seq_set[x][y]
@@ -100,7 +100,7 @@ def EmissionProb(seq_set, feature_set):
 def TransitionProb(feature_set):
 	element = len(seq_set)
 	trans_dict = {}
-	for x in range(element):	
+	for x in range(element):
 		size = len(seq_set[x])
 		for y in range(size-1):
 			if feature_set[x][y] == feature_set[x][y+1]: continue
@@ -125,7 +125,7 @@ def TransitionProb(feature_set):
 			trans_dict[key] = float(trans_dict[key])/inner
 		else:
 			trans_dict[key] = float(trans_dict[key])/outer
-	return trans_dict	
+	return trans_dict
 
 # calculate the probability of initial state
 def InitState(feature_set):
@@ -153,15 +153,15 @@ def InitState(feature_set):
 			init_state[key] = float(init_state[key])/inner
 		else:
 			init_state[key] = float(init_state[key])/outer
-	return init_state	
-		
+	return init_state
+
 def NullModel(seq,emit_prob):
 	prob = 0.0
 	for x in range(len(seq)):
 		curr_emit = '.->'+seq[x]
-		prob += math.log(emit_prob[curr_emit])   
+		prob += math.log(emit_prob[curr_emit])
 	return prob
-	
+
 #calculate the maximum probability of hidden states sequence
 
 def max_hidden(seq,len_table,emit_dict,trans_dict,initial):
@@ -186,9 +186,9 @@ def max_hidden(seq,len_table,emit_dict,trans_dict,initial):
 			for k in range(1,i):
 				for p in range(m):
 					tmp = 0
-					if p!=j:	
+					if p!=j:
 						seg = seq[k+1:i+1]
-						trans = states[p] +'->'+ states[j] 
+						trans = states[p] +'->'+ states[j]
 						if trans not in trans_dict.keys():
 							trans_dict[trans] = 0.000001#len_table is the length distribution table
 						tmp += pro_table[p][k] + math.log(trans_dict[trans]) + math.log(len_table[j][i-k])
@@ -217,8 +217,10 @@ if __name__ == "__main__":
 		init_state = InitState(feature_set)
 #	print(freq_table)
 	with open(args.fasta_file,'r') as test:
+		#### test_seq_labels contains the line labels
+		test_seq_labels = read_protein(test)[0][0]
 		test_seq = read_protein(test)[0][1]
-	print(len(test_seq))	
+	print(len(test_seq))
 #add pesudocount to length distribution for each domain
 	for i in range(len(test_seq)):
 		if i+1 not in m_length.keys():
@@ -249,7 +251,7 @@ if __name__ == "__main__":
 			for j in range(len(pos_table[i])):
 				ofile.write(str(pos_table[i][j])+'\t')
 			ofile.write('\n')
-	
+
 
 	with open("../data/mem_length.txt","w") as mfile:
 		for key in m_length.keys():
