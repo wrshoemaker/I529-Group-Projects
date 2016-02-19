@@ -267,7 +267,7 @@ if __name__ == "__main__":
 #	print(freq_table)
 	with open(args.fasta_file,'r') as test:
 		#### test_seq_labels contains the line labels
-		#test_seq_labels = read_protein(test)[0][0]
+		test_seq_labels = read_protein(test)[0][0]
 		test_seq = read_protein(test)[0][1]
 
 #add pesudocount to length distribution for each domain
