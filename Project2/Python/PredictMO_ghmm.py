@@ -9,7 +9,6 @@ def read_protein(fasta):
 	fasta_list = []
 	for line in fasta:
 		if line[0]=='>':
-	#		current_pro = [line.lstrip('>').rstrip('\n'),'']
 			try:
 				fasta_list.append(current_pro)
 			except UnboundLocalError:
@@ -255,7 +254,7 @@ def TraceBack(seq,emit_dict,pro_table,pos_table):
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
 	parser.add_argument('-i','--fasta_file',required=True)
-#	parse.add_argument('-o','--out_file',required=True)
+	parser.add_argument('-o','--out_file',required=True)
 	parser.add_argument('-l','--length_table')
 	args = parser.parse_args()
 
@@ -268,14 +267,9 @@ if __name__ == "__main__":
 #	print(freq_table)
 	with open(args.fasta_file,'r') as test:
 		#### test_seq_labels contains the line labels
-		test_seq_labels = read_protein(test)[0][0]
+		#test_seq_labels = read_protein(test)[0][0]
 		test_seq = read_protein(test)[0][1]
-<<<<<<< HEAD
-		print((test_seq))	
-#		print(read_protein(test))
-=======
-	print(len(test_seq))
->>>>>>> b76d43c6a29d4f0f5e554e0d28cbb257a588546b
+
 #add pesudocount to length distribution for each domain
 	for i in range(len(test_seq)):
 		if i+1 not in m_length.keys():
@@ -329,6 +323,6 @@ if __name__ == "__main__":
 	with open("../data/initial_state.txt","w") as ofile:
 		for key in sorted(init_state.iterkeys()):
 			ofile.write("%s\t%f\n" % (key,init_state[key]))
-	with open("../data/predicted_Hidden_States.txt","w") as ofile:
+	with open(args.out_file,"w") as ofile:
 		ofile.write("%s\n" % (test_seq))
 		ofile.write("%s\n" % (hidden_states))
