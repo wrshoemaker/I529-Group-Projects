@@ -308,14 +308,14 @@ if __name__ == "__main__":
 	test_class = classFASTA(args.fasta_file)
 	test_seqs = [ x[1] for x in test_class.readFASTA() ]
 	test_labels  = [ x[0] for x in test_class.readFASTA() ]
-	
+
 	index = 0
-	
+
 	for test_seq in test_seqs:
-	
+
 		test_id = test_labels[index]
 		index += 1
-		
+
 		#add pesudocount to length distribution for each domain
 		for i in range(len(test_seq)):
 			if i+1 not in m_length.keys():
@@ -335,16 +335,16 @@ if __name__ == "__main__":
 		i_len = lengthFrequency(i_length)
 		o_len = lengthFrequency(o_length)
 		len_table = [m_len,i_len,o_len]
-	
+
 		maxpro_table,pos_table = max_hidden(test_seq,len_table,emit_prob,trans_prob,init_state)
 		hidden_states = TraceBack(test_seq,emit_prob,maxpro_table,pos_table)
 
-		with open("../data/maxpro_table","a")as ofile:
+		with open("../data/maxpro_table.txt","a")as ofile:
 			for i in range(len(maxpro_table)):
 				for j in range(len(maxpro_table[i])):
 					ofile.write(str(maxpro_table[i][j])+'\t')
 				ofile.write('\n\n')
-		with open("../data/pos_table","a")as ofile:
+		with open("../data/pos_table.txt","a")as ofile:
 			for i in range(len(pos_table)):
 				for j in range(len(pos_table[i])):
 					ofile.write(str(pos_table[i][j])+'\t')
@@ -368,6 +368,6 @@ if __name__ == "__main__":
 			for key in sorted(init_state.iterkeys()):
 				ofile.write("%s\t%f\n\n" % (key,init_state[key]))
 		with open(args.out_file,"a") as ofile:
-			ofile.write(">%s\n" % (test_id))			
+			ofile.write(">%s\n" % (test_id))
 			ofile.write("%s\n" % (test_seq))
 			ofile.write("%s\n" % (hidden_states))
