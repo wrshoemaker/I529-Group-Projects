@@ -234,7 +234,7 @@ def max_hidden(seq,len_table,emit_dict,trans_dict,initial):
 						seg = seq[k+1:i+1]
 						trans = states[p] +'->'+ states[j]
 						if trans not in trans_dict.keys():
-							trans_dict[trans] = 0.000001#len_table is the length distribution table
+							trans_dict[trans] = 0.00000000001 #len_table is the length distribution table
 						tmp += pro_table[p][k] + math.log(trans_dict[trans]) + math.log(len_table[j][i-k])
 						for aa in seg:
 							emit = states[p] + '->' + aa.upper()
@@ -329,7 +329,7 @@ if __name__ == "__main__":
 			if i+1 not in o_length.keys():
 				o_length[i+1] = 0.00000000001
 			else:
-				o_length[i+1] += 0.01
+				o_length[i+1] += 0.00000000001
 
 		m_len = lengthFrequency(m_length)
 		i_len = lengthFrequency(i_length)
