@@ -329,7 +329,7 @@ if __name__ == "__main__":
 			if i+1 not in o_length.keys():
 				o_length[i+1] = 0.00000000001
 			else:
-				o_length[i+1] += 0.01
+				o_length[i+1] += 0.00000000001
 
 		m_len = lengthFrequency(m_length)
 		i_len = lengthFrequency(i_length)
