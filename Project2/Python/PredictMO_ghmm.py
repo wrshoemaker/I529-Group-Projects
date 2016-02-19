@@ -1,5 +1,5 @@
 #parse the given training set protein sequence file and generate two list of protein sequence and corresponding feature of i,m,o
-
+#make sure you run this script under /Python directory
 import sys, math, argparse
 from itertools import groupby
 
@@ -23,10 +23,8 @@ from itertools import groupby
 
 
 class classFASTA:
-
 	def __init__(self, fileFASTA):
 		self.fileFASTA = fileFASTA
-
 	def readFASTA(self):
 		'''Checks for fasta by file extension'''
 		file_lower = self.fileFASTA.lower()
@@ -37,7 +35,6 @@ class classFASTA:
 				return self.ParseFASTA(f)
 		else:
 			print "Not in FASTA format."
-
 	def ParseFASTA(self, fileFASTA):
 		'''Gets the sequence name and sequence from a FASTA formatted file'''
 		fasta_list=[]
@@ -239,7 +236,7 @@ def max_hidden(seq,len_table,emit_dict,trans_dict,initial):
 
 							trans_dict[trans] = 0.000001#len_table is the length distribution table
 						if i-k not in len_table[j].keys():
-#							len_table[j][i-k] = 0.000001
+							len_table[j][i-k] = 0.000001
 
 							trans_dict[trans] = 0.00000000001 #len_table is the length distribution table
 
@@ -317,124 +314,45 @@ if __name__ == "__main__":
 	test_seqs = [ x[1] for x in test_class.readFASTA() ]
 	test_labels  = [ x[0] for x in test_class.readFASTA() ]
 
-	index = 0
-
-<<<<<<< HEAD
-#add pesudocount to length distribution for each domain
-#	for i in range(len(test_seq)):
-#		if i+1 not in m_length.keys():
-#			m_length[i+1] = 0.01
-#		else:
-#			m_length[i+1] += 0.01
-#		if i+1 not in i_length.keys():
-#			i_length[i+1] = 0.01
-#		else:
-#			i_length[i+1] +=0.01
-#		if i+1 not in o_length.keys():
-#			o_length[i+1] = 0.01
-#		else:
-#			o_length[i+1] += 0.01
-
 	m_len = lengthFrequency(m_length)
 	i_len = lengthFrequency(i_length)
 	o_len = lengthFrequency(o_length)
 	len_table = [m_len,i_len,o_len]
 	with open(args.out_file,"w") as ofile:          
-		for i in range(len(test_seq)):
-			maxpro_table,pos_table = max_hidden(test_seq[i],len_table,emit_prob,trans_prob,init_state)
-			hidden_states = TraceBack(test_seq[i],emit_prob,maxpro_table,pos_table)
+		for i in range(len(test_seqs)):
+			maxpro_table,pos_table = max_hidden(test_seqs[i],len_table,emit_prob,trans_prob,init_state)
+			hidden_states = TraceBack(test_seqs[i],emit_prob,maxpro_table,pos_table)
 			ofile.write(">"+"%s\n" % (test_labels[i]))
-			ofile.write("%s\n" % (test_seq[i]))
+			ofile.write("%s\n" % (test_seqs[i]))
 			ofile.write("%s\n" % (hidden_states))
-	with open("../data/maxpro_table","w")as ofile:
-		for i in range(len(maxpro_table)):
-			for j in range(len(maxpro_table[i])):
-				ofile.write(str(maxpro_table[i][j])+'\t')
-			ofile.write('\n')
-	with open("../data/pos_table","w")as ofile:
-		for i in range(len(pos_table)):
-			for j in range(len(pos_table[i])):
-				ofile.write(str(pos_table[i][j])+'\t')
-			ofile.write('\n')
-
-
-	with open("../data/mem_length.txt","w") as mfile:
-		for key in m_length.keys():
-			mfile.write("%d\t%d\n" % (key,m_length[key]))
-	with open("../data/in_length.txt","w") as ifile:
-		for key in i_length.keys():
-			ifile.write("%d\t%d\n" % (key,i_length[key]))
-	with open("../data/out_length.txt","w") as ofile:
-		for key in o_length.keys():
-			ofile.write("%d\t%d\n" % (key,o_length[key]))
-	with open("../data/emit_probabity.txt","w") as ofile:
-		for key in sorted(emit_prob.iterkeys()):
-			ofile.write("%s\t%f\n" % (key,emit_prob[key]))
-	with open("../data/trans_probabity.txt","w") as ofile:
-		for key in sorted(trans_prob.iterkeys()):
-			ofile.write("%s\t%f\n" % (key,trans_prob[key]))
-	with open("../data/initial_state.txt","w") as ofile:
-		for key in sorted(init_state.iterkeys()):
-			ofile.write("%s\t%f\n" % (key,init_state[key]))
-=======
-	for test_seq in test_seqs:
-
-		test_id = test_labels[index]
-		index += 1
-
-		#add pesudocount to length distribution for each domain
-		for i in range(len(test_seq)):
-			if i+1 not in m_length.keys():
-				m_length[i+1] = 0.00000000001
-			else:
-				m_length[i+1] += 0.00000000001
-			if i+1 not in i_length.keys():
-				i_length[i+1] = 0.00000000001
-			else:
-				i_length[i+1] += 0.00000000001
-			if i+1 not in o_length.keys():
-				o_length[i+1] = 0.00000000001
-			else:
-				o_length[i+1] += 0.00000000001
-
-		m_len = lengthFrequency(m_length)
-		i_len = lengthFrequency(i_length)
-		o_len = lengthFrequency(o_length)
-		len_table = [m_len,i_len,o_len]
-
-		maxpro_table,pos_table = max_hidden(test_seq,len_table,emit_prob,trans_prob,init_state)
-		hidden_states = TraceBack(test_seq,emit_prob,maxpro_table,pos_table)
-
-		with open("../data/maxpro_table.txt","a")as ofile:
-			for i in range(len(maxpro_table)):
-				for j in range(len(maxpro_table[i])):
-					ofile.write(str(maxpro_table[i][j])+'\t')
-				ofile.write('\n\n')
-		with open("../data/pos_table.txt","a")as ofile:
-			for i in range(len(pos_table)):
-				for j in range(len(pos_table[i])):
-					ofile.write(str(pos_table[i][j])+'\t')
-				ofile.write('\n\n')
-		with open("../data/mem_length.txt","a") as mfile:
-			for key in m_length.keys():
-				mfile.write("%d\t%d\n\n" % (key,m_length[key]))
-		with open("../data/in_length.txt","a") as ifile:
-			for key in i_length.keys():
-				ifile.write("%d\t%d\n\n" % (key,i_length[key]))
-		with open("../data/out_length.txt","a") as ofile:
-			for key in o_length.keys():
-				ofile.write("%d\t%d\n\n" % (key,o_length[key]))
-		with open("../data/emit_probabity.txt","a") as ofile:
-			for key in sorted(emit_prob.iterkeys()):
-				ofile.write("%s\t%f\n\n" % (key,emit_prob[key]))
-		with open("../data/trans_probabity.txt","a") as ofile:
-			for key in sorted(trans_prob.iterkeys()):
-				ofile.write("%s\t%f\n\n" % (key,trans_prob[key]))
-		with open("../data/initial_state.txt","a") as ofile:
-			for key in sorted(init_state.iterkeys()):
-				ofile.write("%s\t%f\n\n" % (key,init_state[key]))
-		with open(args.out_file,"a") as ofile:
-			ofile.write(">%s\n" % (test_id))
-			ofile.write("%s\n" % (test_seq))
-			ofile.write("%s\n" % (hidden_states))
->>>>>>> 6b34b9c7a185bd3a45dc41127925c5c07aa6012e
+#	with open("../data/maxpro_table","w")as ofile:
+#		for i in range(len(maxpro_table)):
+#			for j in range(len(maxpro_table[i])):
+#				ofile.write(str(maxpro_table[i][j])+'\t')
+#			ofile.write('\n')
+#	with open("../data/pos_table","w")as ofile:
+#		for i in range(len(pos_table)):
+#			for j in range(len(pos_table[i])):
+#				ofile.write(str(pos_table[i][j])+'\t')
+#			ofile.write('\n')
+#
+# optional output
+#	with open("../data/mem_length.txt","w") as mfile:
+#		for key in m_length.keys():
+#			mfile.write("%d\t%d\n" % (key,m_length[key]))
+#	with open("../data/in_length.txt","w") as ifile:
+#		for key in i_length.keys():
+#			ifile.write("%d\t%d\n" % (key,i_length[key]))
+#	with open("../data/out_length.txt","w") as ofile:
+#		for key in o_length.keys():
+#			ofile.write("%d\t%d\n" % (key,o_length[key]))
+#	with open("../data/emit_probabity.txt","w") as ofile:
+#		for key in sorted(emit_prob.iterkeys()):
+#			ofile.write("%s\t%f\n" % (key,emit_prob[key]))
+#	with open("../data/trans_probabity.txt","w") as ofile:
+#		for key in sorted(trans_prob.iterkeys()):
+#			ofile.write("%s\t%f\n" % (key,trans_prob[key]))
+#	with open("../data/initial_state.txt","w") as ofile:
+#		for key in sorted(init_state.iterkeys()):
+#			ofile.write("%s\t%f\n" % (key,init_state[key]))
+#
