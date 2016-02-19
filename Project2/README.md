@@ -9,8 +9,8 @@ Output:features of protein sequences
 i: inside of cell
 m: cell membrane
 o: outside of cell
-2)generate length distribution for membrane domain,inside and outside domain
+)generate length distribution for membrane domain,inside and outside domain
 
 3)emission possibilty matrix for three hidden states
 
-###predict transmembrane domain of given protein sequence in fasta format
+#predict transmembrane domain of given protein sequence in fasta format

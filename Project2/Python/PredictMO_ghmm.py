@@ -9,6 +9,7 @@ def read_protein(fasta):
 	fasta_list = []
 	for line in fasta:
 		if line[0]=='>':
+	#		current_pro = [line.lstrip('>').rstrip('\n'),'']
 			try:
 				fasta_list.append(current_pro)
 			except UnboundLocalError:
@@ -218,7 +219,8 @@ if __name__ == "__main__":
 #	print(freq_table)
 	with open(args.fasta_file,'r') as test:
 		test_seq = read_protein(test)[0][1]
-	print(len(test_seq))	
+		print((test_seq))	
+#		print(read_protein(test))
 #add pesudocount to length distribution for each domain
 	for i in range(len(test_seq)):
 		if i+1 not in m_length.keys():
