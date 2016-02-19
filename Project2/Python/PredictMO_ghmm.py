@@ -5,19 +5,57 @@ from itertools import groupby
 
 
 #read test fasta protein sequence file
-def read_protein(fasta):
-	fasta_list = []
-	for line in fasta:
-		if line[0]=='>':
-			try:
-				fasta_list.append(current_pro)
-			except UnboundLocalError:
-				pass
-			current_pro = [line.lstrip('>').rstrip('\n'),'']
+#def read_protein(fasta):
+#	fasta_list = []
+#	for line in fasta:
+#		if line[0]=='>':
+#			try:
+#				fasta_list.append(current_pro)
+#			except UnboundLocalError:
+#				pass
+#			current_pro = [line.lstrip('>').rstrip('\n'),'']
+#			print current_pro
+#		else:
+#			current_pro[1]+= ''.join(line.split())
+#			print current_pro
+#		fasta_list.append(current_pro)
+#	return fasta_list
+
+
+class classFASTA:
+
+	def __init__(self, fileFASTA):
+		self.fileFASTA = fileFASTA
+
+	def readFASTA(self):
+		'''Checks for fasta by file extension'''
+		file_lower = self.fileFASTA.lower()
+		'''Check for three most common fasta file extensions'''
+		if file_lower.endswith('.txt') or file_lower.endswith('.fa') or \
+		file_lower.endswith('.fasta') or file_lower.endswith('.fna'):
+			with open(self.fileFASTA, "r") as f:
+				return self.ParseFASTA(f)
 		else:
-			current_pro[1]+= ''.join(line.split())
-	fasta_list.append(current_pro)
-	return fasta_list
+			print "Not in FASTA format."
+
+	def ParseFASTA(self, fileFASTA):
+		'''Gets the sequence name and sequence from a FASTA formatted file'''
+		fasta_list=[]
+		for line in fileFASTA:
+			if line[0] == '>':
+				try:
+					fasta_list.append(current_dna)
+				#pass if an error comes up
+				except UnboundLocalError:
+					#print "Inproper file format."
+					pass
+				current_dna = [line.lstrip('>').rstrip('\n'),'']
+			else:
+				current_dna[1] += "".join(line.split())
+		fasta_list.append(current_dna)
+		'''Returns fasa as nested list, containing line identifier \
+			and sequence'''
+		return fasta_list
 
 #parse the training protein sequence and features
 def parse_training(training_file):
@@ -265,10 +303,12 @@ if __name__ == "__main__":
 		trans_prob = TransitionProb(feature_set)
 		init_state = InitState(feature_set)
 #	print(freq_table)
-	with open(args.fasta_file,'r') as test:
+	#with open(args.fasta_file,'r') as test:
 		#### test_seq_labels contains the line labels
-		test_seq_labels = read_protein(test)[0][0]
-		test_seq = read_protein(test)[0][1]
+	test_class = classFASTA(args.fasta_file)
+	test_seq = [ x[1] for x in test_class.readFASTA() ]
+	test_labels  = [ x[0] for x in test_class.readFASTA() ]
+
 
 #add pesudocount to length distribution for each domain
 	for i in range(len(test_seq)):
