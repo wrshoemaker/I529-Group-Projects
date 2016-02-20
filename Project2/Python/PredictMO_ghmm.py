@@ -138,34 +138,18 @@ def EmissionProb(seq_set, feature_set):
 	return emit_dict
 
 # calculate the transition probability between states
-def TransitionProb(feature_set):
-	element = len(seq_set)
-	trans_dict = {}
-	for x in range(element):
-		size = len(seq_set[x])
-		for y in range(size-1):
-			if feature_set[x][y] == feature_set[x][y+1]: continue
-			curr_trans = feature_set[x][y]+'->'+feature_set[x][y+1]
-			if '.' in curr_trans: continue
-			if curr_trans not in trans_dict:
-				trans_dict[curr_trans] = 1
-			else:
-				trans_dict[curr_trans] += 1
-	mem, inner, outer = 0, 0, 0
-	for key in trans_dict:
-		if 'M->' in key:
-			mem += trans_dict[key]
-		elif 'I->' in key:
-			inner += trans_dict[key]
-		else:
-			outer += trans_dict[key]
-	for key in trans_dict:
-		if 'M->' in key:
-			trans_dict[key] = float(trans_dict[key])/mem
-		elif 'I->' in key:
-			trans_dict[key] = float(trans_dict[key])/inner
-		else:
-			trans_dict[key] = float(trans_dict[key])/outer
+def TransitionProb():#four possible states O->MO->I->MI->O and only four possible transition
+	trans_dict={}
+	states=['O','MO','I','MI'] #list of four states
+	for start in states:
+		for end in states:
+			curr_trans = start + '->' + end
+			trans_dict[curr_trans] = 0.00000000001#give a very small pseudocount for all transition
+	'''actually only four transition with probabilty 1 are allowed'''
+	trans_dict['O->MO'] = 1
+	trans_dict['MO->I'] = 1
+	trans_dict['I->MI'] = 1
+	trans_dict['MI->O'] = 1
 	return trans_dict
 
 # calculate the probability of initial state
@@ -214,18 +198,22 @@ def NullModel(seq,emit_dict):
 def max_hidden(seq,len_table,emit_dict,trans_dict,initial):
 	l=len(seq)#length for each test sequence
 	m=len(len_table)#number of hidden states,len_table is list of three dictionaries 
-	states=['M','I','O']
+	states=['MI','MO','I','O']
 	pro_table = [[1 for x in range(l)]for x in range(m)]#pro_table is the max_hidden states probability table
 	pos_table = [[1 for x in range(l)]for x in range(m)]#pos_table is the path table for max_hidden states
-	pro_table[0][0] = 0.00000000001 #actually 0 but since we use log, we assign this very small value for staring M
-	pro_table[1][0] = initial['I']
-	pro_table[2][0] = initial['O']
+	pro_table[0][0] = 0.00000000001 #actually 0 but since we use log, we assign this very small value for starting M
+	pro_table[1][0] = 0.00000000001
+	pro_table[2][0] = initial['I']
+	pro_table[3][0] = initial['O']
 	for i in range(1,l):
 		for j in range(m):
 			'''pro_oneseq is the probability that observed segment ends in state j is continous '''
 			pro_oneseg = math.log(len_table[j][i+1])+math.log(pro_table[j][0])
 			for aa in seq[:i+1]:
-				emit = states[j]+'->'+ aa.upper()
+				if states[j]=='MI' or states[j]=='MO':#'MI'and'MO' have same emission probabilty which is emit_dict['M->?']
+					emit = 'M->'+ aa.upper()
+				else:
+					emit = states[j]+'->'+ aa.upper()
 				pro_oneseg += math.log(emit_dict[emit])
 			pro_table[j][i] = float(pro_oneseg)#assign the probabilty of first conditon to [j][i] at first
 			pos_table[j][i] = (j,0)#ths position for first conditon is to start from position 0
@@ -235,11 +223,12 @@ def max_hidden(seq,len_table,emit_dict,trans_dict,initial):
 					if p!=j:#the second condition is to start from any cells not in the same row with final state
 						seg = seq[k+1:i+1]#the duration sequence in state j
 						trans = states[p] +'->'+ states[j]#state transition from p to j
-						if trans not in trans_dict.keys():
-							trans_dict[trans] = 0.00000000001 #len_table is the length distribution table
 						tmp += pro_table[p][k] + math.log(trans_dict[trans]) + math.log(len_table[j][i-k])#the preceding state [p][k] and transition probability and duration probability
 						for aa in seg:#the emission of aa in state j, I ignored a typo here that I wrote k instead of j
-							emit = states[j] + '->' + aa.upper()
+							if j==0 or j==1:#combine emission of MI,MO into M
+								emit = 'M->'+ aa.upper()
+							else:
+								emit = states[j] + '->' + aa.upper()
 							tmp += math.log(emit_dict[emit])
 						if pro_table[j][i]< tmp:
 							pro_table[j][i] = tmp #tmp max value
@@ -256,14 +245,17 @@ def TraceBack(seq,emit_dict,pro_table,pos_table):
 		HiddenStates = '.'*len(seq)
 		return HiddenStates
 
-	if max(pro_table[0][x],pro_table[1][x],pro_table[2][x]) == pro_table[0][x]:
+	if max(pro_table[0][x],pro_table[1][x],pro_table[2][x],pro_table[3][x]) == pro_table[0][x]:
 		record = pos_table[0][x]
 		state = 'M'
-	elif max(pro_table[0][x],pro_table[1][x],pro_table[2][x]) == pro_table[1][x]:
+	elif max(pro_table[0][x],pro_table[1][x],pro_table[2][x],pro_table[3][x]) == pro_table[1][x]:
 		record = pos_table[1][x]
+		state = 'M'
+	elif max(pro_table[0][x],pro_table[1][x],pro_table[2][x],pro_table[3][x]) == pro_table[2][x]:
+		record = pos_table[2][x]
 		state = 'I'
 	else:
-		record = pos_table[2][x]
+		record = pos_table[3][x]
 		state = 'O'
 	repeats = x - record[1]
 	HiddenStates += state*repeats
@@ -272,9 +264,9 @@ def TraceBack(seq,emit_dict,pro_table,pos_table):
 
 	while True:
 		record = pos_table[pre_state][pre_pos]
-		if pre_state == 0:
+		if pre_state == 0 or pre_state == 1:
 			state = 'M'
-		elif pre_state == 1:
+		elif pre_state == 2:
 			state = 'I'
 		else:
 			state = 'O'
@@ -315,7 +307,7 @@ if __name__ == "__main__":
 #			ofile.write(str(key)+"\t"+str(o_freq[key])+"\n")
 
 		emit_prob = EmissionProb(seq_set, feature_set)
-		trans_prob = TransitionProb(feature_set)
+		trans_prob = TransitionProb()
 		init_state = InitState(feature_set)
 #	print(freq_table)
 	#with open(args.fasta_file,'r') as test:
@@ -326,9 +318,9 @@ if __name__ == "__main__":
 
 	index = 0
 
-	for test_seq in test_seqs:
-		tmpm_length,tmpi_length,tmpo_length = {}, {}, {}
-		for key in m_length.keys():
+	for test_seq in test_seqs:#test_seq is each test protein sequence
+		tmpm_length,tmpi_length,tmpo_length = {}, {}, {}#three dictionaries for m,i,o length distribution
+		for key in m_length.keys():#use training prior knowledge
 			tmpm_length[key] = m_length[key]
 		for key in i_length.keys():
 			tmpi_length[key] = i_length[key]
@@ -354,23 +346,23 @@ if __name__ == "__main__":
 			else:
 				tmpo_length[i+1] += 0.00000000001
 
-		tmpm_len = lengthFrequency(tmpm_length)
+		tmpm_len = lengthFrequency(tmpm_length)#calculate probability table for each length table
 		tmpi_len = lengthFrequency(tmpi_length)
 		tmpo_len = lengthFrequency(tmpo_length)
 #check length probabilty
-		for check in [tmpm_len,tmpi_len,tmpo_len]:
+		for check in [tmpm_len,tmpi_len,tmpo_len]:#check if sum of probability is 1
 			print("the sum of probabilty is %f" %(sum(check.values())))
-		len_table = [tmpm_len,tmpi_len,tmpo_len]
+		len_table = [tmpm_len,tmpm_len,tmpi_len,tmpo_len]#list of length dictionaries in order MI,MO,I,O. MI and Mo are actually same
 		#for domain in tmpm_len.keys():
 		#	print("probability of fragment in length %d in mem is %f" %(domain,tmpm_len[domain]))
 		#for domain in tmpi_len.keys():
 			#print("probability of fragment in length %d in in is %f"%(domain,tmpi_len[domain]))
 		#for domain in tmpo_len.keys():
 			#print("probability of fragment in length %d in out is %f"%(domain,tmpo_len[domain]))
-
+#calculate the viterbi value table and path table,then produce string of hidden_states
 		maxpro_table,pos_table = max_hidden(test_seq,len_table,emit_prob,trans_prob,init_state)
 		hidden_states = TraceBack(test_seq,emit_prob,maxpro_table,pos_table)
-
+#append the hidden_states to output file following seq index and protein sequence
 		with open(args.out_file,"a") as ofile:
 			ofile.write(">%s\n" % (test_id))
 			ofile.write("%s\n" % (test_seq))

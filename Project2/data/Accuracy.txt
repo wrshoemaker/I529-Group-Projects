@@ -1,0 +1,8 @@
+Total Number of Sites: 501
+Correct Predicted Sites: 440
+Accuracy: 0.878244
+
+Total Number of Sites: 566
+Correct Predicted Sites: 442
+Accuracy: 0.780919
+
