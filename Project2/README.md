@@ -5,12 +5,20 @@ Output:features of protein sequences
 ##Build GHMM from training set
 
 
-1)read and parse the protein sequences with features
-i: inside of cell
-m: cell membrane
-o: outside of cell
-)generate length distribution for membrane domain,inside and outside domain
+1) read and parse the protein sequences with features
 
-3)emission possibilty matrix for three hidden states
+2) generate length distribution for membrane domain,inside and outside domain
 
-#predict transmembrane domain of given protein sequence in fasta format
+3) emission possibilty matrix for three hidden states
+
+4) transition probability between the states
+I: inside of cell
+M: cell membrane (MI: from I; MO from o)
+O: outside of cell 
+
+5) initial probability of the states
+
+6) implemented Viterbi algorithm to find the most likely hidden states for the observed sequences
+
+##Command line
+python PredictMO_ghmm.py -i ../data/tmptest.txt -o Predicted_Hidden_states.txt 
