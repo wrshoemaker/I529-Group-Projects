@@ -47,13 +47,11 @@ def PruningAlgrtm(node1,node2,matrix1,matrix2):
 	nodeP = [nodeP_A,nodeP_C,nodeP_G,nodeP_T]
 	return nodeP
 
-	
-	
-###### test the program using class example #####
-if __name__ == "__main__":
-#test_tree = '(((A:0.2, B:0.2):0.1, C:0.2):0.1, (D:0.2, E:0.2):0.1)'
-#test_leaves = ['T', 'C', 'A', 'C', 'C']
-# matrix order is based on 'A, C, G, T'   ('T, C, A, G' shown in the class slide)
+#A function to test the accuray of the program using class example 
+def TestExmpl():
+	#test_tree = '(((A:0.2, B:0.2):0.1, C:0.2):0.1, (D:0.2, E:0.2):0.1)'
+	#test_leaves = ['T', 'C', 'A', 'C', 'C']
+	# matrix order is based on 'A, C, G, T'   ('T, C, A, G' shown in the class slide)
 	test_matrix_01= [[0.906563,0.023791,0.045855,0.023791],[0.023791,0.906563,0.023791,0.045855],[0.045855,0.023791,0.906563,0.023791],[0.023791,0.045855,0.023791,0.906563]]
 	test_matrix_02 = Compute_substitution(test_matrix_01,0.2)
 
@@ -63,13 +61,19 @@ if __name__ == "__main__":
 	leaf4 = [0,1,0,0]
 	leaf5 = [0,1,0,0]
 
-	# length of branch to node to 6,7,8 is 0.1
+	# length of branch to node to 6,7,8 is 0.1, others are 0.2
 	node7 = PruningAlgrtm(leaf1,leaf2,test_matrix_02,test_matrix_02)
 	node6 = PruningAlgrtm(node7,leaf3,test_matrix_01,test_matrix_02)
 	node8 = PruningAlgrtm(leaf4,leaf5,test_matrix_02,test_matrix_02)
 	root = PruningAlgrtm(node6,node8,test_matrix_01,test_matrix_01)
 	print root
 
+	
+	
+###### use the program to work on project data #####
+if __name__ == "__main__":
+	TestExmpl()  #test the accuray of the program
+	
 	'''
 	pattern = re.compile(r"\b[0-9]+(?:\.[0-9]+)?\b")
 	branch_lengths = pattern.findall(tree)
