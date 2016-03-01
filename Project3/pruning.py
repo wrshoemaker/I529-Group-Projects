@@ -29,7 +29,7 @@ def Compute_substitution(base_matrix,length):
 		return matrix_multiply(base_matrix,base_matrix)
 	else:
 		new_matrix = matrix_multiply(base_matrix,base_matrix)
-		for i in range(relative_length-1):
+		for i in range(relative_length-2):
 			new_matrix = matrix_multiply(new_matrix,base_matrix)
 		return new_matrix
 
