@@ -20,7 +20,7 @@ def matrix_multiply(matrixA,matrixB):
 
 #this function take input of base_substitution matrix and the value of t, outputp(t)
 def Compute_substitution(base_matrix,length):
-	relative_length = length /0.1
+	relative_length = int(length /0.1)
 	'''initial of the output matrix in length t '''
 	new_matrix =[[0 for i in range(4)]for i in range(4)]
 	if relative_length == 1:
@@ -34,12 +34,20 @@ def Compute_substitution(base_matrix,length):
 		return new_matrix
 
 
+#this function read the tree_file in Newick Standard format, then output a binary tree in nested lists 
+def read_tree(tree_file):
+	with open(tree_file,'r') as ifile:
+		tree_line = ifile.read().strip()
+	
+
 #test of Compute_substitution function
 
 test_matrix= [[0.906563,0.045855,0.023791,0.023791],[0.045855,0.906563,0.023791,0.023791],[0.023791,0.023791,0.906563,0.045855],[0.023791,0.023791,0.045855,0.906563]]
 
 print(sum(test_matrix[0]),sum(test_matrix[1]),sum(test_matrix[2]),sum(test_matrix[3]))
 
-new_matrix = Compute_substitution(test_matrix,0.2)
+new_matrix = Compute_substitution(test_matrix,0.3)
 
 print(new_matrix)
+print(sum(new_matrix[0]))
+read_tree("tree_file")
