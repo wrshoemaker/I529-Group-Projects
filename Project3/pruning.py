@@ -66,13 +66,13 @@ def TestExmpl():
 	node6 = PruningAlgrtm(node7,leaf3,test_matrix_01,test_matrix_02)
 	node8 = PruningAlgrtm(leaf4,leaf5,test_matrix_02,test_matrix_02)
 	root = PruningAlgrtm(node6,node8,test_matrix_01,test_matrix_01)
-	print root
+	return root
 
 	
 	
 ###### use the program to work on project data #####
 if __name__ == "__main__":
-	TestExmpl()  #test the accuray of the program
+	print TestExmpl()  #test the accuray of the program
 	
 	'''
 	pattern = re.compile(r"\b[0-9]+(?:\.[0-9]+)?\b")
