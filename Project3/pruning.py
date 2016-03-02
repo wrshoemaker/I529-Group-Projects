@@ -55,13 +55,6 @@ def TestExmpl():
 	test_matrix_01= [[0.906563,0.023791,0.045855,0.023791],[0.023791,0.906563,0.023791,0.045855],[0.045855,0.023791,0.906563,0.023791],[0.023791,0.045855,0.023791,0.906563]]
 	test_matrix_02 = Compute_substitution(test_matrix_01,0.2)
 
-<<<<<<< HEAD
-#this function read the tree_file in Newick Standard format, then output a binary tree in nested lists 
-def read_tree(tree_file):
-	with open(tree_file,'r') as ifile:
-		tree_line = ifile.read().strip()
-	
-
 #test of Compute_substitution function
 
 	leaf1 = [0,0,0,1]
@@ -78,8 +71,6 @@ def read_tree(tree_file):
 	root = PruningAlgrtm(node6,node8,test_matrix_01,test_matrix_01)
 	return root
 
-	
-	
 ###### use the program to work on project data #####
 if __name__ == "__main__":
 	print TestExmpl()  #test the accuray of the program
@@ -92,11 +83,11 @@ if __name__ == "__main__":
 	'''
 
 
-new_matrix = Compute_substitution(test_matrix,0.3)
 
-print(new_matrix)
-print(sum(new_matrix[0]))
-read_tree("tree_file")
+
+
+
+
 
 
 
