@@ -84,6 +84,7 @@ def read_tree(tree_file):
 		tree_line = ifile.read().strip()
 
 
+
 #test of Compute_substitution function
 
 	leaf1 = [0,0,0,1]
@@ -102,6 +103,7 @@ def read_tree(tree_file):
 
 
 
+
 ###### use the program to work on project data #####
 if __name__ == "__main__":
 	print TestExmpl()  #test the accuray of the program
@@ -115,6 +117,11 @@ if __name__ == "__main__":
 
 
 #new_matrix = Compute_substitution(test_matrix,0.3)
+
+
+
+
+
 
 #print(new_matrix)
 #print(sum(new_matrix[0]))
