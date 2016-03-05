@@ -18,16 +18,32 @@ def read_newick(newick_list):
 	'''
 	this function takes a list of newick lines as an arguement
 	and returns each item in the list as a nested tuple
+	The function assumes you have a sorted Newick object
 	'''
 	for nwk in newick_list:
-		nested_levels = nwk.count(')')
-		nwk_list =  nwk.split(',')
+		nested_levels = nwk.count(')') + 1
+		nwk_list =  re.split(r'[,:]+', nwk)
+		#print nwk_list
 		nwk_list = [line.translate(None, '()') for line in nwk_list]
-		nwk_return = []
-		nwk_return.append( ( 'Human_Chimpanzee' , float(nwk_list[0][-3:]), float(nwk_list[1][-7:-4]) ))
-		nwk_return.append( ( 'Human_Gorilla' , float(nwk_list[0][-3:]) +  float(nwk_list[1][-3:]), float(nwk_list[2][-3:]) ))
-		nwk_return.append( ( 'Chimpanzee_Gorilla' , (float(nwk_list[1][-7:-4]) + float(nwk_list[1][-3:]  ), float(nwk_list[2][-3:]) ) ))
-		return nwk_return
+		number_comparisons = sum(range(0, nested_levels, 1))
+		return_list = []
+		print nwk_list
+		for x in range(0,number_comparisons):
+			if x == 0:
+				label = str(nwk_list[x]) + '_' + str(nwk_list[x+2])
+				return_tuple = (label, float(nwk_list[1]), float(nwk_list[3]))
+				return_list.append(return_tuple)
+			elif x == 1 :
+				label = str(nwk_list[x+1]) + '_' + str(nwk_list[x+4])
+				return_tuple = (label, float(nwk_list[1]) + float(nwk_list[4]) , float(nwk_list[6]))
+				return_list.append(return_tuple)
+			elif x == 2 :
+				label = str(nwk_list[x]) + '_' + str(nwk_list[x+3])
+				return_tuple = (label, float(nwk_list[3]) + float(nwk_list[4]) , float(nwk_list[6]))
+				return_list.append(return_tuple)
+
+		print return_list
+		return return_list
 
 
 #this function does 4x4 matrix multiplication
@@ -106,7 +122,7 @@ def read_tree(tree_file):
 
 ###### use the program to work on project data #####
 if __name__ == "__main__":
-	print TestExmpl()  #test the accuray of the program
+	#print TestExmpl()  #test the accuray of the program
 
 	'''
 	pattern = re.compile(r"\b[0-9]+(?:\.[0-9]+)?\b")
