@@ -203,7 +203,7 @@ def recursivePrunning(newickTree, alignedSeqs, subMatrix):
     '''
     This function takes the newick tree, the aligned sequences, and the substitution
     matrix as arguments. It returns a nested list, with each element containing the
-    probability of observing a given nucleotide (list order = A, C, G, T) for
+    likelihood of observing a given nucleotide (list order = A, C, G, T) for
     the alignment given the evolutionary distance supplied by the phylogeny
     '''
     numberTaxa = len(alignedSeqs[0])
