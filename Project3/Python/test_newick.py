@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 from __future__ import division
 import itertools, collections, os, math, re, argparse, operator
-from collections import defaultdict
+from collections import defaultdict, Iterable
+import collections
 
 mydir = os.path.dirname(os.path.realpath(__file__))
 mydir = str(mydir[:-6]) + 'data/'
@@ -108,7 +109,6 @@ def getWord_test(string):
 ## unit of evolutionary time
 
 
-
 def matrix_multiply(a,b):
     zip_b = zip(*b)
     return [[sum(ele_a*ele_b for ele_a, ele_b in zip(row_a, col_b))
@@ -116,7 +116,7 @@ def matrix_multiply(a,b):
 
 
 #this function take input of base_substitution matrix and the value of t, outputp(t)
-def Compute_substitution(length):
+def Compute_substitution(base_matrix, length):
     relative_length = int(length /0.1)
     '''initial of the output matrix in length t '''
     new_matrix =[[0 for i in range(4)]for i in range(4)]
@@ -176,23 +176,61 @@ alignedSequences =  formatAlignment(test_read)
 newickTest = readNewick(treeIN)[0]
 test_newick = parseNewick(newickTest, name='Root')
 
+
+
+def flatten(coll):
+    for i in coll:
+        if isinstance(i, Iterable) and not isinstance(i, basestring):
+            for subc in flatten(i):
+                yield subc
+        else:
+            yield i
+
+def siteToDummy(site):
+    stateList = []
+    for sample in site:
+        if sample == 'A':
+            stateList.append([1,0,0,0])
+        elif sample == 'C':
+            stateList.append([0,1,0,0])
+        elif sample == 'G':
+            stateList.append([0,0,1,0])
+        else:
+            stateList.append([0,0,0,1])
+    return stateList
+
+def recursivePrunning(newickTree, alignedSeqs, subMatrix):
+    '''
+    This function takes the newick tree, the aligned sequences, and the substitution
+    matrix as arguments. It returns a nested list, with each element containing the
+    probability of observing a given nucleotide (list order = A, C, G, T) for
+    the alignment given the evolutionary distance supplied by the phylogeny
+    '''
+    numberTaxa = len(alignedSeqs[0])
+    # go through all n-1 comparisons (n = # nodes)
+    flattenedNewick = list(flatten(newickTree))
+    probSiteGivenTree = []
+    for seq in alignedSeqs[1]:
+        seqDummy = siteToDummy(seq)
+        currentPrunning = []
+        for x in range (0, numberTaxa-1):
+            if x == 0:
+                matrix1 = Compute_substitution(subMatrix,float(flattenedNewick[1]))
+                matrix2 = Compute_substitution(subMatrix,float(flattenedNewick[3]))
+                #print siteToDummy(alignedSeqs[1])
+                currentPrunning = prunningAlgorithm(seqDummy[0],seqDummy[1], matrix1, matrix2)
+            else:
+                # matrix 1 is from the previously merged nodes
+                matrix1 = Compute_substitution(subMatrix,float(flattenedNewick[ x + ( 3 * (numberTaxa-2) ) ]))
+                # matrix 2 is from the outer node
+                matrix2 = Compute_substitution(subMatrix,float(flattenedNewick[ x + ( 5 * (numberTaxa-2) ) ]))
+                node1 = currentPrunning
+                node2 = seqDummy[x + 1]
+                currentPrunning = prunningAlgorithm(node1,node2, matrix1, matrix2)
+        probSiteGivenTree.append(currentPrunning)
+    return probSiteGivenTree
+
 subMatrix = [[0.9,0.05,0.025,0.025],[0.05,0.9,0.025,0.025], \
         [0.025,0.025,0.9,0.05],[0.025,0.025,0.05,0.9]]
 
-def recursivePrunning(newickTree, alignedSeqs, subMatrix):
-    numberTaxa = len(alignedSeqs[0])
-    print alignedSeqs[0]
-    for site in alignedSeqs[1]:
-        stateList = []
-        for sample in site:
-            if sample == 'A':
-                stateList.append([1,0,0,0])
-            elif sample == 'C':
-                stateList.append([0,1,0,0])
-            elif sample == 'G':
-                stateList.append([0,0,1,0])
-            else:
-                stateList.append([0,0,0,1])
-        print stateList
-
-recursivePrunning(test_newick, alignedSequences, subMatrix)
+print recursivePrunning(test_newick, alignedSequences, subMatrix)

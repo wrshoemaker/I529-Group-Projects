@@ -1,15 +1,15 @@
-#this test.py is to parse Newick tree file and build a binary tree data structure 
+#this test.py is to parse Newick tree file and build a binary tree data structure
 
 from itertools import groupby
 
 
 class Node:
-	def __init__(self,length):	
+	def __init__(self,length):
 		self.length = length#length to its parent
 		self.left = None
 		self.right = None
 		self.value = None
-	
+
 
 class BinaryTree:
 	def __init__(self):
@@ -22,6 +22,7 @@ class Newick:
 		if ',' not in self.newick:
 			length = float(self.newick.split(':')[1])
 			tmp = Node(length)
+			print length
 			return tmp
 		else:
 			tab = [''.join(g) for k,g in groupby(self.newick)]
@@ -45,17 +46,15 @@ class Newick:
 			tmp_right = self.newick[j+1:k-1]
 			left_sub = Newick(tmp_left)#left sub tree
 			right_sub = Newick(tmp_right)#right sub tree
-		
+
 			ancestor.left = left_sub.divide()
 			ancestor.right = right_sub.divide()
 			return ancestor
 
-####### use the simple test Newick string to check result		
-test = '((Human:0.3,Chimpanzee:0.2):0.1,Gorilla:0.3)'   
+####### use the simple test Newick string to check result
+test = '((Human:0.3,Chimpanzee:0.2):0.1,Gorilla:0.3)'
 
 test_newick = Newick(test + ':0.0')
 tree = BinaryTree()
 tree.root = test_newick.divide()
 print(tree.root.left.right.length)
-
-

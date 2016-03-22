@@ -27,7 +27,6 @@ def read_newick(newick_list):
 		nwk_list = [line.translate(None, '()') for line in nwk_list]
 		number_comparisons = sum(range(0, nested_levels, 1))
 		return_list = []
-		print nwk_list
 		for x in range(0,number_comparisons):
 			if x == 0:
 				label = str(nwk_list[x]) + '_' + str(nwk_list[x+2])
@@ -73,8 +72,10 @@ def Compute_substitution(base_matrix,length):
 #function of Pruning Algorithm to calculate the A,C,G,T freq for the parental node from its two children
 def PruningAlgrtm(node1,node2,matrix1,matrix2):
 	# node1, node2 are two children of one node
+	print node1, node2
 	node1_A, node1_C, node1_G, node1_T = node1[0], node1[1], node1[2], node1[3]
 	node2_A, node2_C, node2_G, node2_T = node2[0], node2[1], node2[2], node2[3]
+	#print node2_A
 	# freq of parental node is A
 	nodeP_A = (node1_A*matrix1[0][0]+node1_C*matrix1[0][1]+node1_G*matrix1[0][2]+node1_T*matrix1[0][3]) * (node2_A*matrix2[0][0]+node2_C*matrix2[0][1]+node2_G*matrix2[0][2]+node2_T*matrix2[0][3])
 	# freq of parental node is C
@@ -84,6 +85,7 @@ def PruningAlgrtm(node1,node2,matrix1,matrix2):
 	# freq of parental node is T
 	nodeP_T = (node1_A*matrix1[3][0]+node1_C*matrix1[3][1]+node1_G*matrix1[3][2]+node1_T*matrix1[3][3]) * (node2_A*matrix2[3][0]+node2_C*matrix2[3][1]+node2_G*matrix2[3][2]+node2_T*matrix2[3][3])
 	nodeP = [nodeP_A,nodeP_C,nodeP_G,nodeP_T]
+	#print nodeP
 	return nodeP
 
 #A function to test the accuray of the program using class example
@@ -91,8 +93,9 @@ def TestExmpl():
 	#test_tree = '(((A:0.2, B:0.2):0.1, C:0.2):0.1, (D:0.2, E:0.2):0.1)'
 	#test_leaves = ['T', 'C', 'A', 'C', 'C']
 	# matrix order is based on 'A, C, G, T'   ('T, C, A, G' shown in the class slide)
-	test_matrix_01= [[0.906563,0.023791,0.045855,0.023791],[0.023791,0.906563,0.023791,0.045855],[0.045855,0.023791,0.906563,0.023791],[0.023791,0.045855,0.023791,0.906563]]
-	test_matrix_02 = Compute_substitution(test_matrix_01,0.2)
+	pass
+test_matrix_01= [[0.906563,0.023791,0.045855,0.023791],[0.023791,0.906563,0.023791,0.045855],[0.045855,0.023791,0.906563,0.023791],[0.023791,0.045855,0.023791,0.906563]]
+test_matrix_02 = Compute_substitution(test_matrix_01,0.2)
 
 #this function read the tree_file in Newick Standard format, then output a binary tree in nested lists
 def read_tree(tree_file):
@@ -141,10 +144,11 @@ if __name__ == "__main__":
 
 #print(new_matrix)
 #print(sum(new_matrix[0]))
-#read_tree("tree_file")
+print read_tree("../tree_file")
 
 # Testing newick reader
 
-with open(mydir + 'tree_file.txt') as IN:
-	trees = [line.split('\n') for line in IN.read().strip().split('\n\n')]
-trees_test = read_newick(trees[0])
+#with open(mydir + 'tree_file.txt') as IN:
+#	read_tree(IN)
+	#trees = [line.split('\n') for line in IN.read().strip().split('\n\n')]
+#trees_test = read_newick(trees[0])
