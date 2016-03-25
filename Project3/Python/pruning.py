@@ -41,7 +41,7 @@ def read_newick(newick_list):
 				return_tuple = (label, float(nwk_list[3]) + float(nwk_list[4]) , float(nwk_list[6]))
 				return_list.append(return_tuple)
 
-		print return_list
+		#print return_list
 		return return_list
 
 
@@ -72,7 +72,7 @@ def Compute_substitution(base_matrix,length):
 #function of Pruning Algorithm to calculate the A,C,G,T freq for the parental node from its two children
 def PruningAlgrtm(node1,node2,matrix1,matrix2):
 	# node1, node2 are two children of one node
-	print node1, node2
+	#print node1, node2
 	node1_A, node1_C, node1_G, node1_T = node1[0], node1[1], node1[2], node1[3]
 	node2_A, node2_C, node2_G, node2_T = node2[0], node2[1], node2[2], node2[3]
 	#print node2_A
@@ -144,7 +144,8 @@ if __name__ == "__main__":
 
 #print(new_matrix)
 #print(sum(new_matrix[0]))
-print read_tree("../tree_file")
+root_val = read_tree("../tree_file")
+print sum(root_val)
 
 # Testing newick reader
 
