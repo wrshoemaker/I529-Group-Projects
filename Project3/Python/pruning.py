@@ -5,7 +5,7 @@ import os
 
 #default setting and data for this project
 base_length = 0.1
-base_matrix=[[0.9,0.05,0.025,0.025],[0.05,0.9,0.025,0.025],[0.025,0.025,0.9,0.5],[0.025,0.025,0.5,0.9]]#the substitution matrix for length = 0.1
+base_matrix=[[0.9,0.05,0.025,0.025],[0.05,0.9,0.025,0.025],[0.025,0.025,0.9,0.05],[0.025,0.025,0.05,0.9]]#the substitution matrix for length = 0.1
 background_freq = [0.25,0.25,0.25,0.25]#assume equal probabilty for A,C,G,T
 
 # This function reads in a Newick formatted file

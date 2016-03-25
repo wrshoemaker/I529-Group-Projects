@@ -6,8 +6,8 @@ import collections
 
 mydir = os.path.dirname(os.path.realpath(__file__))
 mydir = str(mydir[:-6]) + 'data/'
-treeIN = mydir + '/' + 'tree_file.txt'
-alignIN = mydir + '/' + 'alignment_file.txt'
+#treeIN = mydir + '/' + 'tree_file.txt'
+#alignIN = mydir + '/' + 'alignment_file.txt'
 
 
 def readNewick(fileNewick):
@@ -40,10 +40,12 @@ def formatAlignment(listAlignment):
     # get just the sequences
     sequences = [ x[1].upper() for x in listAlignment ]
     names = [ x[0] for x in listAlignment ]
+#    print sequences
     alignedSeqs = zip(*sequences)
-    for x in alignedSeqs:
-        if len(set(x)) < 2:
-            alignedSeqs.remove(x)
+#    print alignedSeqs
+#    for x in alignedSeqs:
+#        if len(set(x)) < 2:
+#           alignedSeqs.remove(x)
     return (names, alignedSeqs)
 
 def parseNewick(newick, name='Root'):
@@ -168,14 +170,6 @@ def prunningAlgorithm(node1,node2,matrix1,matrix2):
     nodeP = [nodeP_A,nodeP_C,nodeP_G,nodeP_T]
     return nodeP
 
-# test seqs
-test_read = readAlignment(alignIN)
-alignedSequences =  formatAlignment(test_read)
-
-# test tree
-newickTest = readNewick(treeIN)[0]
-test_newick = parseNewick(newickTest, name='Root')
-
 
 
 def flatten(coll):
@@ -230,7 +224,30 @@ def recursivePrunning(newickTree, alignedSeqs, subMatrix):
         probSiteGivenTree.append(currentPrunning)
     return probSiteGivenTree
 
+
 subMatrix = [[0.9,0.05,0.025,0.025],[0.05,0.9,0.025,0.025], \
         [0.025,0.025,0.9,0.05],[0.025,0.025,0.05,0.9]]
 
-print recursivePrunning(test_newick, alignedSequences, subMatrix)
+parser = argparse.ArgumentParser()
+parser.add_argument('-t','--tree_file',required=True)
+parser.add_argument('-a','--alignment_file',required=True)
+args = parser.parse_args()
+treeIN = args.tree_file
+alignIN = args.alignment_file
+
+# test seqs
+test_read = readAlignment(alignIN)
+
+alignedSequences =  formatAlignment(test_read)
+
+
+#	print(right_matrixi test tree
+newickTest = readNewick(treeIN)[0]
+test_newick = parseNewick(newickTest, name='Root')
+
+
+prob_set = recursivePrunning(test_newick, alignedSequences, subMatrix)
+prob = 1
+for i in prob_set:
+	prob *= sum(i)
+print float(prob)
