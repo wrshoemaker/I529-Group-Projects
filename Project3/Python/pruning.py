@@ -1,154 +1,253 @@
-#this script is the implementation of pruning algorithm
+#!/usr/bin/env python
 from __future__ import division
-import re
-import os
-
-#default setting and data for this project
-base_length = 0.1
-base_matrix=[[0.9,0.05,0.025,0.025],[0.05,0.9,0.025,0.025],[0.025,0.025,0.9,0.05],[0.025,0.025,0.05,0.9]]#the substitution matrix for length = 0.1
-background_freq = [0.25,0.25,0.25,0.25]#assume equal probabilty for A,C,G,T
-
-# This function reads in a Newick formatted file
+import itertools, collections, os, math, re, argparse, operator
+from collections import defaultdict, Iterable
+import collections
 
 mydir = os.path.dirname(os.path.realpath(__file__))
 mydir = str(mydir[:-6]) + 'data/'
+#treeIN = mydir + '/' + 'tree_file.txt'
+#alignIN = mydir + '/' + 'alignment_file.txt'
 
 
-def read_newick(newick_list):
-	'''
-	this function takes a list of newick lines as an arguement
-	and returns each item in the list as a nested tuple
-	The function assumes you have a sorted Newick object
-	'''
-	for nwk in newick_list:
-		nested_levels = nwk.count(')') + 1
-		nwk_list =  re.split(r'[,:]+', nwk)
-		#print nwk_list
-		nwk_list = [line.translate(None, '()') for line in nwk_list]
-		number_comparisons = sum(range(0, nested_levels, 1))
-		return_list = []
-		for x in range(0,number_comparisons):
-			if x == 0:
-				label = str(nwk_list[x]) + '_' + str(nwk_list[x+2])
-				return_tuple = (label, float(nwk_list[1]), float(nwk_list[3]))
-				return_list.append(return_tuple)
-			elif x == 1 :
-				label = str(nwk_list[x+1]) + '_' + str(nwk_list[x+4])
-				return_tuple = (label, float(nwk_list[1]) + float(nwk_list[4]) , float(nwk_list[6]))
-				return_list.append(return_tuple)
-			elif x == 2 :
-				label = str(nwk_list[x]) + '_' + str(nwk_list[x+3])
-				return_tuple = (label, float(nwk_list[3]) + float(nwk_list[4]) , float(nwk_list[6]))
-				return_list.append(return_tuple)
+def readNewick(fileNewick):
+    listNewick = []
+    with open(fileNewick, "r") as f:
+        line = f.read().strip()
+        listNewick.append(line)
+    return listNewick
 
-		print return_list
-		return return_list
+def readAlignment(fileAlignment):
+    '''
+    Takes the file containing the sequences and returns a
+    nested list containing lists of ['name', 'sequence']
+    '''
+    listAlignment = []
+    with open(fileAlignment, "r") as f:
+        for line in f:
+            line = line.split(':')
+            line = map(str.strip, line)
+            listAlignment.append(line)
+    return listAlignment
+
+def formatAlignment(listAlignment):
+    '''
+    Takes the output from readAlignment and returns a tuple containing to lists;
+    the first list contains sequence names, the second list contains tuples
+    of the aligned nucleotides. ex (['seq1','seq2'], [('A','C'), ('A','G')])
+    Uninformative sites are removed.
+    '''
+    # get just the sequences
+    sequences = [ x[1].upper() for x in listAlignment ]
+    names = [ x[0] for x in listAlignment ]
+#    print sequences
+    alignedSeqs = zip(*sequences)
+#    print alignedSeqs
+#    for x in alignedSeqs:
+#        if len(set(x)) < 2:
+#           alignedSeqs.remove(x)
+    return (names, alignedSeqs)
+
+def parseNewick(newick, name='Root'):
+    tree = []
+    i = 0
+    while i < len(newick) - 1:
+        i = i + 1
+        if startsClade(newick[i]):
+            clade = getClade(newick[i:])
+            node_name = getWord(newick[i + len(clade)])
+            tree.append(parseNewick(clade, node_name))
+            i = i + len(clade) + len(node_name)
+
+        elif startsLeaf(newick[i]):
+            leaf = getWord(newick[i:])
+
+            if newick.count(')') > 1:
+                test_what = newick.rsplit(')', 2)
+                str_list = filter(None, test_what)
+                return_values = getWord_test(str_list[-1])
+            else:
+                return_values = getWord_test(newick[i:])
+            tree.append(return_values)
+            i = i + len(leaf)
+    return tree
+
+def startsLeaf(c):
+    return c.isalpha()
+
+def startsClade(c):
+    return c == '('
+
+def endsClade(c):
+    return c == ')'
+
+def getClade(newick):
+    desc = 0
+    for i, c in enumerate(newick):
+        if startsClade(c):
+            desc += 1
+        elif endsClade(c):
+            desc -= 1
+        if desc == 0:
+            return newick[:i+1]
+
+def getWord(string):
+    for i, c in enumerate(string):
+        if not c.isalnum():
+            return string[:i]
+    return string
+
+def getWord_test(string):
+    stringSplit = re.split(r'[(),:]+', string)
+    stringSplit = filter(None, stringSplit)
+    if len(stringSplit) == 4:
+        return stringSplit[:-2]
+    else:
+        return stringSplit
+
+###### prunning algorithm
+## row1, row2, etc
+###[[A, C, G, T]]
+## unit of evolutionary time
 
 
-#this function does 4x4 matrix multiplication
-def matrix_multiply(matrixA,matrixB):
-	output = [[0 for i in range(4)]for i in range(4)]
-	for i in range(4):
-		for j in range(4):
-			output[i][j] = matrixA[i][0]*matrixB[0][j]+matrixA[i][1]*matrixB[1][j]+matrixA[i][2]*matrixB[2][j]+matrixA[i][3]*matrixB[3][j]
+def matrix_multiply(a,b):
+    zip_b = zip(*b)
+    return [[sum(ele_a*ele_b for ele_a, ele_b in zip(row_a, col_b))
+             for col_b in zip_b] for row_a in a]
 
-	return output
 
 #this function take input of base_substitution matrix and the value of t, outputp(t)
-def Compute_substitution(base_matrix,length):
-	relative_length = int(length /0.1)
-	'''initial of the output matrix in length t '''
-	new_matrix =[[0 for i in range(4)]for i in range(4)]
-	if relative_length == 1:
-		return base_matrix
-	elif relative_length == 2:
-		return matrix_multiply(base_matrix,base_matrix)
-	else:
-		new_matrix = matrix_multiply(base_matrix,base_matrix)
-		for i in range(relative_length-2):
-			new_matrix = matrix_multiply(new_matrix,base_matrix)
-		return new_matrix
+def Compute_substitution(base_matrix, length):
+    relative_length = int(length /0.1)
+    '''initial of the output matrix in length t '''
+    new_matrix =[[0 for i in range(4)]for i in range(4)]
+    if relative_length == 1:
+        return base_matrix
+    elif relative_length == 2:
+        return matrix_multiply(base_matrix,base_matrix)
+    else:
+        new_matrix = matrix_multiply(base_matrix,base_matrix)
+        for i in range(relative_length-2):
+            new_matrix = matrix_multiply(new_matrix,base_matrix)
+        return new_matrix
 
-#function of Pruning Algorithm to calculate the A,C,G,T freq for the parental node from its two children
-def PruningAlgrtm(node1,node2,matrix1,matrix2):
-	# node1, node2 are two children of one node
-	print node1, node2
-	node1_A, node1_C, node1_G, node1_T = node1[0], node1[1], node1[2], node1[3]
-	node2_A, node2_C, node2_G, node2_T = node2[0], node2[1], node2[2], node2[3]
-	#print node2_A
-	# freq of parental node is A
-	nodeP_A = (node1_A*matrix1[0][0]+node1_C*matrix1[0][1]+node1_G*matrix1[0][2]+node1_T*matrix1[0][3]) * (node2_A*matrix2[0][0]+node2_C*matrix2[0][1]+node2_G*matrix2[0][2]+node2_T*matrix2[0][3])
-	# freq of parental node is C
-	nodeP_C = (node1_A*matrix1[1][0]+node1_C*matrix1[1][1]+node1_G*matrix1[1][2]+node1_T*matrix1[1][3]) * (node2_A*matrix2[1][0]+node2_C*matrix2[1][1]+node2_G*matrix2[1][2]+node2_T*matrix2[1][3])
-	# freq of parental node is G
-	nodeP_G = (node1_A*matrix1[2][0]+node1_C*matrix1[2][1]+node1_G*matrix1[2][2]+node1_T*matrix1[2][3]) * (node2_A*matrix2[2][0]+node2_C*matrix2[2][1]+node2_G*matrix2[2][2]+node2_T*matrix2[2][3])
-	# freq of parental node is T
-	nodeP_T = (node1_A*matrix1[3][0]+node1_C*matrix1[3][1]+node1_G*matrix1[3][2]+node1_T*matrix1[3][3]) * (node2_A*matrix2[3][0]+node2_C*matrix2[3][1]+node2_G*matrix2[3][2]+node2_T*matrix2[3][3])
-	nodeP = [nodeP_A,nodeP_C,nodeP_G,nodeP_T]
-	#print nodeP
-	return nodeP
-
-#A function to test the accuray of the program using class example
-def TestExmpl():
-	#test_tree = '(((A:0.2, B:0.2):0.1, C:0.2):0.1, (D:0.2, E:0.2):0.1)'
-	#test_leaves = ['T', 'C', 'A', 'C', 'C']
-	# matrix order is based on 'A, C, G, T'   ('T, C, A, G' shown in the class slide)
-	pass
-test_matrix_01= [[0.906563,0.023791,0.045855,0.023791],[0.023791,0.906563,0.023791,0.045855],[0.045855,0.023791,0.906563,0.023791],[0.023791,0.045855,0.023791,0.906563]]
-test_matrix_02 = Compute_substitution(test_matrix_01,0.2)
-
-#this function read the tree_file in Newick Standard format, then output a binary tree in nested lists
-def read_tree(tree_file):
-	with open(tree_file,'r') as ifile:
-		tree_line = ifile.read().strip()
+def getProb(fromBase, toBase, length):
+    toBase = toBase.upper()
+    fromBase = fromBase.upper()
+    refDict = {'A':0, 'C':1, 'G':2, 'T':3}
+    toIndex = refDict[toBase]
+    fromIndex = refDict[fromBase]
+    matrix = Compute_substitution(length)
+    return matrix[fromIndex][toIndex]
 
 
-
-#test of Compute_substitution function
-
-	leaf1 = [0,0,0,1]
-	leaf2 = [0,1,0,0]
-	leaf3 = [1,0,0,0]
-	leaf4 = [0,1,0,0]
-	leaf5 = [0,1,0,0]
-
-
-	# length of branch to node to 6,7,8 is 0.1, others are 0.2
-	node7 = PruningAlgrtm(leaf1,leaf2,test_matrix_02,test_matrix_02)
-	node6 = PruningAlgrtm(node7,leaf3,test_matrix_01,test_matrix_02)
-	node8 = PruningAlgrtm(leaf4,leaf5,test_matrix_02,test_matrix_02)
-	root = PruningAlgrtm(node6,node8,test_matrix_01,test_matrix_01)
-	return root
+def prunningAlgorithm(node1,node2,matrix1,matrix2):
+    # node1, node2 are two children of one node
+    node1_A, node1_C, node1_G, node1_T = node1[0], node1[1], node1[2], node1[3]
+    node2_A, node2_C, node2_G, node2_T = node2[0], node2[1], node2[2], node2[3]
+    #print node2_A
+    # freq of parental node is A
+    nodeP_A = (node1_A * matrix1[0][0] + node1_C * matrix1[0][1] + \
+        node1_G * matrix1[0][2] + node1_T * matrix1[0][3]) * \
+        (node2_A * matrix2[0][0] + node2_C * matrix2[0][1] + \
+        node2_G * matrix2[0][2] + node2_T * matrix2[0][3])
+    # freq of parental node is C
+    nodeP_C = (node1_A * matrix1[1][0] + node1_C * matrix1[1][1] + \
+        node1_G * matrix1[1][2] + node1_T * matrix1[1][3]) * \
+        (node2_A * matrix2[1][0] + node2_C * matrix2[1][1] + \
+        node2_G * matrix2[1][2] + node2_T * matrix2[1][3])
+    # freq of parental node is G
+    nodeP_G = (node1_A * matrix1[2][0] + node1_C * matrix1[2][1] + \
+        node1_G * matrix1[2][2] + node1_T * matrix1[2][3]) * \
+        (node2_A * matrix2[2][0] + node2_C * matrix2[2][1]+\
+        node2_G * matrix2[2][2] + node2_T * matrix2[2][3])
+    # freq of parental node is T
+    nodeP_T = (node1_A * matrix1[3][0] + node1_C * matrix1[3][1] + \
+        node1_G * matrix1[3][2] + node1_T * matrix1[3][3]) * \
+        (node2_A * matrix2[3][0] + node2_C * matrix2[3][1] + \
+        node2_G * matrix2[3][2] + node2_T * matrix2[3][3])
+    nodeP = [nodeP_A,nodeP_C,nodeP_G,nodeP_T]
+    return nodeP
 
 
 
+def flatten(coll):
+    for i in coll:
+        if isinstance(i, Iterable) and not isinstance(i, basestring):
+            for subc in flatten(i):
+                yield subc
+        else:
+            yield i
 
-###### use the program to work on project data #####
-if __name__ == "__main__":
-	#print TestExmpl()  #test the accuray of the program
+def siteToDummy(site):
+    stateList = []
+    for sample in site:
+        if sample == 'A':
+            stateList.append([1,0,0,0])
+        elif sample == 'C':
+            stateList.append([0,1,0,0])
+        elif sample == 'G':
+            stateList.append([0,0,1,0])
+        else:
+            stateList.append([0,0,0,1])
+    return stateList
 
-	'''
-	pattern = re.compile(r"\b[0-9]+(?:\.[0-9]+)?\b")
-	branch_lengths = pattern.findall(tree)
+def recursivePrunning(newickTree, alignedSeqs, subMatrix):
+    '''
+    This function takes the newick tree, the aligned sequences, and the substitution
+    matrix as arguments. It returns a nested list, with each element containing the
+    likelihood of observing a given nucleotide (list order = A, C, G, T) for
+    the alignment given the evolutionary distance supplied by the phylogeny
+    '''
+    numberTaxa = len(alignedSeqs[0])
+    # go through all n-1 comparisons (n = # nodes)
+    flattenedNewick = list(flatten(newickTree))
+    probSiteGivenTree = []
+    for seq in alignedSeqs[1]:
+        seqDummy = siteToDummy(seq)
+        currentPrunning = []
+        for x in range (0, numberTaxa-1):
+            if x == 0:
+                matrix1 = Compute_substitution(subMatrix,float(flattenedNewick[1]))
+                matrix2 = Compute_substitution(subMatrix,float(flattenedNewick[3]))
+                #print siteToDummy(alignedSeqs[1])
+                currentPrunning = prunningAlgorithm(seqDummy[0],seqDummy[1], matrix1, matrix2)
+            else:
+                # matrix 1 is from the previously merged nodes
+                matrix1 = Compute_substitution(subMatrix,float(flattenedNewick[ x + ( 3 * (numberTaxa-2) ) ]))
+                # matrix 2 is from the outer node
+                matrix2 = Compute_substitution(subMatrix,float(flattenedNewick[ x + ( 5 * (numberTaxa-2) ) ]))
+                node1 = currentPrunning
+                node2 = seqDummy[x + 1]
+                currentPrunning = prunningAlgorithm(node1,node2, matrix1, matrix2)
+        probSiteGivenTree.append(currentPrunning)
+    return probSiteGivenTree
 
-	#print(sum(test_matrix_01[0]),sum(test_matrix_01[1]),sum(test_matrix_01[2]),sum(test_matrix_01[3])) #test the matrix
-	'''
+
+subMatrix = [[0.9,0.05,0.025,0.025],[0.05,0.9,0.025,0.025], \
+        [0.025,0.025,0.9,0.05],[0.025,0.025,0.05,0.9]]
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-t','--tree_file',required=True)
+parser.add_argument('-a','--alignment_file',required=True)
+args = parser.parse_args()
+treeIN = args.tree_file
+alignIN = args.alignment_file
+
+# test seqs
+test_read = readAlignment(alignIN)
+
+alignedSequences =  formatAlignment(test_read)
 
 
-#new_matrix = Compute_substitution(test_matrix,0.3)
+#	print(right_matrixi test tree
+newickTest = readNewick(treeIN)[0]
+test_newick = parseNewick(newickTest, name='Root')
 
-
-
-
-
-
-#print(new_matrix)
-#print(sum(new_matrix[0]))
-print read_tree("../tree_file")
-
-# Testing newick reader
-
-#with open(mydir + 'tree_file.txt') as IN:
-#	read_tree(IN)
-	#trees = [line.split('\n') for line in IN.read().strip().split('\n\n')]
-#trees_test = read_newick(trees[0])
+print test_newick
+prob_set = recursivePrunning(test_newick, alignedSequences, subMatrix)
+prob = 1
+for i in prob_set:
+	prob *= sum(i)
+print float(prob)
