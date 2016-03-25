@@ -18,4 +18,5 @@ Given the base substitution matrix P(0.1), we need to compute the other matrix P
 ### Pruning algorithm to calcualte probabilty for each column in the alignment
 Recurring calculation of probability of subtree rooted in Xi.
 
-### Forward algorithm to sum probabilities of each column
+###Calculate the probability to observe this alignment
+sum possibilities of A,C,G,T for each column and do multiplication
