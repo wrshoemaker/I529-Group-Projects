@@ -3,7 +3,7 @@ import pandas as pd
 import os
 
 mydir = os.path.expanduser("~/github/I529-Group-Projects/FinalProject/")
-IN = mydir + 'data/Meme_new_out/meme.txt'
+IN = mydir + 'data/Meme_final/meme.txt'
 
 
 # motif dict structure
@@ -17,7 +17,7 @@ def getMotifCounts():
         if len(line) == 0:
             continue
 
-        if i in range(34, 75):
+        if i in range(34, 79):
             for j in range(0, len(line), 3):
                 lengthDict[line[j]] = int(line[j + 2])
     for x in range(1, 6):
@@ -28,14 +28,13 @@ def getMotifCounts():
     motifNum = ''
     for i, line in enumerate(open(IN)):
         line = line.strip().split()
-        if len(line) == 0:
+        if len(line) == 0 or line[0] == 'SEQUENCE' or line[-1] == '*****':
             continue
         if line[0] == 'Motif':
             motifNum = (line[1])
-        if i > 137 and len(line) == 6 and line[0] != 'SEQUENCE' and line[-1] != '*****':
+        if i > 150 and len(line) == 6:
             motifDict[motifNum][line[0]] += 1
     return motifDict
-
 motifDictTest = getMotifCounts()
 motifDictTestPandas =  pd.DataFrame.from_dict(motifDictTest)
 motifDictTestPandas['Sequence'] = motifDictTestPandas.index
