@@ -14,6 +14,8 @@ from sklearn.cross_validation import StratifiedKFold
 from sklearn.feature_selection import RFECV
 from sklearn import cross_validation
 import scipy.stats
+from sklearn.preprocessing import Imputer
+
 sns.set(style='whitegrid', context='notebook')
 
 mydir = os.path.expanduser("~/github/I529-Group-Projects/FinalProject/")
@@ -34,7 +36,7 @@ def plotResiduals(y_train, y_test, y_train_pred, y_test_pred, filename = 'Fig1')
     plt.savefig(str(mydir) + 'figs/' +  filename + ".png")
 
 def pairPlot(df, filename = 'Fig2'):
-    cols = ['Length(log10)','GC','Expression', '1', '2', '3', '4', '5']
+    cols = list(df.columns.values)
     sns_plot = sns.pairplot(df[cols], size=2.5)
     sns_plot.savefig(str(mydir) + 'figs/' + filename + ".png")
 
@@ -45,16 +47,33 @@ df = pd.read_csv(mydir + 'data/MEME_dataframe.txt',\
 X = df.drop(['Expression', 'Sequence'], axis=1)
 X = X.ix[:, X.columns != 'Expression'].values
 y = df['Expression'].values
+
+imp = Imputer(missing_values='NaN', strategy='mean', axis=0)
+imp = imp.fit(X)
+# Impute our data, then train
+X_train_imp = imp.transform(X)
+
+X_train_imp = pd.DataFrame(X_train_imp, \
+    columns = ['Length(log10)', 'GC', '1_x','2_x','3_x','4_x','5_x','1_y','2_y',\
+        '3_y','4_y','5_y','1','2','3','4','5'])
+print X_train_imp
+def print_full(x):
+    pd.set_option('display.max_rows', len(x))
+    print(x)
+    pd.reset_option('display.max_rows')
+
 EN = ElasticNet(alpha = 1.0, l1_ratio = 0.5)
 slr = LinearRegression()
-# Figure 1
-#pairPlot(df)
+lasso = Lasso(alpha = 1.0)
 
+# Figure 1
+
+#pairPlot(X_train_imp)
 # figure out how many features we need
 # and what featuer it is
 
 rfecv = RFECV(estimator=slr, step=1, cv=StratifiedKFold(y, 2))
-rfecv = rfecv.fit(X, y)
+rfecv = rfecv.fit(X_train_imp, y)
 print("Optimal number of features : %d" % rfecv.n_features_)
 print "RFECV ranking: " + str(rfecv.ranking_)
 print "RFECV support: " + str(rfecv.support_)
@@ -64,7 +83,7 @@ print "RFECV support: " + str(rfecv.support_)
 ## plot cross validated observed predicted
 # reshape X
 #testX = np.reshape(X[:, 2:], (90, 6))
-predicted = cross_val_predict(slr, X, y, cv=20)
+predicted = cross_val_predict(slr, X_train_imp, y, cv=20)
 fig, ax = plt.subplots()
 ax.scatter(y, predicted)
 ax.plot([y.min(), y.max()], [y.min(), y.max()], 'k--', lw=4)
@@ -73,7 +92,7 @@ ax.set_ylabel('Predicted gene expression')
 plt.savefig(str(mydir) + 'figs/' +  'Fig3' + ".png")
 
 
-print scipy.stats.pearsonr(y, predicted)
+print scipy.stats.pearsonr(predicted, y)
 print scipy.stats.chisquare(predicted, f_exp = y)
 print scipy.stats.spearmanr(y, predicted)
 
@@ -156,7 +175,6 @@ print('R^2 train: %.3f, test: %.3f' % (
 
 
 # Lets try looking at the data with LASSO and Elastic Net
-lasso = Lasso(alpha = 1.0)
 
 
 scores1 = cross_validation.cross_val_score( \

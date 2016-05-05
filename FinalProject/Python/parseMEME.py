@@ -6,7 +6,7 @@ from collections import Counter
 from itertools import product
 
 mydir = os.path.expanduser("~/github/I529-Group-Projects/FinalProject/")
-IN = mydir + 'data/Meme_final/meme.txt'
+IN = mydir + 'data/Meme_final_dna/meme.txt'
 
 class classFASTA:
 
@@ -94,13 +94,13 @@ def getMotifCounts():
     for x in range(1, 6):
         motifDict[str(x)] = {}
         for key, value in lengthDict.iteritems():
-            motifDict[str(x)][key] = 0
-
+            motifDict[str(x)][key] = float(0)
 
     motifNum = ''
     for i, line in enumerate(open(IN)):
         line = line.strip().split()
-        if len(line) == 0 or line[0] == 'SEQUENCE' or line[-1] == '*****':
+        if len(line) == 0 or line[0] == 'SEQUENCE' or line[-1] == '*****' or '(' in line[0] \
+            or line[0] == 'Relative' or line[0] == 'Entropy' or line[0] == 'Stopped':
             continue
         if line[0] == 'Motif':
             motifNum = (line[1])
@@ -112,13 +112,13 @@ def getMotifCounts():
     for x in pValueDict:
         for y in pValueDict[x]:
             if len(pValueDict[x][y]) == 0:
-                pValueDict[x][y] = 0
+                pValueDict[x][y] = np.nan
             else:
                 pValueDict[x][y] = sum(pValueDict[x][y]) / len(pValueDict[x][y])
     for x in lengthCountDict:
         for y in lengthCountDict[x]:
             if len(lengthCountDict[x][y]) == 0:
-                lengthCountDict[x][y] = 0
+                lengthCountDict[x][y] = np.nan
             else:
                 lengthCountDict[x][y] = sum(lengthCountDict[x][y]) / len(lengthCountDict[x][y])
 
@@ -141,6 +141,8 @@ mergedDataFrames = pd.merge(df, motifDictTestPandas, on='Sequence', how='outer')
 
 mergedDataFrames = pd.merge(mergedDataFrames, lengthCountDictTestPandas, on='Sequence', how='outer')
 mergedDataFrames = pd.merge(mergedDataFrames, pValueDictTestPandas, on='Sequence', how='outer')
+
+# replace missing values with the mean
 
 mergedDataFrames.to_csv(path_or_buf = mydir + 'data/MEME_dataframe.txt', \
     sep = '\t', index=False)
