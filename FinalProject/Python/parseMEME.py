@@ -74,7 +74,9 @@ def mergeFeatureSet():
 
 def getMotifCounts():
     lengthDict = {}
+    lengthCountDict = {}
     motifDict = {}
+    pValueDict = {}
     for i, line in enumerate(open(IN)):
         line = line.strip().split()
         if len(line) == 0:
@@ -83,10 +85,17 @@ def getMotifCounts():
         if i in range(34, 79):
             for j in range(0, len(line), 3):
                 lengthDict[line[j]] = int(line[j + 2])
+                lengthCountDict[line[j]] = dict()
+                pValueDict[line[j]] = dict()
+                for k in range(1,6):
+                    lengthCountDict[line[j]][str(k)] = []
+                    pValueDict[line[j]][str(k)] = []
+
     for x in range(1, 6):
         motifDict[str(x)] = {}
         for key, value in lengthDict.iteritems():
             motifDict[str(x)][key] = 0
+
 
     motifNum = ''
     for i, line in enumerate(open(IN)):
@@ -97,17 +106,41 @@ def getMotifCounts():
             motifNum = (line[1])
         if i > 150 and len(line) == 6:
             motifDict[motifNum][line[0]] += 1
-    return motifDict
+            pValueDict[line[0]][motifNum].append(np.log10(float(line[2])))
+            lengthCountDict[line[0]][motifNum].append(int(line[1]) / lengthDict[line[0]])
+            #lengthDict[line[j]].append()
+    for x in pValueDict:
+        for y in pValueDict[x]:
+            if len(pValueDict[x][y]) == 0:
+                pValueDict[x][y] = 0
+            else:
+                pValueDict[x][y] = sum(pValueDict[x][y]) / len(pValueDict[x][y])
+    for x in lengthCountDict:
+        for y in lengthCountDict[x]:
+            if len(lengthCountDict[x][y]) == 0:
+                lengthCountDict[x][y] = 0
+            else:
+                lengthCountDict[x][y] = sum(lengthCountDict[x][y]) / len(lengthCountDict[x][y])
+
+    return (motifDict, lengthCountDict, pValueDict)
+
 
 mergeFeatureSet()
 motifDictTest = getMotifCounts()
-motifDictTestPandas =  pd.DataFrame.from_dict(motifDictTest)
+motifDictTestPandas =  pd.DataFrame.from_dict(motifDictTest[0])
 motifDictTestPandas['Sequence'] = motifDictTestPandas.index
 
+lengthCountDictTestPandas =  pd.DataFrame.from_dict(motifDictTest[1]).transpose()
+lengthCountDictTestPandas['Sequence'] = lengthCountDictTestPandas.index
+pValueDictTestPandas =  pd.DataFrame.from_dict(motifDictTest[2]).transpose()
+pValueDictTestPandas['Sequence'] = pValueDictTestPandas.index
 
 df = pd.read_csv(mydir + 'data/DREAM6_ExPred_Promoters_Features_Activitis.txt',\
     sep = '\t')
 mergedDataFrames = pd.merge(df, motifDictTestPandas, on='Sequence', how='outer')
+
+mergedDataFrames = pd.merge(mergedDataFrames, lengthCountDictTestPandas, on='Sequence', how='outer')
+mergedDataFrames = pd.merge(mergedDataFrames, pValueDictTestPandas, on='Sequence', how='outer')
 
 mergedDataFrames.to_csv(path_or_buf = mydir + 'data/MEME_dataframe.txt', \
     sep = '\t', index=False)
