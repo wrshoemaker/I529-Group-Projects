@@ -6,7 +6,7 @@ from collections import Counter
 from itertools import product
 
 mydir = os.path.expanduser("~/github/I529-Group-Projects/FinalProject/")
-IN = mydir + 'data/Meme_final_dna/meme.txt'
+
 
 class classFASTA:
 
@@ -72,7 +72,10 @@ def mergeFeatureSet():
         sep = '\t', index=False)
 
 
-def getMotifCounts():
+def getMotifCounts(IN = mydir + 'data/Meme_final_dna/meme.txt'):
+    offset = 0
+    if 'MW' in IN:
+        offset = 1
     lengthDict = {}
     lengthCountDict = {}
     motifDict = {}
@@ -100,14 +103,16 @@ def getMotifCounts():
     for i, line in enumerate(open(IN)):
         line = line.strip().split()
         if len(line) == 0 or line[0] == 'SEQUENCE' or line[-1] == '*****' or '(' in line[0] \
-            or line[0] == 'Relative' or line[0] == 'Entropy' or line[0] == 'Stopped':
+            or line[0] == 'Relative' or line[0] == 'Entropy' or line[0] == 'Stopped' \
+            or line[0] == 'consensus' or line[0] == 'Sequence' or line[0] == 'Motif':
             continue
-        if line[0] == 'Motif':
+        if line[0] == 'MOTIF':
             motifNum = (line[1])
-        if i > 150 and len(line) == 6:
+        if i > 150 and len(line) == 6 + offset:
+
             motifDict[motifNum][line[0]] += 1
-            pValueDict[line[0]][motifNum].append(np.log10(float(line[2])))
-            lengthCountDict[line[0]][motifNum].append(int(line[1]) / lengthDict[line[0]])
+            pValueDict[line[0]][motifNum].append(np.log10(float(line[2 + offset])))
+            lengthCountDict[line[0]][motifNum].append(int(line[1 + offset]) / lengthDict[line[0]])
             #lengthDict[line[j]].append()
     for x in pValueDict:
         for y in pValueDict[x]:
@@ -121,11 +126,11 @@ def getMotifCounts():
                 lengthCountDict[x][y] = np.nan
             else:
                 lengthCountDict[x][y] = sum(lengthCountDict[x][y]) / len(lengthCountDict[x][y])
-
     return (motifDict, lengthCountDict, pValueDict)
 
 
 mergeFeatureSet()
+
 motifDictTest = getMotifCounts()
 motifDictTestPandas =  pd.DataFrame.from_dict(motifDictTest[0])
 motifDictTestPandas['Sequence'] = motifDictTestPandas.index
@@ -138,11 +143,32 @@ pValueDictTestPandas['Sequence'] = pValueDictTestPandas.index
 df = pd.read_csv(mydir + 'data/DREAM6_ExPred_Promoters_Features_Activitis.txt',\
     sep = '\t')
 mergedDataFrames = pd.merge(df, motifDictTestPandas, on='Sequence', how='outer')
-
 mergedDataFrames = pd.merge(mergedDataFrames, lengthCountDictTestPandas, on='Sequence', how='outer')
 mergedDataFrames = pd.merge(mergedDataFrames, pValueDictTestPandas, on='Sequence', how='outer')
 
-# replace missing values with the mean
+
+##### MW
+
+motifDictTest_MW = getMotifCounts(IN = mydir + 'data/MEME_MW/meme.txt')
+motifDictTestPandas_MW =  pd.DataFrame.from_dict(motifDictTest_MW[0])
+motifDictTestPandas_MW['Sequence'] = motifDictTestPandas_MW.index
+
+lengthCountDictTestPandas_MW =  pd.DataFrame.from_dict(motifDictTest_MW[1]).transpose()
+lengthCountDictTestPandas_MW['Sequence'] = lengthCountDictTestPandas_MW.index
+pValueDictTestPandas_MW =  pd.DataFrame.from_dict(motifDictTest_MW[2]).transpose()
+pValueDictTestPandas_MW['Sequence'] = pValueDictTestPandas_MW.index
+
+mergedDataFrames_MW = pd.merge(df, motifDictTestPandas_MW, on='Sequence', how='outer')
+mergedDataFrames_MW = pd.merge(mergedDataFrames_MW, lengthCountDictTestPandas_MW, on='Sequence', how='outer')
+mergedDataFrames_MW = pd.merge(mergedDataFrames_MW, pValueDictTestPandas_MW, on='Sequence', how='outer')
+mergedDataFrames_MW.to_csv(path_or_buf = mydir + 'data/MEME_dataframe_MW.txt', \
+    sep = '\t', index=False)
+
+MW_to_merge =  mergedDataFrames_MW[['Sequence','1_x', '1_y', '1']]
+MW_to_merge.columns = ['Sequence', '6_x', '6_y', '6']
+#mergedDataFrames = pd.merge(mergedDataFrames, MW_to_merge, on='Sequence', how='outer')
+
+
 
 mergedDataFrames.to_csv(path_or_buf = mydir + 'data/MEME_dataframe.txt', \
     sep = '\t', index=False)
