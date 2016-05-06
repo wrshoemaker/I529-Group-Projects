@@ -1,0 +1,546 @@
+********************************************************************************
+MEME - Motif discovery tool
+********************************************************************************
+MEME version 4.11.1 (Release date: Fri Jan 15 12:51:59 2016 -0800)
+
+For further information on how to interpret these results or to get
+a copy of the MEME software please access http://meme-suite.org .
+
+This file may be used as input to the MAST algorithm for searching
+sequence databases for matches to groups of motifs.  MAST is available
+for interactive use and downloading at http://meme-suite.org .
+********************************************************************************
+
+
+********************************************************************************
+REFERENCE
+********************************************************************************
+If you use this program in your research, please cite:
+
+Timothy L. Bailey and Charles Elkan,
+"Fitting a mixture model by expectation maximization to discover
+motifs in biopolymers", Proceedings of the Second International
+Conference on Intelligent Systems for Molecular Biology, pp. 28-36,
+AAAI Press, Menlo Park, California, 1994.
+********************************************************************************
+
+
+********************************************************************************
+TRAINING SET
+********************************************************************************
+DATAFILE= training.fasta
+ALPHABET= ACGT
+Sequence name            Weight Length  Sequence name            Weight Length  
+-------------            ------ ------  -------------            ------ ------  
+RPL13A                   1.0000    634  RPL42B                   1.0000    754  
+RPS23A                   1.0000    494  RPL35A                   1.0000    793  
+RPP0                     1.0000    780  RPL14A                   1.0000   1172  
+RPL23B                   1.0000    576  RPS9A                    1.0000    864  
+RPS1A                    1.0000    406  RPL40B                   1.0000   1053  
+RPL16B                   1.0000    698  RPS0B                    1.0000    805  
+RPL25                    1.0000    867  RPL20B                   1.0000    644  
+RPS6B                    1.0000    713  RPL3                     1.0000   1129  
+RPS11B                   1.0000    470  RPL10                    1.0000    450  
+RPS23B                   1.0000    465  RPL31A                   1.0000    630  
+RPS14B                   1.0000    372  RPL38                    1.0000    788  
+RPL18B                   1.0000   1131  RPS13                    1.0000    341  
+RPS6A                    1.0000    724  RPL6B                    1.0000    957  
+RPS4A                    1.0000   1099  RPS16A                   1.0000    716  
+RPL13B                   1.0000    719  RPL1B                    1.0000    773  
+RPS2                     1.0000    899  RPL4A                    1.0000    213  
+RPS7A                    1.0000   1183  RPL36A                   1.0000    331  
+RPL41B                   1.0000    619  RPL33A                   1.0000   1147  
+RPL43A                   1.0000    492  RPL22A                   1.0000    427  
+RPP1A                    1.0000    510  RPL33B                   1.0000    660  
+RPL27A                   1.0000    833  RPS16B                   1.0000    634  
+RPS10A                   1.0000    494  RPL23A                   1.0000    462  
+RPS21B                   1.0000    897  RPL40A                   1.0000    637  
+RPS27B                   1.0000    554  RPS28B                   1.0000    294  
+RPL36B                   1.0000    428  RPL15A                   1.0000    682  
+RPS24A                   1.0000    723  RPL18A                   1.0000    452  
+RPL27B                   1.0000    555  RPS24B                   1.0000    687  
+RPS18B                   1.0000    569  RPL34B                   1.0000    780  
+RPS20                    1.0000    623  RPL11B                   1.0000    650  
+RPS7B                    1.0000    567  RPP1B                    1.0000    473  
+RPL4B                    1.0000   1194  RPS27A                   1.0000    432  
+RPL8A                    1.0000    350  RPS12                    1.0000    530  
+RPL15B                   1.0000    965  RPL20A                   1.0000    607  
+RPL8B                    1.0000   1199  RPL14B                   1.0000    306  
+RPS4B                    1.0000    782  RPL39                    1.0000    594  
+RPS3                     1.0000   1180  RPL17A                   1.0000    664  
+RPL2A                    1.0000    658  RPS1B                    1.0000    605  
+RPS19A                   1.0000    527  RPL7B                    1.0000    390  
+RPL41A                   1.0000    386  RPP2A                    1.0000    719  
+RPL43B                   1.0000   1156  RPL22B                   1.0000    528  
+RPS21A                   1.0000    289  
+********************************************************************************
+
+********************************************************************************
+COMMAND LINE SUMMARY
+********************************************************************************
+This information can also be useful in the event you wish to report a
+problem with the MEME software.
+
+command: meme training.fasta -o Meme_out -dna 
+
+model:  mod=         zoops    nmotifs=         1    evt=           inf
+object function=  E-value of product of p-values
+width:  minw=            8    maxw=           50
+width:  wg=             11    ws=              1    endgaps=       yes
+nsites: minsites=        2    maxsites=       81    wnsites=       0.8
+theta:  spmap=         uni    spfuzz=        0.5
+global: substring=     yes    branching=      no    wbranch=        no
+em:     prior=   dirichlet    b=            0.01    maxiter=        50
+        distance=    1e-05
+data:   n=           54553    N=              81    shuffle=        -1
+strands: +
+sample: seed=            0    ctfrac=         -1    maxwords=       -1
+Letter frequencies in dataset:
+A 0.307 C 0.196 G 0.177 T 0.320 
+Background letter frequencies (from dataset with add-one prior applied):
+A 0.307 C 0.196 G 0.177 T 0.320 
+********************************************************************************
+
+
+********************************************************************************
+MOTIF  1 MEME	width =  18  sites =  70  llr = 856  E-value = 5.2e-113
+********************************************************************************
+--------------------------------------------------------------------------------
+	Motif 1 Description
+--------------------------------------------------------------------------------
+Simplified        A  33262a:::519:a:223
+pos.-specific     C  11117:6a9:::a:2312
+probability       G  11:21::::5:1::::::
+matrix            T  6571::4:119:::7565
+
+         bits    2.5                   
+                 2.2        *    *     
+                 2.0        *    *     
+                 1.7        **   *     
+Relative         1.5      * **   **    
+Entropy          1.2     ** **  ***    
+(17.6 bits)      1.0     ***** ****    
+                 0.7     ***********   
+                 0.5   ************* * 
+                 0.2 * ****************
+                 0.0 ------------------
+
+Multilevel           TTTACACCCATACATTTT
+consensus            AAA A T  G    CCAA
+sequence                            A C
+                                       
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+	Motif 1 sites sorted by position p-value
+--------------------------------------------------------------------------------
+Sequence name             Start   P-value                   Site     
+-------------             ----- ---------            ------------------
+RPL36A                      165  8.06e-11 TTTAGACTGT TTTACACCCGTACATTTC ACAGTTTTTT
+RPS21B                      551  2.95e-10 CGACAATGTG TTTACACCCGTACACTTT ATACATCCAT
+RPS18B                      193  3.11e-09 ACTACTGAAT TTTACATCCATACATTTT TTTGAAATTT
+RPL23B                      184  1.19e-08 TTCCCTGTTG TATACATCCGTACACTTT TGTGAACCCA
+RPL2A                       142  1.46e-08 AATAAGACTT TTTTCACCCGTACATTTT TAACACCCAA
+RPS0B                       378  2.16e-08 TATTTCCCTT TTTACATCCGTACATATA AAATGTAAAC
+RPS21A                       62  3.07e-08 TTCCTGTACT TTTAAATCCGTACATTTT GAAAATTGAA
+RPL40A                      277  3.61e-08 ATTTGAGTTT ATTACATCCGTACATTAC TAAGATGTAT
+RPS4B                       297  4.96e-08 TCGAGACAAT TATGCATCCATACATTTC ACCCAGACAT
+RPL22B                      280  5.79e-08 TTTCTCCATG TCAACACCCGTACATATT CAGAGATAAC
+RPL20B                      284  5.79e-08 TTTTCGGGAC TGTTCACCCGTACATTTT ACGTTTCCGA
+RPL10                       178  6.81e-08 GGGGTGCTTT TTTACACCTGTACATCTT TTCCCTCCGT
+RPL1B                       458  7.92e-08 TACGGACATT TTTGAACCCATACATCTT TCAATATGCA
+RPP1B                       195  9.17e-08 CAGATATTCC TTTAAACCCATACATATC TTACACAAAA
+RPL22A                      196  9.17e-08 TACATTTAAT AATACATCCATACATTTA TGTTAATTTG
+RPL33A                      788  1.05e-07 TCCTTACCTC TTTACACCCTTACACTTC CTTTGATTAC
+RPL14A                      758  1.05e-07 TGACAGCGCA AATACACCCATACACTAT TTTTACATCT
+RPS7B                       261  1.20e-07 TCCGTACCTC TTTAAATCCGTACATTAT TGTTTTGCTT
+RPL42B                      390  1.38e-07 CCGAACATCC GATACACCCATACATCAT GAAAATAAAT
+RPS6B                       388  1.58e-07 AACCTCTTTT CTTGCATCCATACATCTT TGAACTCCAT
+RPS6A                       290  1.81e-07 TCGAGTTCTC ATTGAACCCATACATTTC AACTATTTTT
+RPS1B                       205  2.06e-07 ACAGCATTTT TGTACATCCATACACCAT ACACCATACA
+RPL13B                      384  2.06e-07 ATCTGTACAT TACGCACCCATACATTTA TAGTTTTTAA
+RPL36B                      110  2.34e-07 TTTGACTGTA TTTTCACCCGTACATCCA CGGATGTGTT
+RPL17A                      314  2.65e-07 CAAACACATT ACAACATCCGTACATTTA GTTGGCTCCA
+RPL27A                      413  2.99e-07 GAAAGACGTT AATGCATCCGTACACCTA CATCTTTACA
+RPS20                       362  3.36e-07 TACCTGCAAG TTCACACCTGTACATTTT CTACATCCGT
+RPP0                        514  3.36e-07 ATTTGCCTGC TTAACATCCGAACATTTC ACATTTTGAT
+RPL7B                       168  3.78e-07 GGAACTGGCA ACTAAATCCGTACATTTC TGAAATTATT
+RPS24A                      383  3.78e-07 ATATCGGGAC TGTACACCCACACATTTA CAAGCCCACA
+RPS23B                      153  3.78e-07 CGAACATCTC CAAACACCCATACATATT TATATTATCG
+RPL38                       497  4.26e-07 ATCTAGAGAA AATGCATCCGTGCATTTT CATAAACCCA
+RPS12                       234  4.78e-07 TGTTTACCAT TGTGCATCCGTACATTTG ATTTGTTTAC
+RPS16A                      405  5.36e-07 TCAGTACATA TTGGCACCCATACATTAT AAAATCATCT
+RPS19A                      277  7.41e-07 TGTGACGTTC GTTCAACCCGTACATTTA TATAAAACCG
+RPL41B                      271  8.23e-07 CACGACGGTT ACCACACCCGTACACCCT TATCTCATTT
+RPL8B                       912  9.14e-07 TCCATCCCAA TGAAGATCCGTACATCTT AGACACCCTT
+RPS23A                      122  9.14e-07 CCATACCCTA TATACACCCATACCCTAT TTTTAAATAT
+RPL43B                      864  1.01e-06 CATACATCCT TTTTAACCCATACATATC ATTTAGATTA
+RPS9A                       619  1.24e-06 TAAAAAAGGC TGCACACCCATGCATCAT TCTAAAAAAA
+RPS27B                      128  1.65e-06 AGCCCATACA TTTTCACCCATGCACCAT TGGATTATAA
+RPS16B                      268  1.65e-06 ATATTCAGAA AAAACACCCATACATGTT GAAAAATAAT
+RPL27B                      216  1.99e-06 ACCCAATCAT TTTCCACCCACACATATA TTACCCTTTT
+RPL43A                      265  1.99e-06 TCAAATTTTC AAAGAATCCGTACATTTA GAAATTTTTT
+RPS7A                       681  1.99e-06 CGTCATTCAT TTCAAACCCATACACAAT GAACCTTATC
+RPL31A                      202  1.99e-06 TTTTCATACC TTTACCTCCGTACACCAA TCTTTATTTT
+RPL41A                      107  2.39e-06 TTGACATATA CAAACATCCGCACATTTT ATAGCTTTCT
+RPS3                        919  2.39e-06 TTTTGTTTCC GTAACATCCATACCTTTC CTGTATAATA
+RPL8A                       108  2.39e-06 TATTATGAAG AAAACACCCAAACATATC TAGGCCATCA
+RPL16B                      290  2.39e-06 TCCTTGACAT ATTCAATCCGTACACTAT ACACACCCAA
+RPL13A                      432  2.39e-06 TACATTTCCT GTTACATCCTTACATATA TGCAGGCAAT
+RPS24B                      203  2.61e-06 TTTTTGATCA ACTACATCTGTACATATT TTATTCCTTT
+RPS4A                       731  2.61e-06 TATTTATTTT TAAACAGCCGTACATTCT GTAATTTTGC
+RPL23A                      114  3.11e-06 TCAGACTACA TTAACATCTGTACACCCC CAACTGCTTT
+RPL20A                      241  3.68e-06 CCAAACATAA AATACCCCCATACATCCA GAATAGCGTT
+RPS11B                      162  3.68e-06 ATATTTCCTT GCTGCACCCATACAATTC TAAACCCAAA
+RPL35A                      497  3.68e-06 CTGTATTAAT CTCAGACCCATACATATC TACACCCATA
+RPS13                       107  4.01e-06 TAAACCATAA AGTAGACCCAAACATTTT TAAAAAAATT
+RPL11B                      409  4.71e-06 ATCCGTACAA CGAGAACCCATACATTAC TTTTTTTAAT
+RPL15A                      580  4.71e-06 CATTGCATTT TTACCACCGGTACATTTA ACTGCTATTT
+RPL40B                      777  5.52e-06 TTAAATACTA TTTCCATCCGTGCCTCTA ATAGATTTGT
+RPS27A                      217  5.97e-06 TATTCATTTA TTTCAACCCGTGCACACT GGAAATAAAT
+RPL33B                      186  6.97e-06 TGACGGCCTG TATAAACCCATACAATCA GCCCATACAT
+RPS14B                      165  7.51e-06 AACACATCAT TGTACATCCTTGCACCAC ACTGAAAAGA
+RPL6B                       499  9.36e-06 TAAAGACAAA ATATCACCCATGCACCAA AATGTATGGG
+RPS1A                       157  1.33e-05 CACGGAAACG TTGAAACCCAAACATTAA TATATTTTAT
+RPS10A                      132  1.62e-05 CAATTTTTTC CCTACATCCAAGCATTCT GGGTTTGTAT
+RPL14B                       14  1.73e-05 TTCAACTTAT ATAGCACCTTTACATATC TTTAATTTTT
+RPS2                        507  2.10e-05 GTGTATTTAA GCTAGACCCATACACCCG CTCTATGGGA
+RPL18A                      101  4.00e-05 CTAAAGCATA TATACATATATACATATT TAGCGTCATG
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+	Motif 1 block diagrams
+--------------------------------------------------------------------------------
+SEQUENCE NAME            POSITION P-VALUE  MOTIF DIAGRAM
+-------------            ----------------  -------------
+RPL36A                            8.1e-11  164_[+1]_149
+RPS21B                              3e-10  550_[+1]_329
+RPS18B                            3.1e-09  192_[+1]_359
+RPL23B                            1.2e-08  183_[+1]_375
+RPL2A                             1.5e-08  141_[+1]_499
+RPS0B                             2.2e-08  377_[+1]_410
+RPS21A                            3.1e-08  61_[+1]_210
+RPL40A                            3.6e-08  276_[+1]_343
+RPS4B                               5e-08  296_[+1]_468
+RPL22B                            5.8e-08  279_[+1]_231
+RPL20B                            5.8e-08  283_[+1]_343
+RPL10                             6.8e-08  177_[+1]_255
+RPL1B                             7.9e-08  457_[+1]_298
+RPP1B                             9.2e-08  194_[+1]_261
+RPL22A                            9.2e-08  195_[+1]_214
+RPL33A                            1.1e-07  787_[+1]_342
+RPL14A                            1.1e-07  757_[+1]_397
+RPS7B                             1.2e-07  260_[+1]_289
+RPL42B                            1.4e-07  389_[+1]_347
+RPS6B                             1.6e-07  387_[+1]_308
+RPS6A                             1.8e-07  289_[+1]_417
+RPS1B                             2.1e-07  204_[+1]_383
+RPL13B                            2.1e-07  383_[+1]_318
+RPL36B                            2.3e-07  109_[+1]_301
+RPL17A                            2.6e-07  313_[+1]_333
+RPL27A                              3e-07  412_[+1]_403
+RPS20                             3.4e-07  361_[+1]_244
+RPP0                              3.4e-07  513_[+1]_249
+RPL7B                             3.8e-07  167_[+1]_205
+RPS24A                            3.8e-07  382_[+1]_323
+RPS23B                            3.8e-07  152_[+1]_295
+RPL38                             4.3e-07  496_[+1]_274
+RPS12                             4.8e-07  233_[+1]_279
+RPS16A                            5.4e-07  404_[+1]_294
+RPS19A                            7.4e-07  276_[+1]_233
+RPL41B                            8.2e-07  270_[+1]_331
+RPL8B                             9.1e-07  911_[+1]_270
+RPS23A                            9.1e-07  121_[+1]_355
+RPL43B                              1e-06  863_[+1]_275
+RPS9A                             1.2e-06  618_[+1]_228
+RPS27B                            1.7e-06  127_[+1]_409
+RPS16B                            1.7e-06  267_[+1]_349
+RPL27B                              2e-06  215_[+1]_322
+RPL43A                              2e-06  264_[+1]_210
+RPS7A                               2e-06  680_[+1]_485
+RPL31A                              2e-06  201_[+1]_411
+RPL41A                            2.4e-06  106_[+1]_262
+RPS3                              2.4e-06  918_[+1]_244
+RPL8A                             2.4e-06  107_[+1]_225
+RPL16B                            2.4e-06  289_[+1]_391
+RPL13A                            2.4e-06  431_[+1]_185
+RPS24B                            2.6e-06  202_[+1]_467
+RPS4A                             2.6e-06  730_[+1]_351
+RPL23A                            3.1e-06  113_[+1]_331
+RPL20A                            3.7e-06  240_[+1]_349
+RPS11B                            3.7e-06  161_[+1]_291
+RPL35A                            3.7e-06  496_[+1]_279
+RPS13                               4e-06  106_[+1]_217
+RPL11B                            4.7e-06  408_[+1]_224
+RPL15A                            4.7e-06  579_[+1]_85
+RPL40B                            5.5e-06  776_[+1]_259
+RPS27A                              6e-06  216_[+1]_198
+RPL33B                              7e-06  185_[+1]_457
+RPS14B                            7.5e-06  164_[+1]_190
+RPL6B                             9.4e-06  498_[+1]_441
+RPS1A                             1.3e-05  156_[+1]_232
+RPS10A                            1.6e-05  131_[+1]_345
+RPL14B                            1.7e-05  13_[+1]_275
+RPS2                              2.1e-05  506_[+1]_375
+RPL18A                              4e-05  100_[+1]_334
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+	Motif 1 in BLOCKS format
+--------------------------------------------------------------------------------
+BL   MOTIF 1 width=18 seqs=70
+RPL36A                   (  165) TTTACACCCGTACATTTC  1 
+RPS21B                   (  551) TTTACACCCGTACACTTT  1 
+RPS18B                   (  193) TTTACATCCATACATTTT  1 
+RPL23B                   (  184) TATACATCCGTACACTTT  1 
+RPL2A                    (  142) TTTTCACCCGTACATTTT  1 
+RPS0B                    (  378) TTTACATCCGTACATATA  1 
+RPS21A                   (   62) TTTAAATCCGTACATTTT  1 
+RPL40A                   (  277) ATTACATCCGTACATTAC  1 
+RPS4B                    (  297) TATGCATCCATACATTTC  1 
+RPL22B                   (  280) TCAACACCCGTACATATT  1 
+RPL20B                   (  284) TGTTCACCCGTACATTTT  1 
+RPL10                    (  178) TTTACACCTGTACATCTT  1 
+RPL1B                    (  458) TTTGAACCCATACATCTT  1 
+RPP1B                    (  195) TTTAAACCCATACATATC  1 
+RPL22A                   (  196) AATACATCCATACATTTA  1 
+RPL33A                   (  788) TTTACACCCTTACACTTC  1 
+RPL14A                   (  758) AATACACCCATACACTAT  1 
+RPS7B                    (  261) TTTAAATCCGTACATTAT  1 
+RPL42B                   (  390) GATACACCCATACATCAT  1 
+RPS6B                    (  388) CTTGCATCCATACATCTT  1 
+RPS6A                    (  290) ATTGAACCCATACATTTC  1 
+RPS1B                    (  205) TGTACATCCATACACCAT  1 
+RPL13B                   (  384) TACGCACCCATACATTTA  1 
+RPL36B                   (  110) TTTTCACCCGTACATCCA  1 
+RPL17A                   (  314) ACAACATCCGTACATTTA  1 
+RPL27A                   (  413) AATGCATCCGTACACCTA  1 
+RPS20                    (  362) TTCACACCTGTACATTTT  1 
+RPP0                     (  514) TTAACATCCGAACATTTC  1 
+RPL7B                    (  168) ACTAAATCCGTACATTTC  1 
+RPS24A                   (  383) TGTACACCCACACATTTA  1 
+RPS23B                   (  153) CAAACACCCATACATATT  1 
+RPL38                    (  497) AATGCATCCGTGCATTTT  1 
+RPS12                    (  234) TGTGCATCCGTACATTTG  1 
+RPS16A                   (  405) TTGGCACCCATACATTAT  1 
+RPS19A                   (  277) GTTCAACCCGTACATTTA  1 
+RPL41B                   (  271) ACCACACCCGTACACCCT  1 
+RPL8B                    (  912) TGAAGATCCGTACATCTT  1 
+RPS23A                   (  122) TATACACCCATACCCTAT  1 
+RPL43B                   (  864) TTTTAACCCATACATATC  1 
+RPS9A                    (  619) TGCACACCCATGCATCAT  1 
+RPS27B                   (  128) TTTTCACCCATGCACCAT  1 
+RPS16B                   (  268) AAAACACCCATACATGTT  1 
+RPL27B                   (  216) TTTCCACCCACACATATA  1 
+RPL43A                   (  265) AAAGAATCCGTACATTTA  1 
+RPS7A                    (  681) TTCAAACCCATACACAAT  1 
+RPL31A                   (  202) TTTACCTCCGTACACCAA  1 
+RPL41A                   (  107) CAAACATCCGCACATTTT  1 
+RPS3                     (  919) GTAACATCCATACCTTTC  1 
+RPL8A                    (  108) AAAACACCCAAACATATC  1 
+RPL16B                   (  290) ATTCAATCCGTACACTAT  1 
+RPL13A                   (  432) GTTACATCCTTACATATA  1 
+RPS24B                   (  203) ACTACATCTGTACATATT  1 
+RPS4A                    (  731) TAAACAGCCGTACATTCT  1 
+RPL23A                   (  114) TTAACATCTGTACACCCC  1 
+RPL20A                   (  241) AATACCCCCATACATCCA  1 
+RPS11B                   (  162) GCTGCACCCATACAATTC  1 
+RPL35A                   (  497) CTCAGACCCATACATATC  1 
+RPS13                    (  107) AGTAGACCCAAACATTTT  1 
+RPL11B                   (  409) CGAGAACCCATACATTAC  1 
+RPL15A                   (  580) TTACCACCGGTACATTTA  1 
+RPL40B                   (  777) TTTCCATCCGTGCCTCTA  1 
+RPS27A                   (  217) TTTCAACCCGTGCACACT  1 
+RPL33B                   (  186) TATAAACCCATACAATCA  1 
+RPS14B                   (  165) TGTACATCCTTGCACCAC  1 
+RPL6B                    (  499) ATATCACCCATGCACCAA  1 
+RPS1A                    (  157) TTGAAACCCAAACATTAA  1 
+RPS10A                   (  132) CCTACATCCAAGCATTCT  1 
+RPL14B                   (   14) ATAGCACCTTTACATATC  1 
+RPS2                     (  507) GCTAGACCCATACACCCG  1 
+RPL18A                   (  101) TATACATATATACATATT  1 
+//
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+	Motif 1 position-specific scoring matrix
+--------------------------------------------------------------------------------
+log-odds matrix: alength= 4 w= 18 n= 53176 bayes= 10.9536 E= 5.2e-113 
+   -26   -120   -105     84 
+   -26    -78    -46     65 
+   -43   -120   -263    104 
+   107   -120      7   -190 
+   -52    189   -163  -1277 
+   166   -278  -1277  -1277 
+ -1277    154   -363     37 
+  -442    233  -1277  -1277 
+ -1277    220   -363   -190 
+    66  -1277    137   -248 
+  -210   -220  -1277    147 
+   153  -1277    -63  -1277 
+ -1277    235  -1277  -1277 
+   164   -220  -1277  -1277 
+  -342     31  -1277    119 
+   -62     39   -363     73 
+   -43    -61  -1277    101 
+   -26     31   -263     56 
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+	Motif 1 position-specific probability matrix
+--------------------------------------------------------------------------------
+letter-probability matrix: alength= 4 w= 18 nsites= 70 E= 5.2e-113 
+ 0.257143  0.085714  0.085714  0.571429 
+ 0.257143  0.114286  0.128571  0.500000 
+ 0.228571  0.085714  0.028571  0.657143 
+ 0.642857  0.085714  0.185714  0.085714 
+ 0.214286  0.728571  0.057143  0.000000 
+ 0.971429  0.028571  0.000000  0.000000 
+ 0.000000  0.571429  0.014286  0.414286 
+ 0.014286  0.985714  0.000000  0.000000 
+ 0.000000  0.900000  0.014286  0.085714 
+ 0.485714  0.000000  0.457143  0.057143 
+ 0.071429  0.042857  0.000000  0.885714 
+ 0.885714  0.000000  0.114286  0.000000 
+ 0.000000  1.000000  0.000000  0.000000 
+ 0.957143  0.042857  0.000000  0.000000 
+ 0.028571  0.242857  0.000000  0.728571 
+ 0.200000  0.257143  0.014286  0.528571 
+ 0.228571  0.128571  0.000000  0.642857 
+ 0.257143  0.242857  0.028571  0.471429 
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+	Motif 1 regular expression
+--------------------------------------------------------------------------------
+[TA][TA][TA]A[CA]A[CT]CC[AG]TACA[TC][TCA][TA][TAC]
+--------------------------------------------------------------------------------
+
+
+
+
+Time 95.08 secs.
+
+********************************************************************************
+
+
+********************************************************************************
+SUMMARY OF MOTIFS
+********************************************************************************
+
+--------------------------------------------------------------------------------
+	Combined block diagrams: non-overlapping sites with p-value < 0.0001
+--------------------------------------------------------------------------------
+SEQUENCE NAME            COMBINED P-VALUE  MOTIF DIAGRAM
+-------------            ----------------  -------------
+RPL13A                           1.48e-03  72_[+1(8.17e-05)]_321_\
+    [+1(1.16e-05)]_2_[+1(2.39e-06)]_185
+RPL42B                           1.02e-04  389_[+1(1.38e-07)]_347
+RPS23A                           4.36e-04  121_[+1(9.14e-07)]_355
+RPL35A                           2.86e-03  496_[+1(3.68e-06)]_279
+RPP0                             2.56e-04  513_[+1(3.36e-07)]_249
+RPL14A                           1.22e-04  757_[+1(1.05e-07)]_397
+RPL23B                           6.65e-06  183_[+1(1.19e-08)]_[+1(2.19e-06)]_\
+    357
+RPS9A                            1.05e-03  618_[+1(1.24e-06)]_228
+RPS1A                            5.16e-03  156_[+1(1.33e-05)]_232
+RPL40B                           5.71e-03  776_[+1(5.52e-06)]_259
+RPL16B                           1.63e-03  289_[+1(2.39e-06)]_391
+RPS0B                            1.70e-05  377_[+1(2.16e-08)]_3_[+1(2.39e-06)]_\
+    389
+RPL25                            8.74e-01  867
+RPL20B                           3.63e-05  283_[+1(5.79e-08)]_343
+RPS6B                            1.10e-04  387_[+1(1.58e-07)]_308
+RPL3                             4.26e-01  1129
+RPS11B                           1.67e-03  161_[+1(3.68e-06)]_291
+RPL10                            2.95e-05  177_[+1(6.81e-08)]_255
+RPS23B                           1.70e-04  134_[+1(1.50e-06)]_[+1(3.78e-07)]_\
+    295
+RPL31A                           1.22e-03  201_[+1(1.99e-06)]_8_[+1(1.16e-05)]_\
+    385
+RPS14B                           2.66e-03  164_[+1(7.51e-06)]_190
+RPL38                            3.28e-04  496_[+1(4.26e-07)]_[+1(3.78e-05)]_\
+    256
+RPL18B                           4.06e-01  1131
+RPS13                            1.30e-03  106_[+1(4.01e-06)]_217
+RPS6A                            1.28e-04  264_[+1(2.85e-06)]_7_[+1(1.81e-07)]_\
+    417
+RPL6B                            8.76e-03  498_[+1(9.36e-06)]_441
+RPS4A                            2.82e-03  701_[+1(6.45e-06)]_11_\
+    [+1(2.61e-06)]_351
+RPS16A                           3.75e-04  404_[+1(5.36e-07)]_294
+RPL13B                           1.45e-04  383_[+1(2.06e-07)]_318
+RPL1B                            5.99e-05  457_[+1(7.92e-08)]_298
+RPS2                             1.83e-02  506_[+1(2.10e-05)]_375
+RPL4A                            5.69e-01  213
+RPS7A                            2.32e-03  680_[+1(1.99e-06)]_7_[+1(1.08e-05)]_\
+    460
+RPL36A                           2.53e-08  164_[+1(8.06e-11)]_149
+RPL41B                           4.95e-04  270_[+1(8.23e-07)]_331
+RPL33A                           1.19e-04  787_[+1(1.05e-07)]_342
+RPL43A                           9.47e-04  264_[+1(1.99e-06)]_210
+RPL22A                           3.76e-05  195_[+1(9.17e-08)]_214
+RPP1A                            7.49e-01  510
+RPL33B                           4.47e-03  185_[+1(6.97e-06)]_457
+RPL27A                           2.44e-04  412_[+1(2.99e-07)]_403
+RPS16B                           1.02e-03  267_[+1(1.65e-06)]_349
+RPS10A                           7.71e-03  131_[+1(1.62e-05)]_345
+RPL23A                           1.38e-03  113_[+1(3.11e-06)]_138_\
+    [+1(6.74e-05)]_175
+RPS21B                           2.60e-07  550_[+1(2.95e-10)]_329
+RPL40A                           2.24e-05  276_[+1(3.61e-08)]_343
+RPS27B                           8.88e-04  127_[+1(1.65e-06)]_409
+RPS28B                           7.67e-01  294
+RPL36B                           9.63e-05  109_[+1(2.34e-07)]_301
+RPL15A                           3.13e-03  579_[+1(4.71e-06)]_85
+RPS24A                           2.67e-04  382_[+1(3.78e-07)]_323
+RPL18A                           1.72e-02  100_[+1(4.00e-05)]_334
+RPL27B                           1.07e-03  215_[+1(1.99e-06)]_322
+RPS24B                           1.75e-03  202_[+1(2.61e-06)]_467
+RPS18B                           1.72e-06  167_[+1(5.52e-06)]_7_[+1(3.11e-09)]_\
+    359
+RPL34B                           9.95e-01  780
+RPS20                            2.04e-04  361_[+1(3.36e-07)]_244
+RPL11B                           2.98e-03  408_[+1(4.71e-06)]_224
+RPS7B                            6.62e-05  260_[+1(1.20e-07)]_289
+RPP1B                            4.18e-05  194_[+1(9.17e-08)]_6_[+1(2.85e-06)]_\
+    237
+RPL4B                            1.19e-01  1194
+RPS27A                           2.48e-03  216_[+1(5.97e-06)]_3_[+1(1.42e-05)]_\
+    177
+RPL8A                            7.97e-04  107_[+1(2.39e-06)]_225
+RPS12                            2.45e-04  233_[+1(4.78e-07)]_8_[+1(7.43e-05)]_\
+    253
+RPL15B                           5.23e-01  965
+RPL20A                           2.17e-03  240_[+1(3.68e-06)]_349
+RPL8B                            1.08e-03  911_[+1(9.14e-07)]_270
+RPL14B                           4.99e-03  13_[+1(1.73e-05)]_275
+RPS4B                            3.79e-05  296_[+1(4.96e-08)]_468
+RPL39                            4.29e-01  594
+RPS3                             2.78e-03  918_[+1(2.39e-06)]_244
+RPL17A                           1.71e-04  295_[+1(1.08e-05)]_[+1(2.65e-07)]_\
+    333
+RPL2A                            9.34e-06  141_[+1(1.46e-08)]_499
+RPS1B                            1.21e-04  204_[+1(2.06e-07)]_383
+RPS19A                           3.78e-04  250_[+1(2.39e-06)]_8_[+1(7.41e-07)]_\
+    233
+RPL7B                            1.41e-04  167_[+1(3.78e-07)]_205
+RPL41A                           8.83e-04  106_[+1(2.39e-06)]_262
+RPP2A                            5.27e-01  719
+RPL43B                           1.15e-03  845_[+1(3.38e-06)]_[+1(1.01e-06)]_\
+    275
+RPL22B                           2.96e-05  279_[+1(5.79e-08)]_231
+RPS21A                           8.34e-06  61_[+1(3.07e-08)]_210
+--------------------------------------------------------------------------------
+
+********************************************************************************
+
+
+********************************************************************************
+Stopped because requested number of motifs (1) found.
+********************************************************************************
+
+CPU: Xiangyus-Air.attlocal.net
+
+********************************************************************************
