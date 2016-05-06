@@ -39,6 +39,10 @@
 <letter id="K" symbol="K" equals="GT" name="Keto"/>
 </alphabet>
 <motif name="1" width="15" best-possible-match="TACACCCATACATTT"/>
+<motif name="2" width="15" best-possible-match="TTTTTTTTTTTTTTC"/>
+<motif name="3" width="11" best-possible-match="CACCCATACAT"/>
+<motif name="4" width="11" best-possible-match="TTTTTTTTTTC"/>
+<motif name="5" width="15" best-possible-match="TCCGGCCAGGCCGCC"/>
 <background source="non-redundant database">
 <value letter="A">0.275</value>
 <value letter="C">0.225</value>
